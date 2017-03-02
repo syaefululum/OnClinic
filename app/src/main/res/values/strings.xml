@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">POS Medicine</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="title_activity_medicine">MedicineActivity</string>
+    <string name="title_activity_unit">UnitActivity</string>
+    <string name="title_activity_appointment">AppointmentActivity</string>
+
+    <string name="label_create">CREATE </string>
+    <string name="label_update">UPDATE </string>
+    <string name="label_delete">DELETE </string>
+    <string name="label_appointment_date">Appointment Date : </string>
+    <string name="label_appointment_status">Status : </string>
+    <string name="label_patient_name">Patient : </string>
+    <string name="label_doctor_name">Doctor : </string>
+</resources>
