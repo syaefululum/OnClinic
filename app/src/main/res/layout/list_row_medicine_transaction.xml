@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:id="@+id/categoryMedicineTransaction">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tmedicine_name"
+                android:textSize="25sp"
+                android:text="OBH Combi +"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tmedicine_quantity_text"
+                android:textSize="20sp"
+                android:text="Quantity"
+                android:layout_below="@+id/tmedicine_name"/>
+            <EditText
+                android:hint=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/tmedicine_stock"
+                android:layout_alignBaseline="@+id/tmedicine_quantity_text"
+                android:layout_alignBottom="@+id/tmedicine_quantity_text"
+                android:layout_toEndOf="@+id/tmedicine_quantity_text"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tmedicine_type_text1"
+                android:textSize="20sp"
+                android:text="Botol"
+                android:layout_below="@+id/tmedicine_name"
+                android:layout_toEndOf="@+id/tmedicine_stock"
+                android:paddingLeft="2dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tmedicine_price_text"
+                android:textSize="20sp"
+                android:text="Rp. 10000"
+                android:layout_below="@+id/tmedicine_stock"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tmedicine_type_text2"
+                android:textSize="20sp"
+                android:text=""
+                android:layout_below="@+id/tmedicine_stock"
+                android:layout_toEndOf="@+id/tmedicine_price_text"/>
+
+            <ImageView android:id="@+id/bDeleteMedicine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@android:drawable/ic_delete"
+                android:layout_alignParentTop="true"
+
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

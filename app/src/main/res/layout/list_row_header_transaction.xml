@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="4dp"
+        android:id="@+id/cvHeaderTransaction"
+        android:layout_weight="48">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tHeaderid"
+                android:textSize="16sp"
+                android:text="ID Transaction : "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tHeaderid_val"
+                android:textSize="16sp"
+                android:text="#"
+                android:layout_toRightOf="@+id/tHeaderid"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tHeader_date"
+                android:textSize="16sp"
+                android:text="Date : "
+                android:layout_below="@+id/tHeaderid"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tHeader_date_val"
+                android:textSize="16sp"
+                android:text="17-02-2017"
+                android:layout_below="@+id/tHeaderid"
+                android:layout_toRightOf="@+id/tHeader_date"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tHeader_total"
+                android:textSize="16sp"
+                android:text="Total : "
+                android:layout_below="@+id/tHeader_date"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tHeader_total_val"
+                android:textSize="16sp"
+                android:text="Rp. 17.000"
+                android:layout_below="@+id/tHeader_date"
+                android:layout_toRightOf="@+id/tHeader_total"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
