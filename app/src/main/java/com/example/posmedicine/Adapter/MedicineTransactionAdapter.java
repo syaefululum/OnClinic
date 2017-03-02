@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.posmedicine.PharmacyChasierActivity;
+import com.example.posmedicine.activities.PharmacyChasierActivity;
 import com.example.posmedicine.R;
 import com.example.posmedicine.models.TransactionMedicine;
 

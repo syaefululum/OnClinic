@@ -1,11 +1,10 @@
-package com.example.posmedicine;
+package com.example.posmedicine.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.posmedicine.Adapter.MedicineAdapter;
+import com.example.posmedicine.R;
 import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;

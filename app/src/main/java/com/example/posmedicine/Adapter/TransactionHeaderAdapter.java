@@ -2,7 +2,6 @@ package com.example.posmedicine.Adapter;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.posmedicine.CashierTransactionActivity;
-import com.example.posmedicine.CashierTransactionDetailActivity;
+import com.example.posmedicine.activities.CashierTransactionActivity;
+import com.example.posmedicine.activities.CashierTransactionDetailActivity;
 import com.example.posmedicine.R;
 import com.example.posmedicine.models.CashierHeaderTransaction;
 

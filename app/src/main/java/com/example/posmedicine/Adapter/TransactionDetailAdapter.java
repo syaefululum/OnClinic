@@ -7,8 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.posmedicine.CashierTransactionActivity;
-import com.example.posmedicine.CashierTransactionDetailActivity;
+import com.example.posmedicine.activities.CashierTransactionDetailActivity;
 import com.example.posmedicine.R;
 import com.example.posmedicine.models.CashierDetailTransaction;
 

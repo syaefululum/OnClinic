@@ -1,4 +1,4 @@
-package com.example.posmedicine;
+package com.example.posmedicine.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.posmedicine.R;
 import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.models.response.UnitResponse;
 import com.example.posmedicine.network.ApiService;

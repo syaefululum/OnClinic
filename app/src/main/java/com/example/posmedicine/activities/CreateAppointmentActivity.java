@@ -1,4 +1,4 @@
-package com.example.posmedicine;
+package com.example.posmedicine.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.posmedicine.R;
 import com.example.posmedicine.models.Appointment;
 import com.example.posmedicine.models.local.LocalAppointment;
 import com.example.posmedicine.models.response.AppointmentResponse;
@@ -152,7 +153,7 @@ public class CreateAppointmentActivity extends AppCompatActivity {
                 arrId = new Long[response.body().getDoctor().size()];
                 for (int i = 0; i < response.body().getDoctor().size(); i++) {
                     arrName[i] = new String(response.body().getDoctor().get(i).getPerson().getName());
-                    arrId[i] = response.body().getDoctor().get(i).getId();
+                    arrId[i] = (long)response.body().getDoctor().get(i).getId();
                 }
                 autocomplete = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextDoctor);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.select_dialog_item, arrName);
