@@ -2,8 +2,6 @@ package com.example.posmedicine.Adapter;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.posmedicine.AppointmentActivity;
-import com.example.posmedicine.FontManager;
+import com.example.posmedicine.activities.AppointmentActivity;
+import com.example.posmedicine.activities.FontManager;
 import com.example.posmedicine.R;
 import com.example.posmedicine.models.Appointment;
 import com.example.posmedicine.models.Doctor;

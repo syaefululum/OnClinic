@@ -2,13 +2,17 @@ package com.example.posmedicine.network;
 
 
 import com.example.posmedicine.models.CashierHeaderTransaction;
+import com.example.posmedicine.models.ComplaintHeader;
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.models.response.AppointmentSingleResponse;
 import com.example.posmedicine.models.response.CashierHeaderResponse;
+import com.example.posmedicine.models.response.ComplaintDetailResponse;
+import com.example.posmedicine.models.response.ComplaintHeaderResponse;
 import com.example.posmedicine.models.response.DoctorResponse;
 import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.models.response.PurchaseDetailResponse;
 import com.example.posmedicine.models.response.PurchaseHeaderResponse;
+import com.example.posmedicine.models.response.SignInResponse;
 import com.example.posmedicine.models.response.UnitResponse;
 import com.example.posmedicine.models.response.UnitSingleDataResponse;
 
@@ -134,9 +138,32 @@ public interface ApiService {
     @POST("/clinic/web/v1/appointment/create")
     Call<AppointmentSingleResponse> createAppointment(
             @Field("date") String appointmentDate,
-            @Field("doctor_id") Long doctorid,
+            @Field("doctor_id") Integer doctorid,
             @Field("patient_id") Integer patientid,
             @Field("status") String status
     );
 
+    @FormUrlEncoded
+    @POST("/clinic/web/v1/user-login/login")
+    Call<SignInResponse> signin(
+            @Field("username") String username,
+            @Field("password") String password
+    );
+    /**
+     * Complaint
+     * Created by Surya on 03/06/17.
+     */
+    @GET("/clinic/web/v1/complaint-header")
+    Call<ComplaintHeaderResponse> getComplaints();
+
+
+    @GET("/clinic/web/v1/complaint-header/find-by-doctor")
+    Call<ComplaintHeaderResponse> getComplaintsbyDoctor(
+            @Query("id") Long id
+    );
+
+    @GET("/clinic/web/v1/complaint-detail/detail-by-id")
+    Call<ComplaintDetailResponse> getDetailbyId(
+            @Query("id") Long id
+    );
 }

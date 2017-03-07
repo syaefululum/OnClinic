@@ -22,6 +22,11 @@
             android:id="@+id/nav_cashier_transaction_data"
             android:icon="@drawable/ic_menu_manage"
             android:title="Transaction Data" />
+        <item
+            android:id="@+id/nav_complaint"
+            android:title="Complaint">
+        </item>
+
         <!--<item-->
             <!--android:id="@+id/nav_manage"-->
             <!--android:icon="@drawable/ic_menu_manage"-->

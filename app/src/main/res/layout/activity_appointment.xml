@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:id="@+id/activity_appointment"
-    tools:context="com.example.posmedicine.AppointmentActivity">
+    tools:context="com.example.posmedicine.activities.AppointmentActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
