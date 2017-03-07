@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".activities.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -26,7 +26,7 @@
             android:value="com.example.posmedicine.models" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -65,6 +65,15 @@
             android:name=".activities.ComplaintDetailActivity"
             android:label="@string/title_activity_complaint_detail"
             android:theme="@style/AppTheme"></activity>
+        <activity android:name=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            ></activity>
+        <activity android:name=".activities.CreateAppointmentActivity"></activity>
     </application>
 
 </manifest>

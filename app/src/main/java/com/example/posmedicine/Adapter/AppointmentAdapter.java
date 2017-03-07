@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.posmedicine.activities.AppointmentActivity;
-import com.example.posmedicine.FontManager;
+import com.example.posmedicine.activities.FontManager;
 import com.example.posmedicine.R;
 import com.example.posmedicine.models.Appointment;
 import com.example.posmedicine.models.Doctor;

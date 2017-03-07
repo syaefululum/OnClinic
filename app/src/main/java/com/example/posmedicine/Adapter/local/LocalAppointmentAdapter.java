@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.posmedicine.activities.AppointmentActivity;
-import com.example.posmedicine.FontManager;
+import com.example.posmedicine.activities.FontManager;
 import com.example.posmedicine.R;
 import com.example.posmedicine.models.local.LocalAppointment;
 

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -103,16 +105,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
-//            Intent m = new Intent(MainActivity.this,MedicineActivity.class);
-//            MainActivity.this.startActivity(m);
-//            finish();
             startActivity(new Intent(this, MedicineActivity.class));
         } else if (id == R.id.nav_gallery) {
-//            finish();
             startActivity(new Intent(this, UnitActivity.class));
         } else if (id == R.id.nav_appointment) {
-//            finish();
             startActivity(new Intent(this, AppointmentActivity.class));
         } else if (id == R.id.nav_pharmacy_chasier) {
             startActivity(new Intent(this, PharmacyChasierActivity.class));

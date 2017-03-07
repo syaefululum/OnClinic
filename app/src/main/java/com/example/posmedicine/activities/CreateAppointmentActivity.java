@@ -42,11 +42,12 @@ public class CreateAppointmentActivity extends AppCompatActivity {
     AutoCompleteTextView autocomplete;
     TextView iAppointmentDate,iAppointmentTime;
     String[] arrName;
-    Long[] arrId;
+    Integer[] arrId;
     ApiService service;
 
 
-    private Long docterSelected;
+    private Integer docterSelected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +81,7 @@ public class CreateAppointmentActivity extends AppCompatActivity {
         bCreateAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Long doctorId = getDocterSelected();
+                Integer doctorId = getDocterSelected();
                 Integer patientId = 1;
                 String status = "Pending";
                 String date = iAppointmentDate.getText().toString() + " " + iAppointmentTime.getText().toString() + ":00";
@@ -150,10 +151,10 @@ public class CreateAppointmentActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DoctorResponse> call, Response<DoctorResponse> response) {
                 arrName = new String[response.body().getDoctor().size()];
-                arrId = new Long[response.body().getDoctor().size()];
+                arrId = new Integer[response.body().getDoctor().size()];
                 for (int i = 0; i < response.body().getDoctor().size(); i++) {
                     arrName[i] = new String(response.body().getDoctor().get(i).getPerson().getName());
-                    arrId[i] = (long)response.body().getDoctor().get(i).getId();
+                    arrId[i] = response.body().getDoctor().get(i).getId();
                 }
                 autocomplete = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextDoctor);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.select_dialog_item, arrName);
@@ -183,15 +184,16 @@ public class CreateAppointmentActivity extends AppCompatActivity {
         });
     }
 
-    public void setDocterSelected(Long docterSelected) {
+
+    public void setDocterSelected(Integer docterSelected) {
         this.docterSelected = docterSelected;
     }
 
-    public Long getDocterSelected() {
+    public Integer getDocterSelected() {
         return this.docterSelected;
     }
 
-    public void createAppointment(String date, Long doctorId,Integer patientId,String status){
+    public void createAppointment(String date, Integer doctorId,Integer patientId,String status){
         service.createAppointment(date,doctorId,patientId,status).enqueue(new Callback<AppointmentSingleResponse>() {
             @Override
             public void onResponse(Call<AppointmentSingleResponse> call, Response<AppointmentSingleResponse> response) {
