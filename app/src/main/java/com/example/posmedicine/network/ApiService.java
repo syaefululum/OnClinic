@@ -2,9 +2,12 @@ package com.example.posmedicine.network;
 
 
 import com.example.posmedicine.models.CashierHeaderTransaction;
+import com.example.posmedicine.models.ComplaintHeader;
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.models.response.AppointmentSingleResponse;
 import com.example.posmedicine.models.response.CashierHeaderResponse;
+import com.example.posmedicine.models.response.ComplaintDetailResponse;
+import com.example.posmedicine.models.response.ComplaintHeaderResponse;
 import com.example.posmedicine.models.response.DoctorResponse;
 import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.models.response.PurchaseDetailResponse;
@@ -139,4 +142,20 @@ public interface ApiService {
             @Field("status") String status
     );
 
+    /**
+     * Complaint
+     * Created by Surya on 03/06/17.
+     */
+    @GET("/clinic/web/v1/complaint-header")
+    Call<ComplaintHeaderResponse> getComplaints();
+
+    @GET("/clinic/web/v1/complaint-header/find-by-doctor")
+    Call<ComplaintHeaderResponse> getComplaintsbyDoctor(
+            @Query("id") Long id
+    );
+
+    @GET("/clinic/web/v1/complaint-detail/detail-by-id")
+    Call<ComplaintDetailResponse> getDetailbyId(
+            @Query("id") Long id
+    );
 }

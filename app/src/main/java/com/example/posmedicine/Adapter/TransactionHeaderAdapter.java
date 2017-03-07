@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.example.posmedicine.models.CashierHeaderTransaction;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -39,6 +41,7 @@ public class TransactionHeaderAdapter extends RecyclerView.Adapter<TransactionHe
 
     @Override
     public void onBindViewHolder(TransactionHeaderAdapter.ViewHolder holder, final int position) {
+        Log.d("LOG:", headerTransactions.get(position).getId());
         holder.headerID.setText(headerTransactions.get(position).getId());
         holder.headerDate.setText(headerTransactions.get(position).getDate());
         holder.headerTotalPrice.setText("Rp. " + NumberFormat.getInstance().format(Double.parseDouble(headerTransactions.get(position).getTotalPrice())));
