@@ -56,7 +56,6 @@
         <activity android:name=".activities.PharmacyChasierActivity" />
         <activity android:name=".activities.CashierTransactionActivity" />
         <activity android:name=".activities.CashierTransactionDetailActivity" />
-        <activity android:name=".activities.CreateAppointmentActivity" />
         <activity android:name=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -65,6 +64,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             ></activity>
+        <activity android:name=".activities.CreateAppointmentActivity"></activity>
     </application>
 
 </manifest>

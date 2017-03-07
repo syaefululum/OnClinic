@@ -13,9 +13,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.posmedicine.R;
-
 import com.example.posmedicine.activities.EditUnitActivity;
+import com.example.posmedicine.R;
 import com.example.posmedicine.activities.UnitActivity;
 
 import com.example.posmedicine.models.Unit;

@@ -47,6 +47,7 @@ public class CreateAppointmentActivity extends AppCompatActivity {
 
 
     private Integer docterSelected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,6 +183,7 @@ public class CreateAppointmentActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void setDocterSelected(Integer docterSelected) {
         this.docterSelected = docterSelected;

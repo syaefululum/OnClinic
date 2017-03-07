@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.posmedicine.Adapter.AppointmentAdapter;
+import com.example.posmedicine.activities.FontManager;
 import com.example.posmedicine.R;
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.network.ApiService;
