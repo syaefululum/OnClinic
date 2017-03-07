@@ -4,7 +4,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.posmedicine.FontManager;
+import com.example.posmedicine.activities.FontManager;
 import com.example.posmedicine.R;
 
 public class AppointmentDetailActivity extends AppCompatActivity {
