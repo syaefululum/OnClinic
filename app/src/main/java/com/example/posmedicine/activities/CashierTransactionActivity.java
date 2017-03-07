@@ -1,4 +1,4 @@
-package com.example.posmedicine;
+package com.example.posmedicine.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.posmedicine.Adapter.TransactionHeaderAdapter;
-import com.example.posmedicine.models.CashierHeaderTransaction;
+import com.example.posmedicine.R;
 import com.example.posmedicine.models.response.CashierHeaderResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;

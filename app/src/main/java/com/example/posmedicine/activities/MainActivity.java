@@ -1,10 +1,9 @@
-package com.example.posmedicine;
+package com.example.posmedicine.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,7 +14,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.posmedicine.R;
+import com.example.posmedicine.activities.AppointmentActivity;
+import com.example.posmedicine.activities.CashierTransactionActivity;
+import com.example.posmedicine.activities.MedicineActivity;
+import com.example.posmedicine.activities.PharmacyChasierActivity;
+import com.example.posmedicine.activities.UnitActivity;
 import com.example.posmedicine.network.ApiService;
+import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,7 +32,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        new IconDrawable(this, FontAwesomeIcons.fa_share);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -34,8 +43,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
 
             }
         });
@@ -89,17 +98,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
-//            Intent m = new Intent(MainActivity.this,MedicineActivity.class);
-//            MainActivity.this.startActivity(m);
-//            finish();
             startActivity(new Intent(this, MedicineActivity.class));
         } else if (id == R.id.nav_gallery) {
-//            finish();
             startActivity(new Intent(this, UnitActivity.class));
         }
         else if (id == R.id.nav_appointment) {
-//            finish();
             startActivity(new Intent(this, AppointmentActivity.class));
         }else if(id == R.id.nav_pharmacy_chasier){
             startActivity(new Intent(this, PharmacyChasierActivity.class));
@@ -111,11 +114,4 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-//    @Override
-//    public void onResume()
-//    {  // After a pause OR at startup
-//        super.onResume();
-//        getUnit();
-//    }
 }

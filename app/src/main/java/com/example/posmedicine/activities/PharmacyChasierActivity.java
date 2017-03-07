@@ -1,6 +1,5 @@
-package com.example.posmedicine;
+package com.example.posmedicine.activities;
 
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.posmedicine.Adapter.MedicineTransactionAdapter;
+import com.example.posmedicine.R;
 import com.example.posmedicine.models.Medicine;
 import com.example.posmedicine.models.TransactionMedicine;
 import com.example.posmedicine.models.response.MedicineResponse;
@@ -30,11 +29,7 @@ import com.mobsandgeeks.saripaar.annotation.Required;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 import retrofit2.Call;
 import retrofit2.Callback;

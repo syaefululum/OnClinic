@@ -9,6 +9,7 @@ import com.example.posmedicine.models.response.DoctorResponse;
 import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.models.response.PurchaseDetailResponse;
 import com.example.posmedicine.models.response.PurchaseHeaderResponse;
+import com.example.posmedicine.models.response.SignInResponse;
 import com.example.posmedicine.models.response.UnitResponse;
 import com.example.posmedicine.models.response.UnitSingleDataResponse;
 
@@ -134,9 +135,16 @@ public interface ApiService {
     @POST("/clinic/web/v1/appointment/create")
     Call<AppointmentSingleResponse> createAppointment(
             @Field("date") String appointmentDate,
-            @Field("doctor_id") Long doctorid,
+            @Field("doctor_id") Integer doctorid,
             @Field("patient_id") Integer patientid,
             @Field("status") String status
+    );
+
+    @FormUrlEncoded
+    @POST("/clinic/web/v1/user-login/login")
+    Call<SignInResponse> signin(
+            @Field("username") String username,
+            @Field("password") String password
     );
 
 }

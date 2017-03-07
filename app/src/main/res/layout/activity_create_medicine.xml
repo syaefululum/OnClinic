@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.posmedicine.CreateMedicineActivity">
+    tools:context="com.example.posmedicine.activities.CreateMedicineActivity">
 
     <AutoCompleteTextView
         android:hint="Medicine Unit"
@@ -27,7 +27,8 @@
         android:hint="Medicine Name"
         android:ems="10"
         android:id="@+id/cmedicine_name"
-        android:layout_below="@+id/autoCompleteTextViewUnit" />
+        android:layout_below="@+id/autoCompleteTextViewUnit"
+      />
 
     <EditText
         android:layout_width="match_parent"

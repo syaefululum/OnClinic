@@ -1,6 +1,5 @@
-package com.example.posmedicine;
+package com.example.posmedicine.activities;
 
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,11 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.example.posmedicine.Adapter.TransactionDetailAdapter;
+import com.example.posmedicine.R;
 import com.example.posmedicine.models.CashierDetailTransaction;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CashierTransactionDetailActivity extends AppCompatActivity {
     String headerId, headerDate, headerTotalPrice;

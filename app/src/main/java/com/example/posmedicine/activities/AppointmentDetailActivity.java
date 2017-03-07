@@ -1,9 +1,10 @@
-package com.example.posmedicine;
+package com.example.posmedicine.activities;
 
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+
+import com.example.posmedicine.R;
 
 public class AppointmentDetailActivity extends AppCompatActivity {
 

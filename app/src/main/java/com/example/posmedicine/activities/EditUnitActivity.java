@@ -1,4 +1,4 @@
-package com.example.posmedicine;
+package com.example.posmedicine.activities;
 
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.posmedicine.R;
 import com.example.posmedicine.interfaces.UnitActions;
 import com.example.posmedicine.models.response.UnitResponse;
 import com.example.posmedicine.network.ApiService;

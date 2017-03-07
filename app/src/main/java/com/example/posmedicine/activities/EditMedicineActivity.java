@@ -1,6 +1,5 @@
-package com.example.posmedicine;
+package com.example.posmedicine.activities;
 
-import android.os.Parcelable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.posmedicine.R;
+import com.example.posmedicine.activities.CreateMedicineActivity;
 import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.models.response.UnitResponse;
 import com.example.posmedicine.network.ApiService;

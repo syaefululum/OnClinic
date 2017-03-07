@@ -37,5 +37,11 @@ dependencies {
     compile 'com.mobsandgeeks:android-saripaar:1.0.3'
     compile 'com.github.satyan:sugar:1.4'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.pixplicity.easyprefs:library:1.8.1@aar'
+    compile 'com.joanzapata.iconify:android-iconify:2.2.2'
+    compile 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2' // (v4.5)
+}
 
+repositories {
+    maven { url "http://dl.bintray.com/pixplicity/maven" }
 }

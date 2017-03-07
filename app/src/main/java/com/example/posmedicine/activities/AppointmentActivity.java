@@ -1,10 +1,9 @@
-package com.example.posmedicine;
+package com.example.posmedicine.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,15 +12,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.posmedicine.Adapter.AppointmentAdapter;
-import com.example.posmedicine.Adapter.local.LocalAppointmentAdapter;
-import com.example.posmedicine.models.Appointment;
-import com.example.posmedicine.models.local.LocalAppointment;
+import com.example.posmedicine.R;
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
