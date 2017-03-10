@@ -45,7 +45,7 @@ public class ComplaintDetailActivity extends AppCompatActivity {
     }
 
     private void getComplaintDetails(Integer id) {
-        service.getDetailbyId((long)id).enqueue(new Callback<ComplaintDetailResponse>() {
+        service.getDetailbyId(id).enqueue(new Callback<ComplaintDetailResponse>() {
             @Override
             public void onResponse(Call<ComplaintDetailResponse> call, Response<ComplaintDetailResponse> response) {
                 LinearLayoutManager llm = new LinearLayoutManager(ComplaintDetailActivity.this);

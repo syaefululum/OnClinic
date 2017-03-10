@@ -25,11 +25,13 @@ public class MyApplication extends SugarApp {
                 .setUseDefaultSharedPreference(true)
                 .build();
         String token = Prefs.getString(TOKEN,"TOKEN");
-
+        Intent intent;
         if(token.equals("TOKEN")){
-            startActivity(new Intent(this, LoginActivity.class));
+            intent = new Intent(this, LoginActivity.class);
         }else{
-            startActivity(new Intent(this, MainActivity.class));
+            intent = new Intent(this, MainActivity.class);
         }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
