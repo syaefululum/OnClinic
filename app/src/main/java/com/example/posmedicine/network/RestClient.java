@@ -35,7 +35,7 @@ public class RestClient {
     public RestClient() {
         //localhot http://172.19.11.20:8080
         //surya's pc http://172.19.1.168:8080
-        retrofit = new Retrofit.Builder().baseUrl("http://172.19.11.170:8080")
+        retrofit = new Retrofit.Builder().baseUrl("http://172.19.11.20:8080")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(getOkHttp().build())
                 .build();
