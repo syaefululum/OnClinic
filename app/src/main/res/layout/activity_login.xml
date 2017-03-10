@@ -2,37 +2,49 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bgimage"
-    >
+    android:layout_height="match_parent" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/transparentimage">
+        android:background="@color/colorPrimary">
 
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="120dp"
-            android:background="@drawable/logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="140dp"
-            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp" >
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@drawable/hospital"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/mainLogo" />
+
+            <com.example.posmedicine.TextView_Poiret_One
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:text="@string/app_name"
+                android:textColor="#FFF"
+                android:textSize="30dp"
+                android:layout_below="@+id/mainLogo" />
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_above="@+id/formInput">
 
-            <com.example.posmedicine.Helper.CustomeFont.MyTextView
+            <com.example.posmedicine.TextView_Poiret_One
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="22dp"
-                android:textColor="#cc1804"
+                android:textColor="#FFF"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:id="@+id/messageText"
-                android:background="#ADCCE2"
                 />
 
         </LinearLayout>
@@ -44,85 +56,54 @@
             android:layout_alignParentBottom="true"
             android:id="@+id/formInput">
 
-
-
-
             <com.example.posmedicine.Helper.CustomeFont.MyEditText
                 android:textSize="16dp"
                 android:id="@+id/iUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username"
                 android:layout_marginTop="20dp"
-                android:textColorHint="#ADCCE2"
-                android:textColor="#ADCCE2"
                 android:layout_marginLeft="22dp"
-                android:inputType="text"
-                android:background="#0000"
+                android:layout_marginRight="35dp"
                 android:padding="16dp"
+                android:hint="Username"
+                android:textColorHint="#FFF"
+                android:textColor="#FFF"
+                android:inputType="text"
                 android:drawableRight="@drawable/user"
-                android:layout_marginRight="35dp"/>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_height="1dp"
-                android:background="#ADCCE2" />
+                android:backgroundTint="@android:color/white" />
 
             <com.example.posmedicine.Helper.CustomeFont.MyEditText
                 android:textSize="16dp"
                 android:id="@+id/iPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
-                android:textColorHint="#ADCCE2"
                 android:layout_marginLeft="22dp"
-                android:inputType="textPassword"
-                android:maxLength="12"
-                android:textColor="#ADCCE2"
-                android:background="#0000"
+                android:layout_marginRight="35dp"
                 android:padding="16dp"
-                android:drawableRight="@drawable/pasword"
-                android:layout_marginRight="35dp"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
-                android:background="#ADCCE2"/>
+                android:hint="Password"
+                android:textColorHint="#FFF"
+                android:maxLength="12"
+                android:textColor="#FFF"
+                android:inputType="textPassword"
+                android:drawableRight="@drawable/password"
+                android:backgroundTint="@android:color/white" />
 
-
-
-
-            <com.example.posmedicine.Helper.CustomeFont.MyTextView
+            <com.example.posmedicine.TextView_Poiret_One
                 android:id="@+id/bSingIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rect"
+                android:background="#FFF"
                 android:text="SIGN IN"
-                android:textSize="16dp"
-                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textColor="@color/colorPrimary"
                 android:gravity="center"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:padding="16dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="28dp"
-                android:layout_marginTop="32dp"
-
-
-                />
-
-
-
-
-
-
+                android:layout_marginTop="32dp" />
         </LinearLayout>
-
 
     </RelativeLayout>
 </FrameLayout>

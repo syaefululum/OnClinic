@@ -104,9 +104,13 @@ public interface ApiService {
      * Appointment
      * Created by Surya on 02/06/17.
      */
-    @GET("/clinic/web/v1/appointment/findby-doctor")
+    @GET("/clinic/web/v1/appointment/find-by-doctor")
     Call<AppointmentResponse> getAppointmentbyDoctor(
-            @Query("id") Long id
+            @Query("id") Integer id
+    );
+    @GET("/clinic/web/v1/appointment/find-by-patient")
+    Call<AppointmentResponse> getAppointmentbyPatient(
+            @Query("id") Integer id
     );
 
     @FormUrlEncoded
@@ -159,11 +163,11 @@ public interface ApiService {
 
     @GET("/clinic/web/v1/complaint-header/find-by-doctor")
     Call<ComplaintHeaderResponse> getComplaintsbyDoctor(
-            @Query("id") Long id
+            @Query("id") Integer id
     );
 
     @GET("/clinic/web/v1/complaint-detail/detail-by-id")
     Call<ComplaintDetailResponse> getDetailbyId(
-            @Query("id") Long id
+            @Query("id") Integer id
     );
 }

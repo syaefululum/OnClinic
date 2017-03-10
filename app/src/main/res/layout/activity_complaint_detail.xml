@@ -34,7 +34,7 @@
                     android:layout_margin="16dp"
                     android:layout_weight="0.2"
                     android:src="@drawable/menu" />
-                
+
                 <com.example.posmedicine.TextView_Lato
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

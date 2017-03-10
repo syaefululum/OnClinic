@@ -17,6 +17,7 @@ import com.example.posmedicine.R;
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,10 +89,9 @@ public class AppointmentActivity extends AppCompatActivity {
     }
 
     public void getAppointment(){
-        service.getAppointmentbyDoctor((long) 1).enqueue(new Callback<AppointmentResponse>() {
+        service.getAppointmentbyDoctor(Integer.parseInt(Prefs.getString("USERID","1"))).enqueue(new Callback<AppointmentResponse>() {
             @Override
             public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
-                Log.d("dasd", String.valueOf(response.body().getAppointment()));
                 LinearLayoutManager llm = new LinearLayoutManager(AppointmentActivity.this);
                 llm.setOrientation(LinearLayoutManager.VERTICAL);
 
