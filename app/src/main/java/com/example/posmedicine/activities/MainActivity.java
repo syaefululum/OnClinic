@@ -18,6 +18,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.posmedicine.R;
 import com.example.posmedicine.activities.AppointmentActivity;
@@ -39,6 +41,10 @@ public class MainActivity extends AppCompatActivity
     public static final String TOKEN = "";
     ApiService service;
 
+    ImageView IVProfilPict;
+    TextView userName;
+    TextView userRole;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +52,8 @@ public class MainActivity extends AppCompatActivity
         Iconify.with(new FontAwesomeModule());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -68,6 +76,27 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         setNavigationViewIcons(navigationView.getMenu());
         setNavigationViewVisibility(navigationView.getMenu());
+        View hView =  navigationView.getHeaderView(0);
+
+       IVProfilPict = (ImageView)hView.findViewById(R.id.imageViewProfilePict);
+        userName = (TextView)hView.findViewById(R.id.userLoginName);
+        userRole = (TextView)hView.findViewById(R.id.userLoginRole);
+
+        String userLoginName = Prefs.getString("USERNAME","Not Set");
+        String role = Prefs.getString("USERROLE","Not Set");
+
+        userName.setText(userLoginName);
+        if (role.equals("Doctor")){
+           IVProfilPict.setImageResource(R.drawable.doctor);
+            userRole.setText("Doctor");
+        } else if(role.equals("Patient")){
+           IVProfilPict.setImageResource(R.drawable.teacher);
+            userRole.setText("Patient");
+        }else {
+          IVProfilPict.setImageResource(R.drawable.nurse);
+            userRole.setText("Nurse");
+        }
+
     }
 
     @Override
@@ -114,6 +143,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, CashierTransactionActivity.class));
         } else if (id == R.id.nav_complaint) {
             startActivity(new Intent(this, ComplaintHeaderActivity.class));
+        }else if(id == R.id.logout){
+            Prefs.clear();
+            startActivity(new Intent(this,LoginActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -143,9 +175,14 @@ public class MainActivity extends AppCompatActivity
         menu.findItem(R.id.nav_unit).setIcon(
                 new IconDrawable(this, FontAwesomeIcons.fa_heart)
                         .actionBarSize());
+        menu.findItem(R.id.logout).setIcon(
+                new IconDrawable(this, FontAwesomeIcons.fa_sign_out)
+                        .actionBarSize());
     }
 
     private void setNavigationViewVisibility(Menu menu){
+
+
         String role = Prefs.getString("USERROLE","Not Set");
         if (role.equals("Doctor"))
         {
