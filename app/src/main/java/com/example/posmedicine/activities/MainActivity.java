@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity
             menu.findItem(R.id.nav_group_patient).setVisible(false);
         }
     }
-    
+
 //    @Override
 //    public void onResume()
 //    {  // After a pause OR at startup
