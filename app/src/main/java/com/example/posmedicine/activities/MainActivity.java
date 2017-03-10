@@ -1,7 +1,9 @@
 package com.example.posmedicine.activities;
 
+
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +20,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.posmedicine.R;
+import com.example.posmedicine.activities.AppointmentActivity;
+import com.example.posmedicine.activities.CashierTransactionActivity;
+import com.example.posmedicine.activities.ComplaintHeaderActivity;
+import com.example.posmedicine.activities.MedicineActivity;
+import com.example.posmedicine.activities.PharmacyChasierActivity;
+import com.example.posmedicine.activities.UnitActivity;
+import com.example.posmedicine.models.ComplaintHeader;
 import com.example.posmedicine.network.ApiService;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.Iconify;
@@ -34,20 +43,20 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Iconify.with(new FontAwesomeModule());
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-//
-//            }
-//        });
+
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -74,7 +83,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-
         return true;
     }
 
@@ -154,7 +162,6 @@ public class MainActivity extends AppCompatActivity
             menu.findItem(R.id.nav_group_patient).setVisible(false);
         }
     }
-
 //    @Override
 //    public void onResume()
 //    {  // After a pause OR at startup

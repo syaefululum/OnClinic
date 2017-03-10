@@ -59,8 +59,8 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         holder.medicineStock.setText(NumberFormat.getInstance().format(Double.parseDouble(medicine.get(position).getQuantity())));
         holder.medicinePrice.setText("Rp. " + NumberFormat.getInstance().format(Double.parseDouble(medicine.get(position).getPrice())));
 
-        holder.unitName1.setText("" + unit.getName());
-        holder.unitName2.setText(" / " + unit.getName());
+        holder.unitName1.setText(" / "+ unit.getName());
+        holder.unitName2.setText("" + unit.getName());
 
         holder.cvMedicine.setOnClickListener(new View.OnClickListener(){
             @Override
