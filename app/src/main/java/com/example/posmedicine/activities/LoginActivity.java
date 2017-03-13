@@ -1,5 +1,6 @@
 package com.example.posmedicine.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,6 +52,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void doSignIn(String username, String password){
+        final ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
         service.signin(username,password).enqueue(new Callback<SignInResponse>() {
             @Override
             public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
@@ -70,11 +76,15 @@ public class LoginActivity extends AppCompatActivity {
                     message.setPadding(5,5,5,5);
                     message.setText(response.body().getMessage());
                 }
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<SignInResponse> call, Throwable t) {
                 Log.d("userdata", String.valueOf(t));
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
             }
         });
     }
