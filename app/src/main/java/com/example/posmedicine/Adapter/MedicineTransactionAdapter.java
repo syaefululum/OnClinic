@@ -44,7 +44,7 @@ public class MedicineTransactionAdapter extends RecyclerView.Adapter<MedicineTra
         holder.medicineName.setText(trMedicine.get(position).getMedicine().getName());
         holder.medicinePrice.setText("Rp. "+NumberFormat.getInstance().format(Double.parseDouble(trMedicine.get(position).getMedicine().getPrice())));
         holder.medicineQuantity.setText(""+trMedicine.get(position).getQuantity());
-        holder.medicineType1.setText(trMedicine.get(position).getMedicine().getUnit().getName());
+//        holder.medicineType1.setText(trMedicine.get(position).getMedicine().getUnit().getName());
 //        holder.medicineType2.setText(" / " + trMedicine.get(position).getMedicine().getUnit().getName());
         holder.bDelete.setOnClickListener(new View.OnClickListener() {
             @Override

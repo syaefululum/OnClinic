@@ -171,7 +171,7 @@ public class PharmacyChasierActivity extends AppCompatActivity implements Valida
             }else{
                 double myDb = medicineQuantity;
                 int myInt = (int) myDb;
-                Toast.makeText(getApplicationContext(),"Quantity is not enough, "+medicine.getName()+" : "+myInt+" "+medicine.getUnit().getName(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Quantity is not enough, "+medicine.getName()+" : "+myInt+" "+medicine.getUnitName(),Toast.LENGTH_LONG).show();
             }
         }
     }

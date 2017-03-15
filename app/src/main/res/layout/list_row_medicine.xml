@@ -63,11 +63,21 @@
                             <!--android:textColor="@color/colorPrimary"-->
                             <!--android:textSize="12dp"-->
                             <!--android:textStyle="bold" />-->
-                        <ImageView android:id="@+id/bDeleteMedicine"
+                        <!--<ImageView android:id="@+id/bDeleteMedicine"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="5dp"-->
+                            <!--app:srcCompat="@android:drawable/ic_delete" />-->
+
+                        <com.joanzapata.iconify.widget.IconTextView
+                            android:id="@+id/bDeleteMedicine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            app:srcCompat="@android:drawable/ic_delete" />
+                            android:textSize="16dp"
+                            android:text="{fa-trash}"
+                            />
+
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/lType"

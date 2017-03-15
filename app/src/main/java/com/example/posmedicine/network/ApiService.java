@@ -69,6 +69,12 @@ public interface ApiService {
     @GET("/clinic/web/v1/medicine")
     Call<MedicineResponse> getMedicine();
 
+    @GET("/clinic/web/v1/medicine/list")
+    Call<MedicineResponse> getMedicineList(
+            @Query("limit") int limit,
+            @Query("page") int page
+    );
+
     @FormUrlEncoded
     @POST("/clinic/web/v1/medicine/create")
     Call<MedicineResponse> createMedicine(
