@@ -63,15 +63,17 @@
         <activity
             android:name=".activities.ComplaintDetailActivity"
             android:label="@string/title_activity_complaint_detail"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.CreateComplaintActivity"></activity>
     </application>
 
 </manifest>
