@@ -15,7 +15,7 @@
 
     <ImageView
         android:id="@+id/imageViewProfilePict"
-        android:src="@drawable/nurse"
+        android:src="@drawable/user"
         android:layout_width="83dp"
         android:layout_height="73dp"
         android:layout_gravity="right"
