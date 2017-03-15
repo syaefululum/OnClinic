@@ -137,16 +137,14 @@ public abstract class BaseActivity extends AppCompatActivity
     private void setNavigationViewMenu(Menu menu, ImageView iv) {
         String role = Prefs.getString("USERROLE", "Not Set");
         if (role.equals("Doctor")) {
-            iv.setImageDrawable(getResources().getDrawable(R.drawable.doctor));
+            iv.setImageResource(R.drawable.doctor);
             menu.findItem(R.id.nav_group_patient).setVisible(false);
             menu.findItem(R.id.nav_group_nurse).setVisible(false);
         } else if (role.equals("Patient")) {
-//            iv.setImageDrawable(getResources().getDrawable(R.drawable.user));
             iv.setImageResource(R.drawable.user);
             menu.findItem(R.id.nav_group_doctor).setVisible(false);
             menu.findItem(R.id.nav_group_nurse).setVisible(false);
         } else {
-//            iv.setImageDrawable(getResources().getDrawable(R.drawable.nurse));
             iv.setImageResource(R.drawable.nurse);
             menu.findItem(R.id.nav_group_doctor).setVisible(false);
             menu.findItem(R.id.nav_group_patient).setVisible(false);
