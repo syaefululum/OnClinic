@@ -125,6 +125,9 @@ public abstract class BaseActivity extends AppCompatActivity
         menu.findItem(R.id.nav_unit).setIcon(
                 new IconDrawable(this, FontAwesomeIcons.fa_heart)
                         .actionBarSize());
+        menu.findItem(R.id.logout).setIcon(
+                new IconDrawable(this, FontAwesomeIcons.fa_sign_out)
+                        .actionBarSize());
     }
 
     private void setNavigationViewVisibility(Menu menu) {

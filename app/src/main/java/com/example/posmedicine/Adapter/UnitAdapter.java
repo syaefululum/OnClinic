@@ -104,7 +104,7 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private final TextView textView;
+        //private final TextView textView;
         public CardView cvUnit;
         public TextView unitName;
         public ImageView bDelete;
@@ -119,11 +119,11 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.ViewHolder> {
                     // Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
                 }
             });
-            textView = (TextView) v.findViewById(R.id.textView);
+            //textView = (TextView) v.findViewById(R.id.textView);
         }
 
-        public TextView getTextView() {
-            return textView;
-        }
+//        public TextView getTextView() {
+//            return textView;
+//        }
     }
 }
