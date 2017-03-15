@@ -3,6 +3,7 @@ package com.example.posmedicine.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -13,9 +14,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.posmedicine.R;
@@ -49,8 +52,9 @@ public abstract class BaseActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        ImageView iv = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.imageViewProfilePict);
         setNavigationViewIcons(navigationView.getMenu());
-        setNavigationViewVisibility(navigationView.getMenu());
+        setNavigationViewMenu(navigationView.getMenu(), iv);
     }
 
     @Override
@@ -130,15 +134,18 @@ public abstract class BaseActivity extends AppCompatActivity
                         .actionBarSize());
     }
 
-    private void setNavigationViewVisibility(Menu menu) {
+    private void setNavigationViewMenu(Menu menu, ImageView iv) {
         String role = Prefs.getString("USERROLE", "Not Set");
         if (role.equals("Doctor")) {
+            iv.setImageResource(R.drawable.doctor);
             menu.findItem(R.id.nav_group_patient).setVisible(false);
             menu.findItem(R.id.nav_group_nurse).setVisible(false);
         } else if (role.equals("Patient")) {
+            iv.setImageResource(R.drawable.user);
             menu.findItem(R.id.nav_group_doctor).setVisible(false);
             menu.findItem(R.id.nav_group_nurse).setVisible(false);
         } else {
+            iv.setImageResource(R.drawable.nurse);
             menu.findItem(R.id.nav_group_doctor).setVisible(false);
             menu.findItem(R.id.nav_group_patient).setVisible(false);
         }
