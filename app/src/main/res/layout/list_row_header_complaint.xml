@@ -70,8 +70,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tComplaint_Patientid"
-                        android:layout_marginTop="3dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
                         android:orientation="horizontal">
 
                         <com.example.posmedicine.Textview_lato_thin
@@ -110,6 +110,34 @@
                             android:text="Description"
                             android:textColor="@color/colorLightGray"
                             android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="20dp"
+                        android:orientation="horizontal">
+
+                        <com.joanzapata.iconify.widget.IconTextView
+                            android:id="@+id/tComplaint_UpdateButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="{fa-edit}"
+                            android:textColor="@color/colorOrange"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:layout_marginRight="5dp"/>
+
+                        <com.joanzapata.iconify.widget.IconTextView
+                            android:id="@+id/tComplaint_DeleteButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="{fa-trash}"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
