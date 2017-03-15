@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.posmedicine.R;
 import com.joanzapata.iconify.IconDrawable;
@@ -52,9 +53,8 @@ public abstract class BaseActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        ImageView iv = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.imageViewProfilePict);
         setNavigationViewIcons(navigationView.getMenu());
-        setNavigationViewMenu(navigationView.getMenu(), iv);
+        setNavigationViewMenu(navigationView);
     }
 
     @Override
@@ -134,8 +134,15 @@ public abstract class BaseActivity extends AppCompatActivity
                         .actionBarSize());
     }
 
-    private void setNavigationViewMenu(Menu menu, ImageView iv) {
+    private void setNavigationViewMenu(NavigationView navigationView) {
+        ImageView iv = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.imageViewProfilePict);
+        Menu menu = navigationView.getMenu();
+        TextView username = (TextView) navigationView.getHeaderView(0).findViewById(R.id.userLoginName);
+        TextView userrole = (TextView) navigationView.getHeaderView(0).findViewById(R.id.userLoginRole);
         String role = Prefs.getString("USERROLE", "Not Set");
+        username.setText(Prefs.getString("USERNAME", "Not Set"));
+        userrole.setText(Prefs.getString("USERROLE", "Not Set"));
+        
         if (role.equals("Doctor")) {
             iv.setImageResource(R.drawable.doctor);
             menu.findItem(R.id.nav_group_patient).setVisible(false);
