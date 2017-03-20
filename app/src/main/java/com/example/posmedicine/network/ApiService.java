@@ -75,6 +75,13 @@ public interface ApiService {
             @Query("page") int page
     );
 
+    @GET("/clinic/web/v1/medicine/search")
+    Call<MedicineResponse> getMedicineListSearch(
+            @Query("keywords") String keywords,
+            @Query("limit") int limit,
+            @Query("page") int page
+    );
+
     @FormUrlEncoded
     @POST("/clinic/web/v1/medicine/create")
     Call<MedicineResponse> createMedicine(
