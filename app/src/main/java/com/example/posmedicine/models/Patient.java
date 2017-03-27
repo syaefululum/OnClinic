@@ -11,39 +11,36 @@ public class Patient {
 
     @SerializedName("id")
     @Expose
-    private String id;
+    private Integer id;
     @SerializedName("patient_number")
     @Expose
-    private String patientNumber;
+    private Integer patientNumber;
     @SerializedName("registered_date")
     @Expose
     private String registeredDate;
-    @SerializedName("personid")
+    @SerializedName("person_id")
     @Expose
-    private String personId;
-    @SerializedName("created_at")
+    private Integer personId;
+    @SerializedName("person_name")
     @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
+    private String personName;
+    @SerializedName("person_phone")
     @Expose
-    private String updatedAt;
-    @SerializedName("person")
-    @Expose
-    private Person person;
+    private String personPhone;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getPatientNumber() {
+    public Integer getPatientNumber() {
         return patientNumber;
     }
 
-    public void setPatientNumber(String patientNumber) {
+    public void setPatientNumber(Integer patientNumber) {
         this.patientNumber = patientNumber;
     }
 
@@ -55,36 +52,32 @@ public class Patient {
         this.registeredDate = registeredDate;
     }
 
-    public String getPersonId() {
+    public Integer getPersonId() {
         return personId;
     }
 
-    public void setPersonId(String personId) {
+    public void setPersonId(Integer personId) {
         this.personId = personId;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public String getPersonName() {
+        return personName;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public String getPersonPhone() {
+        return personPhone;
     }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setPersonPhone(String personPhone) {
+        this.personPhone = personPhone;
     }
 
-    public Person getPerson() {
-        return person;
+    @Override
+    public String toString() {
+        return personName;
     }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
 }

@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/cvHeaderComplaint"
+            android:id="@+id/cvTreatment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="4dp"
@@ -38,7 +38,7 @@
                     android:layout_marginTop="10dp">
 
                     <com.example.posmedicine.TextView_Lato
-                        android:id="@+id/tComplaint_Patientid"
+                        android:id="@+id/tTreatment_PatientName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -48,7 +48,6 @@
                         android:textStyle="bold" />
 
                     <LinearLayout
-                        android:id="@+id/linear"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -56,11 +55,11 @@
                         android:gravity="center_vertical">
 
                         <com.example.posmedicine.TextView_Lato
-                            android:id="@+id/tComplaint_Registereddate"
+                            android:id="@+id/tTreatment_Status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:text="YYYY-MM-DD"
+                            android:text="Status"
                             android:textColor="@color/colorPrimary"
                             android:textSize="12dp"
                             android:textStyle="bold" />
@@ -69,46 +68,53 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/linear"
+                        android:layout_below="@+id/tTreatment_PatientName"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="3dp"
                         android:orientation="horizontal">
 
                         <com.example.posmedicine.Textview_lato_thin
-                            android:id="@+id/tComplaint_Description"
+                            android:id="@+id/tTreatment_Serviceid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:text="Description"
+                            android:text="Service"
                             android:textColor="@color/colorLightGray"
-                            android:textSize="12dp" />
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text=" - " />
+
+                        <com.example.posmedicine.Textview_lato_thin
+                            android:id="@+id/tTreatment_Time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Time"
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="14dp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginRight="20dp"
                         android:orientation="horizontal">
 
                         <com.joanzapata.iconify.widget.IconTextView
-                            android:id="@+id/tComplaint_UpdateButton"
+                            android:id="@+id/tTreatment_TreatmentButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="{fa-pencil}"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="20dp"
-                            android:textStyle="bold"
-                            android:layout_marginRight="5dp"/>
-
-                        <com.joanzapata.iconify.widget.IconTextView
-                            android:id="@+id/tComplaint_DeleteButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="{fa-trash}"
-                            android:textColor="@color/colorFireBrick"
-                            android:textSize="20dp"
+                            android:layout_marginRight="5dp"
+                            android:text="Start Treatment {fa-angle-right}"
+                            android:textColor="@color/colorOrange"
+                            android:textSize="16dp"
                             android:textStyle="bold" />
+
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>

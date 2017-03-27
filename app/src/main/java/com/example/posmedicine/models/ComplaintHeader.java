@@ -11,57 +11,34 @@ public class ComplaintHeader {
 
     @SerializedName("id")
     @Expose
-    private String id;
+    private Integer id;
     @SerializedName("patient_id")
     @Expose
-    private String patientId;
-    @SerializedName("doctor_id")
-    @Expose
-    private String doctorId;
+    private Integer patientId;
     @SerializedName("registered_date")
     @Expose
     private String registeredDate;
-    @SerializedName("checkup_date")
-    @Expose
-    private String checkupDate;
     @SerializedName("description")
     @Expose
     private String description;
-    @SerializedName("created_at")
+    @SerializedName("patient_name")
     @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
-    @Expose
-    private String updatedAt;
-    @SerializedName("doctor")
-    @Expose
-    private Doctor doctor;
-    @SerializedName("patient")
-    @Expose
-    private Patient patient;
+    private String patientName;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getPatientId() {
+    public Integer getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(String patientId) {
+    public void setPatientId(Integer patientId) {
         this.patientId = patientId;
-    }
-
-    public String getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
     }
 
     public String getRegisteredDate() {
@@ -72,14 +49,6 @@ public class ComplaintHeader {
         this.registeredDate = registeredDate;
     }
 
-    public String getCheckupDate() {
-        return checkupDate;
-    }
-
-    public void setCheckupDate(String checkupDate) {
-        this.checkupDate = checkupDate;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -88,36 +57,12 @@ public class ComplaintHeader {
         this.description = description;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public String getPatientName() {
+        return patientName;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
     }
 
 }

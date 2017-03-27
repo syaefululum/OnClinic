@@ -11,7 +11,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Medicine implements Parcelable {
-
     @SerializedName("id")
     @Expose
     private int id;
@@ -21,9 +20,6 @@ public class Medicine implements Parcelable {
     @SerializedName("quantity")
     @Expose
     private String quantity;
-    @SerializedName("unitid")
-    @Expose
-    private int unitId;
     @SerializedName("price")
     @Expose
     private String price;
@@ -36,15 +32,12 @@ public class Medicine implements Parcelable {
     @SerializedName("date_expiration")
     @Expose
     private String dateExpiration;
-    @SerializedName("created_at")
+    @SerializedName("unit_id")
     @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
+    private int unitId;
+    @SerializedName("unit_name")
     @Expose
-    private String updatedAt;
-    @SerializedName("unit")
-    @Expose
-    private Unit unit;
+    private String unitName;
 
     public int getId() {
         return id;
@@ -68,14 +61,6 @@ public class Medicine implements Parcelable {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
-    }
-
-    public int getUnitId() {
-        return unitId;
-    }
-
-    public void setUnitId(int unitId) {
-        this.unitId = unitId;
     }
 
     public String getPrice() {
@@ -110,46 +95,21 @@ public class Medicine implements Parcelable {
         this.dateExpiration = dateExpiration;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public int getUnitId() {
+        return unitId;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setUnitId(int unitId) {
+        this.unitId = unitId;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public String getUnitName() {
+        return unitName;
     }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
-
-    public Unit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
-    }
-
-    @Override
-    public String toString() {
-        return "Medicine{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", quantity='" + quantity + '\'' +
-                ", unitId=" + unitId +
-                ", price='" + price + '\'' +
-                ", type='" + type + '\'' +
-                ", dateStock='" + dateStock + '\'' +
-                ", dateExpiration='" + dateExpiration + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", updatedAt='" + updatedAt + '\'' +
-                '}';
-    }
-
 
     @Override
     public int describeContents() {
@@ -161,14 +121,12 @@ public class Medicine implements Parcelable {
         dest.writeInt(this.id);
         dest.writeString(this.name);
         dest.writeString(this.quantity);
-        dest.writeInt(this.unitId);
         dest.writeString(this.price);
         dest.writeString(this.type);
         dest.writeString(this.dateStock);
         dest.writeString(this.dateExpiration);
-        dest.writeString(this.createdAt);
-        dest.writeString(this.updatedAt);
-        dest.writeParcelable(this.unit, flags);
+        dest.writeInt(this.unitId);
+        dest.writeString(this.unitName);
     }
 
     public Medicine() {
@@ -178,14 +136,12 @@ public class Medicine implements Parcelable {
         this.id = in.readInt();
         this.name = in.readString();
         this.quantity = in.readString();
-        this.unitId = in.readInt();
         this.price = in.readString();
         this.type = in.readString();
         this.dateStock = in.readString();
         this.dateExpiration = in.readString();
-        this.createdAt = in.readString();
-        this.updatedAt = in.readString();
-        this.unit = in.readParcelable(Unit.class.getClassLoader());
+        this.unitId = in.readInt();
+        this.unitName = in.readString();
     }
 
     public static final Parcelable.Creator<Medicine> CREATOR = new Parcelable.Creator<Medicine>() {

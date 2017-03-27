@@ -1,24 +1,22 @@
 package com.example.posmedicine.models.response;
 
 /**
- * import java.util.List;
- * Created by Surya_N2267 on 2/1/2017.
+ * Created by Surya_N2267 on 2/6/2017.
  */
 
-import com.example.posmedicine.models.Doctor;
+import com.example.posmedicine.models.ComplaintDetail;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class DoctorResponse {
-
+public class ComplaintDetailsResponse {
     @SerializedName("status")
     @Expose
     private Boolean status;
     @SerializedName("data")
     @Expose
-    private Doctor doctor = null;
+    private List<ComplaintDetail> complaintDetail = null;
     @SerializedName("message")
     @Expose
     private String message;
@@ -31,12 +29,12 @@ public class DoctorResponse {
         this.status = status;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public List<ComplaintDetail> getComplaintDetail() {
+        return complaintDetail;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setComplaintDetail(List<ComplaintDetail> complaintDetail) {
+        this.complaintDetail = complaintDetail;
     }
 
     public String getMessage() {
@@ -46,5 +44,4 @@ public class DoctorResponse {
     public void setMessage(String message) {
         this.message = message;
     }
-
 }

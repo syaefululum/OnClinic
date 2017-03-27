@@ -16,7 +16,7 @@ public class ComplaintHeaderResponse {
     private Boolean status;
     @SerializedName("data")
     @Expose
-    private List<ComplaintHeader> complaintHeader = null;
+    private ComplaintHeader complaintHeader = null;
     @SerializedName("message")
     @Expose
     private String message;
@@ -29,11 +29,11 @@ public class ComplaintHeaderResponse {
         this.status = status;
     }
 
-    public List<ComplaintHeader> getComplaintHeader() {
+    public ComplaintHeader getComplaintHeader() {
         return complaintHeader;
     }
 
-    public void setComplaintHeader(List<ComplaintHeader> complaintHeader) {
+    public void setComplaintHeader(ComplaintHeader complaintHeader) {
         this.complaintHeader = complaintHeader;
     }
 

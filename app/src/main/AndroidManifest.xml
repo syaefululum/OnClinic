@@ -73,7 +73,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CreateComplaintActivity"></activity>
+        <activity android:name=".activities.CreateComplaintActivity" />
+        <activity android:name=".activities.CreateComplaintDetailActivity" />
+        <activity android:name=".activities.TreatmentActivity" />
+        <activity android:name=".activities.EditTreatmentActivity" />
+        <activity android:name=".activities.TreatmentDetailActivity"></activity>
     </application>
 
 </manifest>

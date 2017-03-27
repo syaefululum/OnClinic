@@ -1,5 +1,6 @@
 package com.example.posmedicine.Adapter;
 
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,7 +22,7 @@ import java.util.List;
 public class ComplaintDetailAdapter extends RecyclerView.Adapter<ComplaintDetailAdapter.ViewHolder> {
     private List<ComplaintDetail> complaintDetail;
 
-    public ComplaintDetailAdapter(List<ComplaintDetail> complaintDetail){
+    public ComplaintDetailAdapter(List<ComplaintDetail> complaintDetail) {
         this.complaintDetail = complaintDetail;
     }
 
@@ -34,10 +35,31 @@ public class ComplaintDetailAdapter extends RecyclerView.Adapter<ComplaintDetail
 
     @Override
     public void onBindViewHolder(ComplaintDetailAdapter.ViewHolder holder, int position) {
-        holder.complaintDetailService.setText(complaintDetail.get(position).getService().getName());
-        holder.complaintDetailStatus.setText(complaintDetail.get(position).getStatus());
-        holder.complaintDetailResult.setText(complaintDetail.get(position).getResult());
-        holder.complaintDetailDescription.setText(complaintDetail.get(position).getDescription());
+        String status = complaintDetail.get(position).getStatus();
+        holder.complaintService.setText(complaintDetail.get(position).getServiceName());
+        holder.complaintStatus.setText(status);
+        if (status.equals("Queuing")) {
+            holder.complaintStatus.setTextColor(Color.parseColor("#009acd"));
+        } else if (status.equals("Done")) {
+            holder.complaintStatus.setTextColor(Color.parseColor("#228b22"));
+        } else {
+            holder.complaintStatus.setTextColor(Color.parseColor("#ffff00"));
+        }
+        holder.complaintDoctor.setText(complaintDetail.get(position).getDoctorName());
+        holder.complaintTime.setText(complaintDetail.get(position).getTime());
+
+        holder.complaintDetailUpdateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        holder.complaintDetailDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -46,19 +68,24 @@ public class ComplaintDetailAdapter extends RecyclerView.Adapter<ComplaintDetail
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public CardView cvHeaderComplaint;
-        public TextView complaintDetailService;
-        public TextView complaintDetailStatus;
-        public TextView complaintDetailResult;
-        public TextView complaintDetailDescription;
+        public CardView cvDetailComplaint;
+        public TextView complaintDoctor;
+        public TextView complaintTime;
+        public TextView complaintService;
+        public TextView complaintStatus;
+        public TextView complaintDetailUpdateButton;
+        public TextView complaintDetailDeleteButton;
 
         public ViewHolder(View v) {
             super(v);
-            cvHeaderComplaint = (CardView)v.findViewById(R.id.cvHeaderComplaint);
-            complaintDetailService = (TextView)v.findViewById(R.id.tComplaint_Serviceid);
-            complaintDetailStatus = (TextView)v.findViewById(R.id.tComplaint_Status);
-            complaintDetailResult = (TextView)v.findViewById(R.id.tComplaint_Result);
-            complaintDetailDescription = (TextView)v.findViewById(R.id.tComplaint_Detaildescription);
+            cvDetailComplaint = (CardView) v.findViewById(R.id.cvDetailComplaint);
+            complaintDoctor = (TextView) v.findViewById(R.id.tComplaint_DoctorName);
+            complaintTime = (TextView) v.findViewById(R.id.tComplaint_Time);
+            complaintStatus = (TextView) v.findViewById(R.id.tComplaint_Status);
+            complaintService = (TextView) v.findViewById(R.id.tComplaint_Serviceid);
+
+            complaintDetailUpdateButton = (TextView) v.findViewById(R.id.tComplaint_UpdateButton);
+            complaintDetailDeleteButton = (TextView) v.findViewById(R.id.tComplaint_DeleteButton);
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override

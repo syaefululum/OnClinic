@@ -1,17 +1,19 @@
 package com.example.posmedicine.network;
 
 
-import com.example.posmedicine.models.CashierHeaderTransaction;
-import com.example.posmedicine.models.ComplaintHeader;
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.models.response.AppointmentSingleResponse;
 import com.example.posmedicine.models.response.CashierHeaderResponse;
-import com.example.posmedicine.models.response.ComplaintDetailResponse;
+import com.example.posmedicine.models.response.ComplaintDetailsResponse;
 import com.example.posmedicine.models.response.ComplaintHeaderResponse;
-import com.example.posmedicine.models.response.DoctorResponse;
+import com.example.posmedicine.models.response.ComplaintHeadersResponse;
+import com.example.posmedicine.models.response.DoctorsResponse;
 import com.example.posmedicine.models.response.MedicineResponse;
+import com.example.posmedicine.models.response.PatientsResponse;
 import com.example.posmedicine.models.response.PurchaseDetailResponse;
 import com.example.posmedicine.models.response.PurchaseHeaderResponse;
+import com.example.posmedicine.models.response.ServiceResponse;
+import com.example.posmedicine.models.response.ServicesResponse;
 import com.example.posmedicine.models.response.SignInResponse;
 import com.example.posmedicine.models.response.UnitResponse;
 import com.example.posmedicine.models.response.UnitSingleDataResponse;
@@ -108,10 +110,12 @@ public interface ApiService {
     Call<AppointmentResponse> getAppointmentbyDoctor(
             @Query("id") Integer id
     );
+
     @GET("/clinic/web/v1/appointment/find-by-patient")
     Call<AppointmentResponse> getAppointmentbyPatient(
             @Query("id") Integer id
     );
+
 
     @FormUrlEncoded
     @POST("/clinic/web/v1/purchase-header/create")
@@ -135,9 +139,6 @@ public interface ApiService {
             @Field("total_price") String totalPrice
     );
 
-    @GET("/clinic/web/v1/doctor")
-    Call<DoctorResponse> getDoctor();
-
     @FormUrlEncoded
     @POST("/clinic/web/v1/appointment/create")
     Call<AppointmentSingleResponse> createAppointment(
@@ -147,27 +148,93 @@ public interface ApiService {
             @Field("status") String status
     );
 
+    /**
+     * Login
+     * Created by Surya on 03/06/17.
+     */
     @FormUrlEncoded
     @POST("/clinic/web/v1/user-login/login")
     Call<SignInResponse> signin(
             @Field("username") String username,
             @Field("password") String password
     );
+
     /**
      * Complaint
      * Created by Surya on 03/06/17.
      */
     @GET("/clinic/web/v1/complaint-header")
-    Call<ComplaintHeaderResponse> getComplaints();
+    Call<ComplaintHeadersResponse> getComplaints();
 
+    @FormUrlEncoded
+    @POST("/clinic/web/v1/complaint-header/create")
+    Call<ComplaintHeaderResponse> postComplaint(
+            @Field("registered_date") String date,
+            @Field("patient_id") Integer patientid,
+            @Field("description") String description
+    );
 
-    @GET("/clinic/web/v1/complaint-header/find-by-doctor")
-    Call<ComplaintHeaderResponse> getComplaintsbyDoctor(
+    @GET("/clinic/web/v1/complaint-detail/find-by-id")
+    Call<ComplaintDetailsResponse> getDetailbyId(
             @Query("id") Integer id
     );
 
-    @GET("/clinic/web/v1/complaint-detail/detail-by-id")
-    Call<ComplaintDetailResponse> getDetailbyId(
+    @GET("/clinic/web/v1/complaint-detail/find-by-doctor")
+    Call<ComplaintDetailsResponse> getTreatments(
             @Query("id") Integer id
     );
+
+    @FormUrlEncoded
+    @POST("/clinic/web/v1/complaint-detail/create")
+    Call<ComplaintHeaderResponse> postComplaintDetail(
+            @Field("complaint_header_id") Integer complaintHeaderId,
+            @Field("doctor_id") Integer doctorId,
+            @Field("service_id") Integer serviceId,
+            @Field("time") String description
+    );
+
+    @FormUrlEncoded
+    @PUT("/clinic/web/v1/complaint-detail/treatment")
+    Call<ComplaintHeaderResponse> putTreatment(
+            @Query("id") Integer id,
+            @Field("result") Integer result,
+            @Field("description") String description
+    );
+
+    @FormUrlEncoded
+    @PUT("/clinic/web/v1/complaint-detail/update")
+    Call<ComplaintHeaderResponse> putComplaintDetail(
+            @Query("id") Integer id,
+            @Field("result") String result,
+            @Field("description") String description
+    );
+
+    @FormUrlEncoded
+    @PUT("/clinic/web/v1/complaint-detail/treatment")
+    Call<ComplaintHeaderResponse> putTreatment(
+            @Query("id") Integer id,
+            @Field("result") String result,
+            @Field("description") String description
+    );
+
+    /**
+     * Doctor
+     * Created by Surya on 03/15/17.
+     */
+    @GET("/clinic/web/v2/doctor")
+    Call<DoctorsResponse> getDoctors();
+
+    /**
+     * Patient
+     * Created by Surya on 03/15/17.
+     */
+    @GET("/clinic/web/v1/patient")
+    Call<PatientsResponse> getPatients();
+
+    /**
+     * Service
+     * Created by Surya on 03/17/17.
+     */
+    @GET("/clinic/web/v1/service")
+    Call<ServicesResponse> getServices();
 }

@@ -8,11 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.example.posmedicine.Adapter.AppointmentAdapter;
-import com.example.posmedicine.activities.FontManager;
 import com.example.posmedicine.R;
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.network.ApiService;
@@ -23,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AppointmentActivity extends AppCompatActivity {
+public class AppointmentDoctorActivity extends AppCompatActivity {
 
     ApiService service;
 
@@ -41,8 +39,8 @@ public class AppointmentActivity extends AppCompatActivity {
 //                Intent v = new Intent(AppointmentActivity.this,AppointmentDetailActivity.class);
 //                AppointmentActivity.this.startActivity(v);
 
-                Intent createAppointment = new Intent(AppointmentActivity.this,CreateAppointmentActivity.class);
-                AppointmentActivity.this.startActivity(createAppointment);
+                Intent createAppointment = new Intent(AppointmentDoctorActivity.this,CreateAppointmentActivity.class);
+                AppointmentDoctorActivity.this.startActivity(createAppointment);
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
             }
@@ -89,10 +87,10 @@ public class AppointmentActivity extends AppCompatActivity {
     }
 
     public void getAppointment(){
-        service.getAppointmentbyPatient(Integer.parseInt(Prefs.getString("USERID","1"))).enqueue(new Callback<AppointmentResponse>() {
+        service.getAppointmentbyDoctor(Integer.parseInt(Prefs.getString("USERID","1"))).enqueue(new Callback<AppointmentResponse>() {
             @Override
             public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
-                LinearLayoutManager llm = new LinearLayoutManager(AppointmentActivity.this);
+                LinearLayoutManager llm = new LinearLayoutManager(AppointmentDoctorActivity.this);
                 llm.setOrientation(LinearLayoutManager.VERTICAL);
 
                 AppointmentAdapter appointmentAdapter = new AppointmentAdapter(response.body().getAppointment());

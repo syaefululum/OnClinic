@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_create_complaint"
+    android:id="@+id/activity_create_complaint_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.posmedicine.activities.CreateComplaintActivity">
+    tools:context="com.example.posmedicine.activities.CreateComplaintDetailActivity">
 
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <com.example.posmedicine.Textview_lato_thin
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="New Complaint Data"
+            android:text="New Checkup Data"
             android:textColor="@color/colorBackroundWhite"
-            android:textSize="19dp" />
+            android:textSize="20dp" />
 
         <com.joanzapata.iconify.widget.IconTextView
             android:id="@+id/complaintSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="8dp"
             android:layout_weight="2"
             android:gravity="center_horizontal|center_vertical"
-            android:padding="10dp"
             android:text="Submit {fa-angle-right}"
             android:textColor="@color/colorBackroundWhite"
-            android:textSize="15dp" />
+            android:textSize="16dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,29 +44,30 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:orientation="vertical">
 
-        <com.example.posmedicine.Textview_lato_thin
-            android:id="@+id/complaintRegisteredDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:enabled="false"
-            android:text="Registered Date"
-            android:textSize="19dp" />
-
         <AutoCompleteTextView
-            android:id="@+id/complaintPatient"
+            android:id="@+id/complaintDoctor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="15dp"
-            android:hint="Select a Patient" />
+            android:hint="Select a Doctor" />
 
-        <EditText
-            android:id="@+id/complaintHeaderDescription"
+        <AutoCompleteTextView
+            android:id="@+id/complaintService"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Insert Description" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:hint="Select a Service" />
+
+        <EditText
+            android:id="@+id/complaintTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"
+            android:editable="false"
+            android:hint="Select a Time" />
 
     </LinearLayout>
 </RelativeLayout>

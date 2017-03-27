@@ -1,24 +1,23 @@
 package com.example.posmedicine.models.response;
 
 /**
- * import java.util.List;
- * Created by Surya_N2267 on 2/1/2017.
+ * Created by Surya_N2267 on 3/17/2017.
  */
 
-import com.example.posmedicine.models.Doctor;
+import com.example.posmedicine.models.Service;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class DoctorResponse {
+public class ServiceResponse {
 
     @SerializedName("status")
     @Expose
     private Boolean status;
     @SerializedName("data")
     @Expose
-    private Doctor doctor = null;
+    private Service service = null;
     @SerializedName("message")
     @Expose
     private String message;
@@ -31,12 +30,12 @@ public class DoctorResponse {
         this.status = status;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public Service getService() {
+        return service;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setService(Service service) {
+        this.service = service;
     }
 
     public String getMessage() {
