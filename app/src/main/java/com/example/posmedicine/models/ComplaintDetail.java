@@ -20,6 +20,9 @@ public class ComplaintDetail implements Serializable {
     @SerializedName("doctor_name")
     @Expose
     private String doctorName;
+    @SerializedName("patient_id")
+    @Expose
+    private Integer patientId;
     @SerializedName("patient_name")
     @Expose
     private String patientName;
@@ -64,6 +67,14 @@ public class ComplaintDetail implements Serializable {
 
     public void setDoctorName(String doctorName) {
         this.doctorName = doctorName;
+    }
+
+    public Integer getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
     }
 
     public String getPatientName() {

@@ -27,6 +27,9 @@ public class Patient {
     @SerializedName("person_phone")
     @Expose
     private String personPhone;
+    @SerializedName("person_address")
+    @Expose
+    private String personAddress;
 
     public Integer getId() {
         return id;
@@ -74,6 +77,14 @@ public class Patient {
 
     public void setPersonPhone(String personPhone) {
         this.personPhone = personPhone;
+    }
+
+    public String getPersonAddress() {
+        return personAddress;
+    }
+
+    public void setPersonAddress(String personAddress) {
+        this.personAddress = personAddress;
     }
 
     @Override

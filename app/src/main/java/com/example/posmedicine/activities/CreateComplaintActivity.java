@@ -11,19 +11,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.posmedicine.R;
-import com.example.posmedicine.TextView_Lato;
-import com.example.posmedicine.Textview_lato_thin;
-import com.example.posmedicine.models.Doctor;
+import com.example.posmedicine.TextView_Lato_Thin;
 import com.example.posmedicine.models.Patient;
 import com.example.posmedicine.models.response.ComplaintHeaderResponse;
-import com.example.posmedicine.models.response.DoctorsResponse;
 import com.example.posmedicine.models.response.PatientsResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 import retrofit2.Call;
@@ -38,7 +33,7 @@ public class CreateComplaintActivity extends AppCompatActivity {
     private ApiService service;
     private AutoCompleteTextView patients;
     private Patient selectedPatient;
-    private Textview_lato_thin registeredDate;
+    private TextView_Lato_Thin registeredDate;
     private IconTextView submitButton;
     private EditText description;
     private AwesomeValidation awesomeValidation;
@@ -52,7 +47,7 @@ public class CreateComplaintActivity extends AppCompatActivity {
         description = (EditText) findViewById(R.id.complaintHeaderDescription);
         patients = (AutoCompleteTextView) findViewById(R.id.complaintPatient);
         selectedPatient = new Patient();
-        registeredDate = (Textview_lato_thin) findViewById(R.id.complaintRegisteredDate);
+        registeredDate = (TextView_Lato_Thin) findViewById(R.id.complaintRegisteredDate);
 
         registeredDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         service = RestClient.getInstance().getApiService();

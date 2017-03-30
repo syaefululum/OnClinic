@@ -7,9 +7,6 @@
                 android:id="@+id/nav_treatment"
                 android:title="Treatment"/>
             <item
-                android:id="@+id/nav_complaint"
-                android:title="Complaint"/>
-            <item
                 android:id="@+id/nav_appointment_doctor"
                 android:title="Check Appointment" />
         </menu>
@@ -28,6 +25,9 @@
             <item
                 android:id="@+id/nav_medicine"
                 android:title="Medicine" />
+            <item
+                android:id="@+id/nav_complaint"
+                android:title="Complaint"/>
             <item
                 android:id="@+id/nav_pharmacy_chasier"
                 android:title="Pharmacy Cashier" />

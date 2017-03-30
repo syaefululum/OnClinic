@@ -9,19 +9,19 @@ import android.widget.TextView;
  * Created by foram on 20/2/17.
  */
 
-public class Textview_lato_thin extends TextView {
+public class TextView_Lato_Thin extends TextView {
 
-    public Textview_lato_thin(Context context, AttributeSet attrs, int defStyle) {
+    public TextView_Lato_Thin(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
-    public Textview_lato_thin(Context context, AttributeSet attrs) {
+    public TextView_Lato_Thin(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public Textview_lato_thin(Context context) {
+    public TextView_Lato_Thin(Context context) {
         super(context);
         init();
     }

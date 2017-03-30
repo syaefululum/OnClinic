@@ -27,7 +27,6 @@ import java.util.List;
 public class ComplaintHeaderAdapter extends RecyclerView.Adapter<ComplaintHeaderAdapter.ViewHolder> {
     private List<ComplaintHeader> complaintHeader;
 
-
     public ComplaintHeaderAdapter(List<ComplaintHeader> complaintHeader) {
         this.complaintHeader = complaintHeader;
     }

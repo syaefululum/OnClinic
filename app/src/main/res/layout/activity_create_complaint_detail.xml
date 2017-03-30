@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <com.example.posmedicine.Textview_lato_thin
+        <com.example.posmedicine.TextView_Lato_Thin
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

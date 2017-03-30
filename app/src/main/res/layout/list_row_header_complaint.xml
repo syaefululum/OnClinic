@@ -73,7 +73,7 @@
                         android:layout_marginTop="3dp"
                         android:orientation="horizontal">
 
-                        <com.example.posmedicine.Textview_lato_thin
+                        <com.example.posmedicine.TextView_Lato_Thin
                             android:id="@+id/tComplaint_Description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.posmedicine.R;
 import com.example.posmedicine.activities.EditTreatmentActivity;
+import com.example.posmedicine.activities.PatientActivity;
 import com.example.posmedicine.activities.TreatmentDetailActivity;
 import com.example.posmedicine.models.ComplaintDetail;
 
@@ -44,6 +45,7 @@ public class TreatmentAdapter extends RecyclerView.Adapter<TreatmentAdapter.View
             holder.treatmentStatus.setTextColor(Color.parseColor("#009acd"));
         } else if (status.equals("Done")) {
             holder.treatmentStatus.setTextColor(Color.parseColor("#228b22"));
+            holder.treatmentTreat.setVisibility(View.GONE);
         } else {
             holder.treatmentStatus.setTextColor(Color.parseColor("#ffff00"));
         }
@@ -73,6 +75,18 @@ public class TreatmentAdapter extends RecyclerView.Adapter<TreatmentAdapter.View
                 v.getContext().startActivity(editTreatment);
             }
         });
+
+        holder.treatmentRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle extras = new Bundle();
+                extras.putString("PATIENT_ID", treatment.get(position).getPatientId().toString());
+
+                Intent patientIntent = new Intent(v.getContext(), PatientActivity.class);
+                patientIntent.putExtras(extras);
+                v.getContext().startActivity(patientIntent);
+            }
+        });
     }
 
     @Override
@@ -87,6 +101,7 @@ public class TreatmentAdapter extends RecyclerView.Adapter<TreatmentAdapter.View
         public TextView treatmentService;
         public TextView treatmentStatus;
         public TextView treatmentTreat;
+        public TextView treatmentRecord;
 
         public ViewHolder(View v) {
             super(v);
@@ -97,6 +112,7 @@ public class TreatmentAdapter extends RecyclerView.Adapter<TreatmentAdapter.View
             treatmentService = (TextView) v.findViewById(R.id.tTreatment_Serviceid);
 
             treatmentTreat = (TextView) v.findViewById(R.id.tTreatment_TreatmentButton);
+            treatmentRecord = (TextView) v.findViewById(R.id.tTreatment_MedicalRecordButton);
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <com.example.posmedicine.Textview_lato_thin
+        <com.example.posmedicine.TextView_Lato_Thin
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -47,7 +47,7 @@
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
-            <com.example.posmedicine.Textview_lato_thin
+            <com.example.posmedicine.TextView_Lato_Thin
                 android:id="@+id/viewTreatmentPatientName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
-            <com.example.posmedicine.Textview_lato_thin
+            <com.example.posmedicine.TextView_Lato_Thin
                 android:id="@+id/viewTreatmentDoctorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
-            <com.example.posmedicine.Textview_lato_thin
+            <com.example.posmedicine.TextView_Lato_Thin
                 android:id="@+id/viewTreatmentServiceName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
-            <com.example.posmedicine.Textview_lato_thin
+            <com.example.posmedicine.TextView_Lato_Thin
                 android:id="@+id/viewTreatmentResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
-            <com.example.posmedicine.Textview_lato_thin
+            <com.example.posmedicine.TextView_Lato_Thin
                 android:id="@+id/viewTreatmentDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

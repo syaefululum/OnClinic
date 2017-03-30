@@ -9,6 +9,7 @@ import com.example.posmedicine.models.response.ComplaintHeaderResponse;
 import com.example.posmedicine.models.response.ComplaintHeadersResponse;
 import com.example.posmedicine.models.response.DoctorsResponse;
 import com.example.posmedicine.models.response.MedicineResponse;
+import com.example.posmedicine.models.response.PatientResponse;
 import com.example.posmedicine.models.response.PatientsResponse;
 import com.example.posmedicine.models.response.PurchaseDetailResponse;
 import com.example.posmedicine.models.response.PurchaseHeaderResponse;
@@ -164,7 +165,15 @@ public interface ApiService {
      * Created by Surya on 03/06/17.
      */
     @GET("/clinic/web/v1/complaint-header")
+    Call<ComplaintHeadersResponse> getListComplaints();
+
+    @GET("/clinic/web/v1/complaint-header/list")
     Call<ComplaintHeadersResponse> getComplaints();
+
+    @GET("/clinic/web/v1/complaint-header/find-by-patient")
+    Call<ComplaintHeadersResponse> getFindByPatient(
+            @Query("id") Integer id
+    );
 
     @FormUrlEncoded
     @POST("/clinic/web/v1/complaint-header/create")
@@ -230,6 +239,11 @@ public interface ApiService {
      */
     @GET("/clinic/web/v1/patient")
     Call<PatientsResponse> getPatients();
+
+    @GET("/clinic/web/v1/patient/view")
+    Call<PatientResponse> getPatient(
+            @Query("id") Integer id
+    );
 
     /**
      * Service

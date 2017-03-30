@@ -7,7 +7,9 @@ package com.example.posmedicine.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ComplaintHeader {
+import java.io.Serializable;
+
+public class ComplaintHeader implements Serializable {
 
     @SerializedName("id")
     @Expose
