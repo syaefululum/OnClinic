@@ -1,5 +1,6 @@
 package com.example.posmedicine.models.response;
 
+import com.example.posmedicine.models.CashierDetailTransaction;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,71 +9,37 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class PurchaseHeaderResponse {
-
-    @SerializedName("date")
+    @SerializedName("status")
     @Expose
-    private String date;
-    @SerializedName("total_price")
+    private boolean status;
+    @SerializedName("data")
     @Expose
-    private String totalPrice;
-    @SerializedName("paid")
+    private CashierDetailTransaction data;
+    @SerializedName("message")
     @Expose
-    private String paid;
-    @SerializedName("created_at")
-    @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
-    @Expose
-    private String updatedAt;
-    @SerializedName("id")
-    @Expose
-    private int id;
+    private String message;
 
-    public String getDate() {
-        return date;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
-    public String getTotalPrice() {
-        return totalPrice;
+    public CashierDetailTransaction getData() {
+        return data;
     }
 
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setData(CashierDetailTransaction data) {
+        this.data = data;
     }
 
-    public String getPaid() {
-        return paid;
+    public String getMessage() {
+        return message;
     }
 
-    public void setPaid(String paid) {
-        this.paid = paid;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

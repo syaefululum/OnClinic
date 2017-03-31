@@ -14,16 +14,16 @@ public class UnitResponse {
 
     @SerializedName("status")
     @Expose
-    private int status;
+    private boolean status;
     @SerializedName("data")
     @Expose
     private List<Unit> unit = null;
 
-    public int getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

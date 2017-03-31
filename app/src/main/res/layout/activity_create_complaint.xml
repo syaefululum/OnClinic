@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:orientation="horizontal">
-
         <com.example.posmedicine.TextView_Lato_Thin
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

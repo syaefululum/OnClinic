@@ -1,11 +1,14 @@
 package com.example.posmedicine.Adapter;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +23,7 @@ import com.example.posmedicine.models.Medicine;
 import com.example.posmedicine.models.Unit;
 
 import com.example.posmedicine.models.response.MedicineResponse;
+import com.example.posmedicine.models.response.MedicineSingleResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 import com.joanzapata.iconify.IconDrawable;
@@ -92,9 +96,27 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         holder.bDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int medicineId = medicine.get(position).getId();
-                deleteMedicine(medicineId);
-                activity.getMedicine("",10,1);
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                int medicineId = medicine.get(position).getId();
+                                Log.d("medicineId", String.valueOf(medicineId));
+                                deleteMedicine(medicineId);
+                                activity.getMedicine("",10,1);
+                                break;
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                        }
+                    }
+                };
+
+                builder.setMessage("Are you sure to delete this item?")
+                        .setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+
             }
         });
     }
@@ -102,15 +124,22 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     public void deleteMedicine(int medId){
         ApiService service;
         service = RestClient.getInstance().getApiService();
-        service.deleteMedicine(medId).enqueue(new Callback<MedicineResponse>() {
+        service.deleteMedicine(medId).enqueue(new Callback<MedicineSingleResponse>() {
             @Override
-            public void onResponse(Call<MedicineResponse> call, Response<MedicineResponse> response) {
-
+            public void onResponse(Call<MedicineSingleResponse> call, Response<MedicineSingleResponse> response) {
+                if(response.body().isStatus()){
+                    Toast toast = Toast.makeText(activity.getApplicationContext(), "Delete Success", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+                    Toast toast = Toast.makeText(activity.getApplicationContext(), "Cannot delete this item", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                activity.onResume();
             }
 
             @Override
-            public void onFailure(Call<MedicineResponse> call, Throwable t) {
-                Toast toast = Toast.makeText(activity.getApplicationContext(), "Delete Success", Toast.LENGTH_SHORT);
+            public void onFailure(Call<MedicineSingleResponse> call, Throwable t) {
+                Toast toast = Toast.makeText(activity.getApplicationContext(), "Connection failed, please try again", Toast.LENGTH_SHORT);
                 toast.show();
                 activity.onResume();
             }
@@ -156,4 +185,5 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
 //            textView = (TextView) v.findViewById(R.id.textView);
         }
     }
+
 }

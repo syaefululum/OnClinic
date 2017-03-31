@@ -42,16 +42,18 @@ public class MedicineTransactionAdapter extends RecyclerView.Adapter<MedicineTra
     @Override
     public void onBindViewHolder(final MedicineTransactionAdapter.ViewHolder holder, final int position) {
         holder.medicineName.setText(trMedicine.get(position).getMedicine().getName());
+        holder.medicineType.setText(trMedicine.get(position).getMedicine().getType());
         holder.medicinePrice.setText("Rp. "+NumberFormat.getInstance().format(Double.parseDouble(trMedicine.get(position).getMedicine().getPrice())));
         holder.medicineQuantity.setText(""+trMedicine.get(position).getQuantity());
         holder.medicineType1.setText(trMedicine.get(position).getMedicine().getUnitName());
-//        holder.medicineType2.setText(" / " + trMedicine.get(position).getMedicine().getUnit().getName());
+        holder.medicineType2.setText(" / " + trMedicine.get(position).getMedicine().getUnitName());
         holder.bDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 trMedicine.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, trMedicine.size());
+                activity.setTextTotalPrice();
             }
         });
 
@@ -80,21 +82,23 @@ public class MedicineTransactionAdapter extends RecyclerView.Adapter<MedicineTra
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public CardView cvTrMedicine;
+        public TextView medicineType;
         public TextView medicineName;
-        public EditText medicineQuantity;
+        public TextView medicineQuantity;
         public TextView medicinePrice;
         public TextView medicineType1;
         public TextView medicineType2;
-        public ImageView bDelete;
+        public TextView bDelete;
         public ViewHolder(View v){
             super(v);
             cvTrMedicine = (CardView)v.findViewById(R.id.categoryMedicineTransaction);
             medicineName = (TextView)v.findViewById(R.id.tmedicine_name);
-            medicineQuantity = (EditText)v.findViewById(R.id.tmedicine_stock);
+            medicineType = (TextView)v.findViewById(R.id.tmedicine_type);
+            medicineQuantity = (TextView)v.findViewById(R.id.tmedicine_stock);
             medicinePrice = (TextView)v.findViewById(R.id.tmedicine_price_text);
             medicineType1 = (TextView)v.findViewById(R.id.tmedicine_type_text1);
             medicineType2 = (TextView)v.findViewById(R.id.tmedicine_type_text2);
-            bDelete = (ImageView)v.findViewById(R.id.bDeleteMedicine);
+            bDelete = (TextView)v.findViewById(R.id.bDeleteMedicine);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

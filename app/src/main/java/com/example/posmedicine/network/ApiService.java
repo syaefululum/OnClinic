@@ -3,12 +3,14 @@ package com.example.posmedicine.network;
 
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.models.response.AppointmentSingleResponse;
+import com.example.posmedicine.models.response.CashierHeaderListResponse;
 import com.example.posmedicine.models.response.CashierHeaderResponse;
 import com.example.posmedicine.models.response.ComplaintDetailsResponse;
 import com.example.posmedicine.models.response.ComplaintHeaderResponse;
 import com.example.posmedicine.models.response.ComplaintHeadersResponse;
 import com.example.posmedicine.models.response.DoctorsResponse;
 import com.example.posmedicine.models.response.MedicineResponse;
+import com.example.posmedicine.models.response.MedicineSingleResponse;
 import com.example.posmedicine.models.response.PatientResponse;
 import com.example.posmedicine.models.response.PatientsResponse;
 import com.example.posmedicine.models.response.PurchaseDetailResponse;
@@ -40,9 +42,8 @@ public interface ApiService {
     @GET("/clinic/web/v1/unit")
     Call<UnitResponse> getUnits();
 
-    @FormUrlEncoded
     @GET("/clinic/web/v1/unit/view")
-    Call<UnitResponse> getUnitById(
+    Call<UnitSingleDataResponse> getUnitById(
             @Query("id") int id
     );
 
@@ -99,7 +100,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @PUT("/clinic/web/v1/medicine/update")
-    Call<MedicineResponse> updateMedicine(
+    Call<MedicineSingleResponse> updateMedicine(
             @Query("id") int id,
             @Field("name") String name,
             @Field("quantity") String quantity,
@@ -111,7 +112,7 @@ public interface ApiService {
     );
 
     @DELETE("/clinic/web/v1/medicine/delete")
-    Call<MedicineResponse> deleteMedicine(
+    Call<MedicineSingleResponse> deleteMedicine(
             @Query("id") int id
     );
 
@@ -142,10 +143,17 @@ public interface ApiService {
     @GET("/clinic/web/v1/purchase-header")
     Call<CashierHeaderResponse> getTransactionHeader();
 
+    @GET("/clinic/web/v1/purchase-header/list")
+    Call<CashierHeaderListResponse> getTransactionHeaderByPage(
+            @Query("keywords") String keywords,
+            @Query("limit") int limit,
+            @Query("page") int page
+    );
+
     @FormUrlEncoded
     @POST("/clinic/web/v1/purchase-detail/create")
     Call<PurchaseDetailResponse> createPurchaseDetail(
-            @Field("purchase_headerid") Integer headerId,
+            @Field("purchase_header_id") Integer headerId,
             @Field("medicine_id") Integer medicineId,
             @Field("quantity") int quantity,
             @Field("unit_id") Integer unitId,
