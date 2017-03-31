@@ -94,6 +94,8 @@ public abstract class BaseActivity extends AppCompatActivity
             startActivity(new Intent(this, UnitActivity.class));
         } else if (id == R.id.nav_appointment_doctor) {
             startActivity(new Intent(this, AppointmentActivity.class));
+        } else if (id == R.id.nav_appointment_nurse) {
+            startActivity(new Intent(this, AppointmentActivity.class));
         } else if (id == R.id.nav_appointment) {
             startActivity(new Intent(this, AppointmentActivity.class));
         } else if (id == R.id.nav_pharmacy_chasier) {
@@ -102,15 +104,15 @@ public abstract class BaseActivity extends AppCompatActivity
             startActivity(new Intent(this, CashierTransactionActivity.class));
         } else if (id == R.id.nav_complaint) {
             startActivity(new Intent(this, ComplaintHeaderActivity.class));
-        }else if(id == R.id.logout){
-            Prefs.putString("TOKEN","Not Set");
+        } else if (id == R.id.logout) {
+            Prefs.putString("TOKEN", "Not Set");
             Prefs.putString("USERID", "Not Set");
-            Prefs.putString("USERNAME","Not Set");
-            Prefs.putString("USERROLE","Not Set");
+            Prefs.putString("USERNAME", "Not Set");
+            Prefs.putString("USERROLE", "Not Set");
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-        }else if(id == R.id.map){
+        } else if (id == R.id.map) {
             startActivity(new Intent(this, MapsActivity.class));
         } else if (id == R.id.nav_treatment) {
             startActivity(new Intent(this, TreatmentActivity.class));
@@ -129,6 +131,9 @@ public abstract class BaseActivity extends AppCompatActivity
                 new IconDrawable(this, FontAwesomeIcons.fa_heartbeat)
                         .actionBarSize());
         menu.findItem(R.id.nav_appointment_doctor).setIcon(
+                new IconDrawable(this, FontAwesomeIcons.fa_calendar)
+                        .actionBarSize());
+        menu.findItem(R.id.nav_appointment_nurse).setIcon(
                 new IconDrawable(this, FontAwesomeIcons.fa_calendar)
                         .actionBarSize());
         menu.findItem(R.id.nav_appointment).setIcon(
@@ -169,16 +174,24 @@ public abstract class BaseActivity extends AppCompatActivity
         if (role.equals("Doctor")) {
             iv.setImageResource(R.drawable.doctor);
             menu.findItem(R.id.nav_group_patient).setVisible(false);
+            menu.findItem(R.id.nav_group_nurse).setVisible(false);
             menu.findItem(R.id.nav_group_cashier).setVisible(false);
         } else if (role.equals("Patient")) {
             iv.setImageResource(R.drawable.user);
             menu.findItem(R.id.nav_group_doctor).setVisible(false);
+            menu.findItem(R.id.nav_group_nurse).setVisible(false);
             menu.findItem(R.id.nav_group_cashier).setVisible(false);
-        } else if(role.equals("Cashier")) {
-            iv.setImageResource(R.drawable.cashier);
+        } else if (role.equals("Nurse")) {
+            iv.setImageResource(R.drawable.nurse);
             menu.findItem(R.id.nav_group_doctor).setVisible(false);
             menu.findItem(R.id.nav_group_patient).setVisible(false);
-        }else{
+            menu.findItem(R.id.nav_group_cashier).setVisible(false);
+        } else if (role.equals("Cashier")) {
+            iv.setImageResource(R.drawable.girl);
+            menu.findItem(R.id.nav_group_doctor).setVisible(false);
+            menu.findItem(R.id.nav_group_patient).setVisible(false);
+            menu.findItem(R.id.nav_group_nurse).setVisible(false);
+        } else {
 
         }
     }

@@ -23,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AppointmentActivity extends AppCompatActivity {
+public class AppointmentActivity extends BaseActivity {
 
     ApiService service;
 
@@ -38,8 +38,8 @@ public class AppointmentActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent v = new Intent(AppointmentActivity.this,AppointmentDetailActivity.class);
-//                AppointmentActivity.this.startActivity(v);
+                Intent v = new Intent(AppointmentActivity.this,AppointmentDetailActivity.class);
+                AppointmentActivity.this.startActivity(v);
 
                 Intent createAppointment = new Intent(AppointmentActivity.this,CreateAppointmentActivity.class);
                 AppointmentActivity.this.startActivity(createAppointment);
