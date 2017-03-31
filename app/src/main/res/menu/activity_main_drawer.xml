@@ -1,33 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Doctor" android:id="@+id/nav_group_doctor">
+    <item
+        android:id="@+id/nav_group_doctor"
+        android:title="Doctor">
         <menu>
             <item
                 android:id="@+id/nav_treatment"
-                android:title="Treatment"/>
+                android:title="Treatment" />
             <item
                 android:id="@+id/nav_appointment_doctor"
                 android:title="Check Appointment" />
         </menu>
     </item>
 
-    <item android:title="Patient" android:id="@+id/nav_group_patient">
+    <item
+        android:id="@+id/nav_group_patient"
+        android:title="Patient">
         <menu>
             <item
                 android:id="@+id/nav_appointment"
                 android:title="Appointment" />
+            <item
+                android:id="@+id/map"
+                android:title="Map" />
         </menu>
     </item>
 
-    <item android:title="Cashier" android:id="@+id/nav_group_cashier">
+    <item
+        android:id="@+id/nav_group_nurse"
+        android:title="Nurse">
+        <menu>
+            <item
+                android:id="@+id/nav_appointment_nurse"
+                android:title="Appointment" />
+            <item
+                android:id="@+id/nav_complaint"
+                android:title="Complaint" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_group_cashier"
+        android:title="Cashier">
         <menu>
             <item
                 android:id="@+id/nav_medicine"
                 android:title="Medicine" />
-            <item
-                android:id="@+id/nav_complaint"
-                android:title="Complaint"/>
             <item
                 android:id="@+id/nav_pharmacy_chasier"
                 android:title="Pharmacy Cashier" />
@@ -41,12 +60,7 @@
     </item>
 
     <item
-        android:id="@+id/map"
-        android:title="Map">
-    </item>
-    <item
         android:id="@+id/logout"
-        android:title="Logout">
-    </item>
+        android:title="Logout"></item>
 
 </menu>
