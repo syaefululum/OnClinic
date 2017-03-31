@@ -1,68 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:weightSum="1">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
-        android:id="@+id/cvHeaderTransaction"
-        android:layout_weight="48">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvHeaderTransaction"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tHeaderid"
-                android:textSize="16sp"
-                android:text="ID Transaction : "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tHeaderid_val"
-                android:textSize="16sp"
-                android:text="#"
-                android:layout_toRightOf="@+id/tHeaderid"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tHeader_date"
-                android:textSize="16sp"
-                android:text="Date : "
-                android:layout_below="@+id/tHeaderid"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tHeader_date_val"
-                android:textSize="16sp"
-                android:text="17-02-2017"
-                android:layout_below="@+id/tHeaderid"
-                android:layout_toRightOf="@+id/tHeader_date"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tHeader_total"
-                android:textSize="16sp"
-                android:text="Total : "
-                android:layout_below="@+id/tHeader_date"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tHeader_total_val"
-                android:textSize="16sp"
-                android:text="Rp. 17.000"
-                android:layout_below="@+id/tHeader_date"
-                android:layout_toRightOf="@+id/tHeader_total"/>
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="48">
 
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="86dp"
+                android:background="@drawable/cardview_bg"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="100dp"
+                    android:background="@color/colorPrimary"></View>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/cardContainer"
+                    android:orientation="horizontal" >
+                        <com.joanzapata.iconify.widget.IconTextView
+                            android:id="@+id/iconTransaction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="{fa-file-text-o}"
+                            android:textSize="50dp"
+                            android:padding="10dp"
+                            android:textColor="@color/colorOrange">
+                        </com.joanzapata.iconify.widget.IconTextView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textTitleContainer"
+                            android:orientation="vertical"
+                            android:paddingRight="10dp">
+                            <com.example.posmedicine.TextView_Lato
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Transaksi ID "
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                            <com.example.posmedicine.TextView_Lato
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Date "
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                            <com.example.posmedicine.TextView_Lato
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Total Price "
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/valueContainer"
+                            android:orientation="vertical">
+                            <com.example.posmedicine.TextView_Lato
+                                android:id="@+id/tHeaderid_val"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=": #12990302"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                            <com.example.posmedicine.TextView_Lato
+                                android:id="@+id/tHeader_date_val"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=": 2017-01-19"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                            <com.example.posmedicine.TextView_Lato
+                                android:id="@+id/tHeader_total_val"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=": Rp. 120.000"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
 
 </LinearLayout>

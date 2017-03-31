@@ -13,57 +13,70 @@ import com.google.gson.annotations.SerializedName;
 public class CashierDetailTransaction implements Parcelable {
     @SerializedName("id")
     @Expose
-    private String id;
-    @SerializedName("purchase_headerid")
+    private int id;
+    @SerializedName("purchase_header_id")
     @Expose
-    private String purchaseHeaderId;
-    @SerializedName("medicineid")
-    @Expose
-    private String medicineId;
+    private int purchaseHeaderId;
     @SerializedName("quantity")
     @Expose
     private String quantity;
-    @SerializedName("unitid")
-    @Expose
-    private String unitId;
     @SerializedName("price")
     @Expose
     private String price;
     @SerializedName("total_price")
     @Expose
     private String totalPrice;
-    @SerializedName("created_at")
+    @SerializedName("medicine_id")
     @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
+    private int medicineId;
+    @SerializedName("unit_id")
     @Expose
-    private String updatedAt;
-    @SerializedName("medicine")
+    private int unitId;
+    @SerializedName("medicine_name")
     @Expose
-    private Medicine medicine;
+    private String medicineName;
+    @SerializedName("unit_name")
+    @Expose
+    private String unitName;
 
-    public String getId() {
+    protected CashierDetailTransaction(Parcel in) {
+        id = in.readInt();
+        purchaseHeaderId = in.readInt();
+        quantity = in.readString();
+        price = in.readString();
+        totalPrice = in.readString();
+        medicineId = in.readInt();
+        unitId = in.readInt();
+        medicineName = in.readString();
+        unitName = in.readString();
+    }
+
+    public static final Creator<CashierDetailTransaction> CREATOR = new Creator<CashierDetailTransaction>() {
+        @Override
+        public CashierDetailTransaction createFromParcel(Parcel in) {
+            return new CashierDetailTransaction(in);
+        }
+
+        @Override
+        public CashierDetailTransaction[] newArray(int size) {
+            return new CashierDetailTransaction[size];
+        }
+    };
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getPurchaseHeaderId() {
+    public int getPurchaseHeaderId() {
         return purchaseHeaderId;
     }
 
-    public void setPurchaseHeaderId(String purchaseHeaderId) {
+    public void setPurchaseHeaderId(int purchaseHeaderId) {
         this.purchaseHeaderId = purchaseHeaderId;
-    }
-
-    public String getMedicineId() {
-        return medicineId;
-    }
-
-    public void setMedicineId(String medicineId) {
-        this.medicineId = medicineId;
     }
 
     public String getQuantity() {
@@ -72,14 +85,6 @@ public class CashierDetailTransaction implements Parcelable {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
-    }
-
-    public String getUnitId() {
-        return unitId;
-    }
-
-    public void setUnitId(String unitId) {
-        this.unitId = unitId;
     }
 
     public String getPrice() {
@@ -98,30 +103,37 @@ public class CashierDetailTransaction implements Parcelable {
         this.totalPrice = totalPrice;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public int getMedicineId() {
+        return medicineId;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setMedicineId(int medicineId) {
+        this.medicineId = medicineId;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public int getUnitId() {
+        return unitId;
     }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUnitId(int unitId) {
+        this.unitId = unitId;
     }
 
-    public Medicine getMedicine() {
-        return medicine;
+    public String getMedicineName() {
+        return medicineName;
     }
 
-    public void setMedicine(Medicine medicine) {
-        this.medicine = medicine;
+    public void setMedicineName(String medicineName) {
+        this.medicineName = medicineName;
     }
 
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
 
     @Override
     public int describeContents() {
@@ -130,43 +142,14 @@ public class CashierDetailTransaction implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.id);
-        dest.writeString(this.purchaseHeaderId);
-        dest.writeString(this.medicineId);
-        dest.writeString(this.quantity);
-        dest.writeString(this.unitId);
-        dest.writeString(this.price);
-        dest.writeString(this.totalPrice);
-        dest.writeString(this.createdAt);
-        dest.writeString(this.updatedAt);
-        dest.writeParcelable(this.medicine, flags);
+        dest.writeInt(id);
+        dest.writeInt(purchaseHeaderId);
+        dest.writeString(quantity);
+        dest.writeString(price);
+        dest.writeString(totalPrice);
+        dest.writeInt(medicineId);
+        dest.writeInt(unitId);
+        dest.writeString(medicineName);
+        dest.writeString(unitName);
     }
-
-    public CashierDetailTransaction() {
-    }
-
-    protected CashierDetailTransaction(Parcel in) {
-        this.id = in.readString();
-        this.purchaseHeaderId = in.readString();
-        this.medicineId = in.readString();
-        this.quantity = in.readString();
-        this.unitId = in.readString();
-        this.price = in.readString();
-        this.totalPrice = in.readString();
-        this.createdAt = in.readString();
-        this.updatedAt = in.readString();
-        this.medicine = in.readParcelable(Medicine.class.getClassLoader());
-    }
-
-    public static final Parcelable.Creator<CashierDetailTransaction> CREATOR = new Parcelable.Creator<CashierDetailTransaction>() {
-        @Override
-        public CashierDetailTransaction createFromParcel(Parcel source) {
-            return new CashierDetailTransaction(source);
-        }
-
-        @Override
-        public CashierDetailTransaction[] newArray(int size) {
-            return new CashierDetailTransaction[size];
-        }
-    };
 }

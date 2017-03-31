@@ -155,4 +155,9 @@ public class Medicine implements Parcelable {
             return new Medicine[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -25,5 +25,6 @@
     <string name="description_error">Enter a description</string>
     <string name="result_error">Enter a result</string>
     <string name="service_error">Select a service</string>
+    <string name="title_activity_maps">Maps</string>
     <string name="time_error">Select a time</string>
 </resources>

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.posmedicine.Adapter.MedicineTransactionAdapter;
@@ -28,7 +29,10 @@ import com.mobsandgeeks.saripaar.annotation.NumberRule;
 import com.mobsandgeeks.saripaar.annotation.Required;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import retrofit2.Call;
@@ -45,32 +49,41 @@ public class PharmacyChasierActivity extends AppCompatActivity implements Valida
     @Required(order = 1)
     AutoCompleteTextView autocompleteMedicine;
 
-    String[] arrName;
-    Integer[] arrId;
-    Button bSelectMedicine, bPayment;
+    TextView bSelectMedicine, bCancel;
+    Button bPayment;
     Double totalPrice = 0.0;
 
-    Medicine medicine;
     private ArrayList<TransactionMedicine> listTrMedicine = null;
     ApiService service;
+    Medicine selectedMedicine;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharmacy_chasier);
         //Log.d("getFilesDir", String.valueOf(getFilesDir()));
 
-        service = RestClient.getInstance().getApiService();
+        autocompleteMedicine = (AutoCompleteTextView) findViewById(R.id.autoCompleteMedicine);
 
+        service = RestClient.getInstance().getApiService();
+//        grandTotalTV = (TextView)findViewById(R.id.textGrandTotal);
+        bCancel = (TextView)findViewById(R.id.bCancel);
         listTrMedicine = new ArrayList<>();
 
         getMedicine();
+
+        autocompleteMedicine.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedMedicine = (Medicine) parent.getAdapter().getItem(position);
+            }
+        });
 
         inputQty = (EditText)findViewById(R.id.iput_quantity);
 
         validator = new Validator(this);
         validator.setValidationListener(this);
 
-        bSelectMedicine = (Button)findViewById(R.id.bSelectMedicine);
+        bSelectMedicine = (TextView) findViewById(R.id.bSelectMedicine);
         bSelectMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,14 +92,31 @@ public class PharmacyChasierActivity extends AppCompatActivity implements Valida
             }
         });
 
-        bPayment = (Button)findViewById(R.id.bPayment);
+        bPayment = (Button) findViewById(R.id.bPayment);
         bPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("total price",String.valueOf(listTrMedicine));
-                Log.d("total price",String.valueOf(listTrMedicine));
-                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                createTransaction(currentDateTimeString,String.valueOf(getTotalPrice()),String.valueOf(getTotalPrice()));
+                if(listTrMedicine.size() != 0) {
+                    Log.d("total price", String.valueOf(listTrMedicine));
+                    Log.d("total price", String.valueOf(listTrMedicine));
+
+                    Calendar c = Calendar.getInstance();
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String formattedDate = df.format(c.getTime());
+
+                    Log.d("formattedDate", formattedDate);
+
+                    createTransaction(formattedDate, String.valueOf(getTotalPrice()), String.valueOf(getTotalPrice()));
+                }else{
+                    Toast.makeText(getApplicationContext(),"Please select Medicine",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        bCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
@@ -95,30 +125,12 @@ public class PharmacyChasierActivity extends AppCompatActivity implements Valida
     public void getMedicine(){
         service.getMedicine().enqueue(new Callback<MedicineResponse>() {
             @Override
-            public void onResponse(Call<MedicineResponse> call, final Response<MedicineResponse> response) {
-                arrName = new String[response.body().getMedicine().size()];
-                arrId = new Integer[response.body().getMedicine().size()];
-                for (int i = 0; i < response.body().getMedicine().size(); i++) {
-                    arrName[i] = new String(response.body().getMedicine().get(i).getName());
-                    arrId[i] = response.body().getMedicine().get(i).getId();
-                }
-
-                autocompleteMedicine = (AutoCompleteTextView)findViewById(R.id.autoCompleteMedicine);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(),android.R.layout.select_dialog_item,arrName);
+            public void onResponse(Call<MedicineResponse> call, Response<MedicineResponse> response) {
+                Log.d("responseMedicine", String.valueOf(response.body().getMedicine()));
+                ArrayAdapter myAdapter = new ArrayAdapter<Medicine>(PharmacyChasierActivity.this,
+                        android.R.layout.simple_spinner_dropdown_item, response.body().getMedicine());
                 autocompleteMedicine.setThreshold(2);
-                autocompleteMedicine.setAdapter(adapter);
-
-                autocompleteMedicine.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String itemSelect = (String) parent.getItemAtPosition(position);
-                        for(Medicine medicineRow : response.body().getMedicine()){
-                            if(medicineRow.getName().equals(itemSelect)){
-                                medicine = medicineRow;
-                            }
-                        }
-                    }
-                });
+                autocompleteMedicine.setAdapter(myAdapter);
             }
 
             @Override
@@ -131,33 +143,32 @@ public class PharmacyChasierActivity extends AppCompatActivity implements Valida
     @Override
     public void onValidationSucceeded() {
         //Toast.makeText(this, "Yay! we got it right!", Toast.LENGTH_SHORT).show();
-        Log.d("medicine data", String.valueOf(medicine));
-        if(medicine == null){
+        Log.d("medicine data", String.valueOf(selectedMedicine));
+        if(selectedMedicine == null){
             Toast.makeText(getApplicationContext(),"Please select Medicine",Toast.LENGTH_SHORT).show();
         }else{
             Integer valQty;
             Double medicinePrice,medicineQuantity;
             valQty = Integer.parseInt(String.valueOf(inputQty.getText()));
-            medicineQuantity = Double.parseDouble(medicine.getQuantity());
+            medicineQuantity = Double.parseDouble(selectedMedicine.getQuantity());
             if(valQty <= medicineQuantity){
-                medicine.setQuantity(String.valueOf(medicineQuantity - valQty));
+                selectedMedicine.setQuantity(String.valueOf(medicineQuantity - valQty));
 
-                medicinePrice = Double.parseDouble(medicine.getPrice());
-                medicine.setPrice(String.valueOf(medicinePrice * valQty));
+                medicinePrice = Double.parseDouble(selectedMedicine.getPrice());
+                selectedMedicine.setPrice(String.valueOf(medicinePrice * valQty));
                 Log.d("perkalian",String.valueOf(medicinePrice * valQty));
                 TransactionMedicine trMedicine = new TransactionMedicine();
-                trMedicine.setMedicine(medicine);
-                trMedicine.setMedicineId(medicine.getId());
+                trMedicine.setMedicine(selectedMedicine);
+                trMedicine.setMedicineId(selectedMedicine.getId());
                 trMedicine.setQuantity(valQty);
-                trMedicine.setUnitId(medicine.getUnitId());
-                trMedicine.setPrice(String.valueOf(medicine.getPrice()));
-                trMedicine.setTotalPrice(trMedicine.getPrice() +  trMedicine.getQuantity());
-
-                double totalPriceTemp = getTotalPrice();
-                totalPriceTemp = totalPriceTemp + Double.parseDouble(trMedicine.getTotalPrice());
-                setTotalPrice(totalPriceTemp);
+                trMedicine.setUnitId(selectedMedicine.getUnitId());
+                trMedicine.setPrice(String.valueOf(selectedMedicine.getPrice()));
+                trMedicine.setTotalPrice(String.valueOf(Double.parseDouble(trMedicine.getPrice()) * trMedicine.getQuantity()));
 
                 listTrMedicine.add(trMedicine);
+
+                setTextTotalPrice();
+
                 LinearLayoutManager llm = new LinearLayoutManager(PharmacyChasierActivity.this);
                 llm.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -166,12 +177,13 @@ public class PharmacyChasierActivity extends AppCompatActivity implements Valida
                 rvTransaction.setLayoutManager(llm);
                 rvTransaction.setAdapter(trAdapter);
 
+
                 autocompleteMedicine.setText(null);
                 inputQty.setText(null);
             }else{
                 double myDb = medicineQuantity;
                 int myInt = (int) myDb;
-                Toast.makeText(getApplicationContext(),"Quantity is not enough, "+medicine.getName()+" : "+myInt+" "+medicine.getUnitName(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Quantity is not enough, "+selectedMedicine.getName()+" : "+myInt+" "+selectedMedicine.getUnitName(),Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -192,15 +204,15 @@ public class PharmacyChasierActivity extends AppCompatActivity implements Valida
         service.createPurchaseHeader(date,totalPrice, paid).enqueue(new Callback<PurchaseHeaderResponse>() {
             @Override
             public void onResponse(Call<PurchaseHeaderResponse> call, Response<PurchaseHeaderResponse> response) {
-                int purchaseHeaderId = response.body().getId();
+                int purchaseHeaderId = response.body().getData().getId();
                 Log.d("purchaseID", String.valueOf(purchaseHeaderId));
                 for(int i=0; i<listTrMedicine.size(); i++){
-                    TransactionMedicine trMedicineTemp;
+                    final TransactionMedicine trMedicineTemp;
                     trMedicineTemp =  listTrMedicine.get(i);
                     service.createPurchaseDetail(purchaseHeaderId,trMedicineTemp.getMedicineId(),trMedicineTemp.getQuantity(),trMedicineTemp.getMedicine().getUnitId(),trMedicineTemp.getPrice(),trMedicineTemp.getTotalPrice()).enqueue(new Callback<PurchaseDetailResponse>() {
                         @Override
                         public void onResponse(Call<PurchaseDetailResponse> call, Response<PurchaseDetailResponse> response) {
-
+                            Log.d("Purchase Detail : ", String.valueOf(response.body().isStatus()));
                         }
 
                         @Override
@@ -209,17 +221,17 @@ public class PharmacyChasierActivity extends AppCompatActivity implements Valida
                         }
                     });
 
-                    service.updateMedicine(trMedicineTemp.getMedicineId(),medicine.getName(),medicine.getQuantity(),medicine.getUnitId(),medicine.getPrice(),medicine.getType(),medicine.getDateStock(),medicine.getDateExpiration()).enqueue(new Callback<MedicineResponse>() {
-                        @Override
-                        public void onResponse(Call<MedicineResponse> call, Response<MedicineResponse> response) {
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<MedicineResponse> call, Throwable t) {
-
-                        }
-                    });
+//                    service.updateMedicine(trMedicineTemp.getMedicineId(),selectedMedicine.getName(),selectedMedicine.getQuantity(),selectedMedicine.getUnitId(),selectedMedicine.getPrice(),selectedMedicine.getType(),selectedMedicine.getDateStock(),selectedMedicine.getDateExpiration()).enqueue(new Callback<MedicineResponse>() {
+//                        @Override
+//                        public void onResponse(Call<MedicineResponse> call, Response<MedicineResponse> response) {
+//                            Log.d("updateMedicine", String.valueOf(response.body().getMedicine()));
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<MedicineResponse> call, Throwable t) {
+//
+//                        }
+//                    });
 
                 }
                 listTrMedicine.clear();
@@ -233,6 +245,7 @@ public class PharmacyChasierActivity extends AppCompatActivity implements Valida
 
                 autocompleteMedicine.setText(null);
                 inputQty.setText(null);
+                clearTextTotalPrice();
                 Toast.makeText(getApplicationContext(),"Successful create transaction",Toast.LENGTH_LONG).show();
             }
 
@@ -250,6 +263,18 @@ public class PharmacyChasierActivity extends AppCompatActivity implements Valida
     }
 
     public double getTotalPrice(){
-        return this.totalPrice;
+        double totalPriceCalculation = 0.0;
+        for (TransactionMedicine medicineRow : listTrMedicine) {
+            totalPriceCalculation = totalPriceCalculation + Double.parseDouble(medicineRow.getTotalPrice());
+        }
+        return this.totalPrice = totalPriceCalculation;
+    }
+
+    public void setTextTotalPrice(){
+        bPayment.setText("Grand Total Rp : "+NumberFormat.getInstance().format(getTotalPrice()));
+    }
+
+    public void clearTextTotalPrice(){
+        bPayment.setText("Grand Total Rp : ");
     }
 }

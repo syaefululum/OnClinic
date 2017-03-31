@@ -19,10 +19,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.posmedicine.R;
+import com.example.posmedicine.models.Unit;
 import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.models.response.UnitResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
+import com.mobsandgeeks.saripaar.Rule;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.NumberRule;
+import com.mobsandgeeks.saripaar.annotation.Required;
 
 import java.lang.reflect.Array;
 import java.text.DateFormat;
@@ -37,23 +42,40 @@ import retrofit2.Response;
 
 import static android.R.id.list;
 
-public class CreateMedicineActivity extends AppCompatActivity {
-    ApiService service;
-    AutoCompleteTextView autocomplete;
-    String[] arrName;
-    Integer[] arrId;
-    Button bCreateMedicine, bCancel, setStockedDate;
+public class CreateMedicineActivity extends AppCompatActivity implements Validator.ValidationListener{
+    @Required(order = 1)
+    AutoCompleteTextView unitAutoComplete;
+
+    @Required(order = 2, message = "Enter Medicine Name")
     EditText cMedicineName;
+
+    @Required(order = 3, message = "Enter Medicine Type")
     EditText cMedicineType;
+
+    @Required(order = 4)
+    @NumberRule(order = 5, message = "Enter Price in Numeric", type = NumberRule.NumberType.INTEGER)
     EditText cMedicinePrice;
+
+    @Required(order = 6)
+    @NumberRule(order = 7, message = "Enter Stock in Numeric", type = NumberRule.NumberType.INTEGER)
     EditText cMedicineStock;
 
-    TextView expireDate, stockedDate;
+    @Required(order = 8, message = "Select Expire Date")
+    TextView expireDate;
+
+    @Required(order = 9, message = "Select Stock Date")
+    TextView stockedDate;
+
+    ApiService service;
+
+    TextView bCancel, setStockedDate, setExpireDate, unitSelected_1, unitSelected_2;
+    Button bCreateMedicine;
+
     String inputExpireDate, inputStockedDate;
 
-    Button setExpireDate;
+    private Unit selectedUnit;
+    Validator validator;
 
-    private Integer itemSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +83,6 @@ public class CreateMedicineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_medicine);
 
         service = RestClient.getInstance().getApiService();
-        getUnit();
 
         cMedicineName = (EditText) findViewById(R.id.cmedicine_name);
         cMedicineType = (EditText) findViewById(R.id.cmedicine_type);
@@ -69,23 +90,36 @@ public class CreateMedicineActivity extends AppCompatActivity {
         cMedicineStock = (EditText) findViewById(R.id.cmedicine_stock);
         expireDate = (TextView) findViewById(R.id.expire_date);
         stockedDate = (TextView) findViewById(R.id.stocked_date);
-        bCreateMedicine = (Button) findViewById(R.id.bCreateMedicine);
-        bCancel = (Button) findViewById(R.id.bCancel);
 
-        setExpireDate = (Button) findViewById(R.id.setExpireDate);
-        setStockedDate = (Button) findViewById(R.id.setStockedDate);
+        bCreateMedicine = (Button) findViewById(R.id.bCreateMedicine);
+        bCancel = (TextView) findViewById(R.id.bCancel);
+
+        setExpireDate = (TextView) findViewById(R.id.setExpireDate);
+        setStockedDate = (TextView) findViewById(R.id.setStockedDate);
+
+        unitSelected_1 = (TextView)findViewById(R.id.unitSelected_1);
+        unitSelected_2 = (TextView)findViewById(R.id.unitSelected_2);
+
+        unitAutoComplete = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextViewUnit);
+
+        getUnit();
+
+        validator = new Validator(this);
+        validator.setValidationListener(this);
+
+        unitAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedUnit = (Unit) parent.getAdapter().getItem(position);
+                unitSelected_1.setText(" / " + selectedUnit.getName());
+                unitSelected_2.setText(" / " + selectedUnit.getName());
+            }
+        });
 
         bCreateMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String medicineName = cMedicineName.getText().toString().trim();
-                String medicineType = cMedicineType.getText().toString().trim();
-                String medicinePrice = cMedicinePrice.getText().toString().trim();
-                String medicineStock = cMedicineStock.getText().toString().trim();
-                inputExpireDate =  expireDate.getText().toString();
-                inputStockedDate = stockedDate.getText().toString();
-                Integer medicineUnit = getItemSelected();
-                createNewMedicine(medicineName, medicineStock,medicineUnit,medicinePrice, medicineType, inputExpireDate,inputStockedDate);
+                validator.validate();
             }
         });
 
@@ -123,6 +157,35 @@ public class CreateMedicineActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onValidationSucceeded() {
+        if(selectedUnit == null){
+            Toast.makeText(getApplicationContext(),"Please select Unit of Medicine",Toast.LENGTH_SHORT).show();
+        }else{
+            String medicineName = cMedicineName.getText().toString().trim();
+            String medicineType = cMedicineType.getText().toString().trim();
+            String medicinePrice = cMedicinePrice.getText().toString().trim();
+            String medicineStock = cMedicineStock.getText().toString().trim();
+            inputExpireDate =  expireDate.getText().toString();
+            inputStockedDate = stockedDate.getText().toString();
+            createNewMedicine(medicineName, medicineStock,selectedUnit.getId(),medicinePrice, medicineType, inputExpireDate,inputStockedDate);
+
+        }
+
+    }
+
+    @Override
+    public void onValidationFailed(View failedView, Rule<?> failedRule) {
+        final String failureMessage = failedRule.getFailureMessage();
+        if (failedView instanceof EditText) {
+            EditText failed = (EditText) failedView;
+            failed.requestFocus();
+            failed.setError(failureMessage);
+        } else {
+            Toast.makeText(getBaseContext(), failureMessage, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
@@ -210,9 +273,6 @@ public class CreateMedicineActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Create Success", Toast.LENGTH_SHORT);
                 toast.show();
                 finish();
-//                Intent medicineActivity = new Intent(CreateMedicineActivity.this,MedicineActivity.class);
-//                CreateMedicineActivity.this.startActivity(medicineActivity);
-
             }
 
             @Override
@@ -223,42 +283,13 @@ public class CreateMedicineActivity extends AppCompatActivity {
     }
 
     public void getUnit() {
-
         service.getUnits().enqueue(new Callback<UnitResponse>() {
             @Override
             public void onResponse(Call<UnitResponse> call, Response<UnitResponse> response) {
-                arrName = new String[response.body().getUnit().size()];
-                arrId = new Integer[response.body().getUnit().size()];
-                for (int i = 0; i < response.body().getUnit().size(); i++) {
-                    arrName[i] = new String(response.body().getUnit().get(i).getName());
-                    arrId[i] = response.body().getUnit().get(i).getId();
-                }
-
-                autocomplete = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextViewUnit);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.select_dialog_item, arrName);
-                autocomplete.setThreshold(2);
-                autocomplete.setAdapter(adapter);
-
-                autocomplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        TextView selectedItem_1 = (TextView) findViewById(R.id.unitSelected_1);
-                        TextView selectedItem_2 = (TextView) findViewById(R.id.unitSelected_2);
-                        String itemSelect = (String) parent.getItemAtPosition(position);
-
-                        selectedItem_1.setText(" / " + itemSelect);
-                        selectedItem_2.setText(" / " + itemSelect);
-
-                        for (int i = 0; i < arrName.length; i++) {
-                            if(itemSelect == arrName[i]){
-                                setItemSelected(arrId[i]);
-                            }
-                        }
-
-                    }
-
-
-                });
+                ArrayAdapter myAdapter = new ArrayAdapter<Unit>(CreateMedicineActivity.this,
+                        android.R.layout.simple_spinner_dropdown_item, response.body().getUnit());
+                unitAutoComplete.setThreshold(2);
+                unitAutoComplete.setAdapter(myAdapter);
             }
 
             @Override
@@ -266,13 +297,5 @@ public class CreateMedicineActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    public void setItemSelected(Integer itemSelected) {
-        this.itemSelected = itemSelected;
-    }
-
-    public int getItemSelected() {
-        return this.itemSelected;
     }
 }

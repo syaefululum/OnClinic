@@ -1,7 +1,9 @@
 package com.example.posmedicine.Adapter;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -42,9 +44,13 @@ public class TransactionHeaderAdapter extends RecyclerView.Adapter<TransactionHe
     @Override
     public void onBindViewHolder(TransactionHeaderAdapter.ViewHolder holder, final int position) {
         Log.d("LOG:", headerTransactions.get(position).getId());
-        holder.headerID.setText(headerTransactions.get(position).getId());
-        holder.headerDate.setText(headerTransactions.get(position).getDate());
-        holder.headerTotalPrice.setText("Rp. " + NumberFormat.getInstance().format(Double.parseDouble(headerTransactions.get(position).getTotalPrice())));
+//        if(position % 2 == 0){
+//            holder.cvHeaderTransaction.setCardBackgroundColor(Color.parseColor("#FFC9CCF1"));
+//            Log.d("LOG:", "LOG Pos : "+position);
+//        }
+        holder.headerID.setText(": #"+headerTransactions.get(position).getId());
+        holder.headerDate.setText(": "+headerTransactions.get(position).getDate());
+        holder.headerTotalPrice.setText(": Rp. " + NumberFormat.getInstance().format(Double.parseDouble(headerTransactions.get(position).getTotalPrice())));
         holder.cvHeaderTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

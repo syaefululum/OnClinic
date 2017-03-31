@@ -1,20 +1,20 @@
 package com.example.posmedicine.models.response;
 
-import com.example.posmedicine.models.CashierDetailTransaction;
+import com.example.posmedicine.models.Medicine;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Syaeful_U1438 on 17-Feb-17.
+ * Created by Syaeful_U1438 on 30-Mar-17.
  */
 
-public class PurchaseDetailResponse {
+public class MedicineSingleResponse {
     @SerializedName("status")
     @Expose
     private boolean status;
     @SerializedName("data")
     @Expose
-    private CashierDetailTransaction data;
+    private Medicine data;
     @SerializedName("message")
     @Expose
     private String message;
@@ -27,11 +27,11 @@ public class PurchaseDetailResponse {
         this.status = status;
     }
 
-    public CashierDetailTransaction getData() {
+    public Medicine getData() {
         return data;
     }
 
-    public void setData(CashierDetailTransaction data) {
+    public void setData(Medicine data) {
         this.data = data;
     }
 
