@@ -94,7 +94,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
             public void onClick(View v) {
                 int medicineId = medicine.get(position).getId();
                 deleteMedicine(medicineId);
-                activity.getMedicine();
+                activity.getMedicine("",10,1);
             }
         });
     }

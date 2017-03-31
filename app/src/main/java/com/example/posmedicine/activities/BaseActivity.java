@@ -102,6 +102,14 @@ public abstract class BaseActivity extends AppCompatActivity
             startActivity(new Intent(this, CashierTransactionActivity.class));
         } else if (id == R.id.nav_complaint) {
             startActivity(new Intent(this, ComplaintHeaderActivity.class));
+        }else if(id == R.id.logout){
+            Prefs.putString("TOKEN","Not Set");
+            Prefs.putString("USERID", "Not Set");
+            Prefs.putString("USERNAME","Not Set");
+            Prefs.putString("USERROLE","Not Set");
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         } else if (id == R.id.nav_treatment) {
             startActivity(new Intent(this, TreatmentActivity.class));
         }

@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_complaint_header"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="com.example.posmedicine.activities.MedicineActivity">
+    <android.support.v7.widget.SearchView
+        android:id="@+id/search_view"
+        android:iconifiedByDefault="false"
+        android:layout_alignParentStart="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+   </android.support.v7.widget.SearchView>
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/search_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:id="@+id/rvMedicine"
+        />
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/loadMore"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:text="{fa-circle-o-notch spin}"
+        android:textSize="20dp"
+        android:gravity="center|bottom"
+        />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_medicine" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_menu_add" />
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

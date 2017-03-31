@@ -83,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<SignInResponse> call, Throwable t) {
                 Log.d("userdata", String.valueOf(t));
+                message.setPadding(5,5,5,5);
+                message.setText("Failed Connect to server");
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
             }
