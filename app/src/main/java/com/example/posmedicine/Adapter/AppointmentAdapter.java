@@ -29,9 +29,8 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
     private List<Doctor> doctor;
     private AppointmentActivity activity;
 
-    public AppointmentAdapter(List<Appointment> appointment, AppointmentActivity activity) {
+    public AppointmentAdapter(List<Appointment> appointment) {
         this.appointment = appointment;
-        this.activity = activity;
     }
 
     @Override
@@ -45,8 +44,8 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
     @Override
     public void onBindViewHolder(AppointmentAdapter.ViewHolder holder, final int position) {
         holder.appointmentDate.setText(appointment.get(position).getDate());
-        holder.appointmentDoctor.setText(appointment.get(position).getDoctor().getPerson().getName());
-        holder.appointmentPatient.setText(appointment.get(position).getPatient().getPerson().getName());
+        holder.appointmentDoctor.setText(appointment.get(position).getDoctor().getPersonName());
+        holder.appointmentPatient.setText(appointment.get(position).getPatient().getPersonName());
         holder.appointmentStatus.setText(appointment.get(position).getStatus());
 
         if (holder.appointmentStatus.getText().toString().equals("Canceled")) {

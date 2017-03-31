@@ -8,16 +8,13 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Doctor {
+
     @SerializedName("id")
     @Expose
-
-    private int id;
-    @SerializedName("personid")
-    @Expose
-    private int personId;
+    private Integer id;
     @SerializedName("reg_number")
     @Expose
-    private int regNumber;
+    private Integer regNumber;
     @SerializedName("joined_date")
     @Expose
     private String joinedDate;
@@ -27,62 +24,29 @@ public class Doctor {
     @SerializedName("status")
     @Expose
     private String status;
-    @SerializedName("created_at")
+    @SerializedName("person_id")
     @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
+    private Integer personId;
+    @SerializedName("person_name")
     @Expose
-    private String updatedAt;
-
-    @SerializedName("person")
+    private String personName;
+    @SerializedName("person_phone")
     @Expose
-    private Person person;
+    private String personPhone;
 
-    /**
-     *
-     * @param updatedAt
-     * @param id
-     * @param regNumber
-     * @param status
-     * @param createdAt
-     * @param personId
-     * @param resignDate
-     * @param joinedDate
-     */
-    public Doctor(int id, int personId, int regNumber, String joinedDate, String resignDate, String status, String createdAt, String updatedAt) {
-        super();
-        this.id = id;
-        this.personId = personId;
-        this.regNumber = regNumber;
-        this.joinedDate = joinedDate;
-        this.resignDate = resignDate;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
-    }
-
-    public int getRegNumber() {
+    public Integer getRegNumber() {
         return regNumber;
     }
 
-    public void setRegNumber(int regNumber) {
-
+    public void setRegNumber(Integer regNumber) {
         this.regNumber = regNumber;
     }
 
@@ -110,29 +74,33 @@ public class Doctor {
         this.status = status;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public Integer getPersonId() {
+        return personId;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setPersonId(Integer personId) {
+        this.personId = personId;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public String getPersonName() {
+        return personName;
     }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
-
-    public Person getPerson() {
-        return person;
+    public String getPersonPhone() {
+        return personPhone;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPersonPhone(String personPhone) {
+        this.personPhone = personPhone;
+    }
+
+    @Override
+    public String toString() {
+        return personName;
     }
 }
 

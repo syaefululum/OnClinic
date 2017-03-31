@@ -9,16 +9,17 @@ import com.example.posmedicine.models.Doctor;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 import java.util.List;
 
-public class DoctorResponse {
+public class DoctorsResponse {
 
     @SerializedName("status")
     @Expose
     private Boolean status;
     @SerializedName("data")
     @Expose
-    private Doctor doctor = null;
+    private List<Doctor> doctor = null;
     @SerializedName("message")
     @Expose
     private String message;
@@ -31,11 +32,11 @@ public class DoctorResponse {
         this.status = status;
     }
 
-    public Doctor getDoctor() {
+    public List<Doctor> getDoctor() {
         return doctor;
     }
 
-    public void setDoctor(Doctor doctor) {
+    public void setDoctor(List<Doctor> doctor) {
         this.doctor = doctor;
     }
 
