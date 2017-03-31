@@ -13,11 +13,19 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior"
 tools:context="com.example.posmedicine.activities.MedicineActivity"
 tools:showIn="@layout/activity_medicine">
 
-<android.support.v7.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/rvMedicine"
-    />
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rvMedicine"
+        />
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/loadMore"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:text="{fa-circle-o-notch spin}"
+        android:textSize="20dp"
+        android:gravity="center|bottom"
+        />
 </RelativeLayout>
 
