@@ -22,12 +22,6 @@ public class CashierHeaderTransaction {
     @SerializedName("paid")
     @Expose
     private String paid;
-    @SerializedName("created_at")
-    @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
-    @Expose
-    private String updatedAt;
     @SerializedName("purchaseDetails")
     @Expose
     private List<CashierDetailTransaction> transactionDetails = null;
@@ -62,22 +56,6 @@ public class CashierHeaderTransaction {
 
     public void setPaid(String paid) {
         this.paid = paid;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public List<CashierDetailTransaction> getTransactionDetails() {

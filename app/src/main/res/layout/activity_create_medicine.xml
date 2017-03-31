@@ -5,139 +5,215 @@
     android:id="@+id/activity_create_medicine"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.posmedicine.activities.CreateMedicineActivity">
 
-    <AutoCompleteTextView
-        android:hint="Medicine Unit"
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_alignParentTop="true"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/bCancel"
+            android:gravity="center"
+            android:text="{fa-angle-left} Back"
+            android:textColor="@color/colorBackroundWhite"
+            android:textSize="15dp"
+            android:layout_width="70dp"
+            android:layout_height="match_parent" />
+
+        <com.example.posmedicine.TextView_Lato_Thin
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="New Medicine"
+            android:textColor="@color/colorBackroundWhite"
+            android:textSize="19dp"
+            android:layout_weight="0.98" />
+
+        <!--<com.joanzapata.iconify.widget.IconTextView-->
+            <!--android:id="@+id/bCreateMedicine"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Submit {fa-angle-right}"-->
+            <!--android:textColor="@color/colorBackroundWhite"-->
+            <!--android:textSize="15dp"-->
+            <!--android:layout_width="70dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentRight="true"/>-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:elevation="1dp"
+        android:layout_below="@+id/header"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp"
-        android:id="@+id/autoCompleteTextViewUnit" />
+        android:id="@+id/contentContainerMedicine">
 
-    <EditText
+        <AutoCompleteTextView
+            android:hint="Medicine Unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:id="@+id/autoCompleteTextViewUnit" />
+
+        <EditText
+            android:hint="Medicine Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:id="@+id/cmedicine_name"
+            />
+
+        <EditText
+            android:hint="Medicine Type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:id="@+id/cmedicine_type"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/currency_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp. "
+                android:textSize="18sp"
+                android:layout_alignBaseline="@+id/cmedicine_price"
+                android:layout_alignBottom="@+id/cmedicine_price"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:hint="Medicine Price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/cmedicine_price"
+                android:layout_toEndOf="@+id/currency_1" />
+
+            <TextView
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/unitSelected_1"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/unitSelected_2"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="18sp" />
+            <EditText
+                android:hint="Medicine Stock"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/cmedicine_stock"
+                android:layout_width="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toStartOf="@+id/unitSelected_2" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.44">
+            <TextView
+                android:hint="Expire Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/expire_date"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textSize="18sp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="3dp"
+                android:layout_toStartOf="@+id/setExpireDate" />
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:text="{fa-calendar}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/setExpireDate"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:hint="Stock Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/stocked_date"
+                android:textSize="18sp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="3dp"
+                android:layout_toStartOf="@+id/setStockedDate" />
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:text="{fa-calendar}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/setStockedDate"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="18sp" />
+        </RelativeLayout>
+</LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Medicine Name"
-        android:ems="10"
-        android:id="@+id/cmedicine_name"
-        android:layout_below="@+id/autoCompleteTextViewUnit"
-      />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Medicine Type"
-        android:ems="10"
-        android:id="@+id/cmedicine_type"
-        android:layout_below="@+id/cmedicine_name"/>
-
-    <EditText
-        android:hint="Medicine Price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:layout_below="@+id/cmedicine_type"
-        android:id="@+id/cmedicine_price"/>
-
-    <TextView
-        android:text=" / "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/unitSelected_1"
-        android:layout_alignBaseline="@+id/cmedicine_price"
-        android:layout_alignBottom="@+id/cmedicine_price"
-        android:layout_toEndOf="@+id/cmedicine_price" />
-
-    <EditText
-        android:hint="Medicine Stock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:id="@+id/cmedicine_stock"
-        android:layout_marginStart="17dp"
-        android:layout_below="@+id/cmedicine_type"
-        android:layout_toEndOf="@+id/unitSelected_1" />
-
-    <TextView
-        android:layout_marginStart="17dp"
-        android:text=" / "
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/unitSelected_2"
-        android:layout_alignBaseline="@+id/cmedicine_stock"
-        android:layout_alignBottom="@+id/cmedicine_stock"
-        android:layout_alignStart="@+id/emedicine_stock"
-        />
-
-    <TextView
-        android:text="Expire Date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/expire_date"
-        android:layout_below="@+id/cmedicine_price" />
-
-    <Button
-        android:layout_marginStart="17dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date"
-        android:id="@+id/setExpireDate"
-        android:onClick="showDatePickerDialog"
-        android:layout_below="@+id/cmedicine_price"
-        android:layout_alignBaseline="@+id/expire_date"
-        android:layout_alignBottom="@+id/expire_date"
-        android:layout_toEndOf="@+id/expire_date"
-        />
-
-    <TextView
-        android:layout_marginStart="17dp"
-        android:text="Stock Date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/stocked_date"
-        android:layout_below="@+id/cmedicine_price"
-        android:layout_alignBaseline="@+id/setExpireDate"
-        android:layout_alignBottom="@+id/setExpireDate"
-        android:layout_toEndOf="@+id/setExpireDate"
-        />
-
-    <Button
-        android:layout_marginStart="17dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date"
-        android:id="@+id/setStockedDate"
-        android:onClick="showDatePickerDialog"
-        android:layout_below="@+id/cmedicine_price"
-        android:layout_alignBaseline="@+id/stocked_date"
-        android:layout_alignBottom="@+id/stocked_date"
-        android:layout_toEndOf="@+id/stocked_date"
-       />
-
-    <Button
-        android:text="Create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bCreateMedicine"
-        android:layout_below="@+id/cmedicine_price"
-        android:layout_marginTop="52dp" />
-
-    <Button
-        android:text="Cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bCancel"
-        android:layout_alignBaseline="@+id/bCreateMedicine"
-        android:layout_alignBottom="@+id/bCreateMedicine"
-        android:layout_alignEnd="@+id/cmedicine_stock"
-        />
-
+        android:orientation="horizontal"
+        android:id="@+id/buttonContainer"
+        android:layout_below="@+id/contentContainerMedicine">
+        <FrameLayout android:id="@+id/FrameLayout01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1">
+            <Button android:id="@+id/bCreateMedicine"
+                android:background="@drawable/roun_rect_orange"
+                android:textColor="@color/colorBackroundWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+            </Button>
+        </FrameLayout>
+        </LinearLayout>
 </RelativeLayout>

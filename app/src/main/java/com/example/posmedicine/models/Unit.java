@@ -56,15 +56,21 @@ public class Unit implements Parcelable {
         this.updatedAt = updatedAt;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Unit{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", createdAt='" + createdAt + '\'' +
+//                ", updatedAt='" + updatedAt + '\'' +
+//                '}';
+//    }
+//
     @Override
     public String toString() {
-        return "Unit{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", updatedAt='" + updatedAt + '\'' +
-                '}';
+        return name;
     }
+
 
 
     @Override

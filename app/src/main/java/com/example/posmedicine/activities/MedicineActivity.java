@@ -165,8 +165,12 @@ public class MedicineActivity extends BaseActivity implements Parcelable, AbsLis
     @Override
     public void onResume()
     {  // After a pause OR at startup
+        Log.d("onresume","on resume proses");
+
+        getMedicine("", 10, 0);
         super.onResume();
-        service = RestClient.getInstance().getApiService();
+        //service = RestClient.getInstance().getApiService();
+
     }
 
     @Override

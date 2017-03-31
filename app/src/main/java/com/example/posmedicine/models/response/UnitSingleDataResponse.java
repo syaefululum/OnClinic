@@ -11,16 +11,16 @@ import com.google.gson.annotations.SerializedName;
 public class UnitSingleDataResponse {
     @SerializedName("status")
     @Expose
-    private int status;
+    private boolean status;
     @SerializedName("data")
     @Expose
     private Unit unit;
 
-    public int getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

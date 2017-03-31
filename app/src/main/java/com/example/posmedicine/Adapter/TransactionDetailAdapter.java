@@ -35,9 +35,12 @@ public class TransactionDetailAdapter extends RecyclerView.Adapter<TransactionDe
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.medicineName.setText(detailTransactions.get(position).getMedicine().getName());
-        holder.quantity.setText(detailTransactions.get(position).getQuantity());
-        holder.medicinePrice.setText("Rp. " + NumberFormat.getInstance().format(Double.parseDouble(detailTransactions.get(position).getMedicine().getPrice())));
+        holder.medicineName.setText(detailTransactions.get(position).getMedicineName());
+//        holder.medicineType.setText(detailTransactions.get(position).getMedicine().getType());
+        holder.quantity.setText(String.valueOf((int) Double.parseDouble(detailTransactions.get(position).getQuantity())));
+        holder.unit_1.setText(" "+detailTransactions.get(position).getUnitName());
+        holder.unit_2.setText(" / "+detailTransactions.get(position).getUnitName());
+        holder.medicinePrice.setText("Rp. " + NumberFormat.getInstance().format(Double.parseDouble(detailTransactions.get(position).getPrice())));
 
         holder.totalPrice.setText("Rp. " + NumberFormat.getInstance().format(Double.parseDouble(detailTransactions.get(position).getTotalPrice())));
     }
@@ -53,6 +56,10 @@ public class TransactionDetailAdapter extends RecyclerView.Adapter<TransactionDe
         public TextView quantity;
         public TextView medicinePrice;
         public TextView totalPrice;
+        public TextView unit_1;
+        public TextView unit_2;
+//        public TextView medicineType;
+
         public ViewHolder(View itemView) {
             super(itemView);
             cvDetail = (CardView)itemView.findViewById(R.id.cvDetailTransaction);
@@ -60,6 +67,9 @@ public class TransactionDetailAdapter extends RecyclerView.Adapter<TransactionDe
             quantity = (TextView) itemView.findViewById(R.id.vDetail_qty);
             medicinePrice = (TextView) itemView.findViewById(R.id.vDetail_price);
             totalPrice = (TextView) itemView.findViewById(R.id.vDetail_total);
+            unit_1 = (TextView) itemView.findViewById(R.id.unit_medicine_1);
+            unit_2 = (TextView) itemView.findViewById(R.id.unit_medicine_2);
+//            medicineType = (TextView) itemView.findViewById(R.id.medicine_type);
         }
     }
 }

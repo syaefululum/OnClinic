@@ -1,79 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_cashier_transaction_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.posmedicine.activities.CashierTransactionDetailActivity">
+
     <LinearLayout
-        android:id="@+id/headerContainer"
+        android:id="@+id/header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal"
-        >
-        <RelativeLayout
+        android:weightSum="1"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_alignParentTop="true"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/bCancel"
+            android:gravity="center"
+            android:text="{fa-angle-left} Back"
+            android:textColor="@color/colorBackroundWhite"
+            android:textSize="15dp"
+            android:layout_width="70dp"
+            android:layout_height="match_parent" />
+
+        <com.example.posmedicine.TextView_Lato_Thin
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_width="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tHeaderid"
-            android:textSize="16sp"
-            android:text="ID Transaction : "/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tHeaderid_val"
-            android:textSize="16sp"
-            android:text="#"
-            android:layout_toRightOf="@+id/tHeaderid"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tHeader_date"
-            android:textSize="16sp"
-            android:text="Date : "
-            android:layout_below="@+id/tHeaderid"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tHeader_date_val"
-            android:textSize="16sp"
-            android:text="17-02-2017"
-            android:layout_below="@+id/tHeaderid"
-            android:layout_toRightOf="@+id/tHeader_date"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tHeader_total"
-            android:textSize="16sp"
-            android:text="Total : "
-            android:layout_below="@+id/tHeader_date"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tHeader_total_val"
-            android:textSize="16sp"
-            android:text="Rp. 17.000"
-            android:layout_below="@+id/tHeader_date"
-            android:layout_toRightOf="@+id/tHeader_total"/>
-        </RelativeLayout>
-        </LinearLayout>
+            android:gravity="center"
+            android:text="Transaction Details"
+            android:textColor="@color/colorBackroundWhite"
+            android:textSize="19dp"
+            android:layout_weight="0.98" />
+    </LinearLayout>
     <LinearLayout
-        android:id="@+id/contentContainer"
-        android:orientation="horizontal"
-        android:layout_height="match_parent"
+        android:id="@+id/firstLayout"
+        android:layout_below="@+id/header"
         android:layout_width="match_parent"
-        android:layout_below="@+id/headerContainer">
-        <android.support.v7.widget.RecyclerView
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/secondView"
+        android:orientation="vertical"
+        android:padding="15dp">
+        <com.example.posmedicine.TextView_Lato
+            android:id="@+id/tHeaderid_val"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rvDetailTransaction"
-            />
+            android:text=""
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <com.example.posmedicine.TextView_Lato
+            android:id="@+id/tHeader_date_val"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
+    <View
+        android:id="@+id/secondView"
+        android:layout_below="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:layout_below="@+id/header"
+        android:id="@+id/thirdLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/secondView"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <com.example.posmedicine.TextView_Lato
+            android:id="@+id/tHeader_total_val"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:textAlignment="textEnd"/>
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/contentContainer"
+    android:layout_below="@+id/thirdLayout"
+    android:orientation="vertical">
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvDetailTransaction"
+        />
+
+</LinearLayout>
 </RelativeLayout>

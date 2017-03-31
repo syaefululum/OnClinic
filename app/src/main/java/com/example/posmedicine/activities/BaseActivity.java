@@ -108,6 +108,8 @@ public abstract class BaseActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+        }else if(id == R.id.map){
+            startActivity(new Intent(this, MapsActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -129,16 +131,19 @@ public abstract class BaseActivity extends AppCompatActivity
                 new IconDrawable(this, FontAwesomeIcons.fa_medkit)
                         .actionBarSize());
         menu.findItem(R.id.nav_pharmacy_chasier).setIcon(
-                new IconDrawable(this, FontAwesomeIcons.fa_money)
+                new IconDrawable(this, FontAwesomeIcons.fa_file_text_o)
                         .actionBarSize());
         menu.findItem(R.id.nav_cashier_transaction_data).setIcon(
-                new IconDrawable(this, FontAwesomeIcons.fa_money)
+                new IconDrawable(this, FontAwesomeIcons.fa_list)
                         .actionBarSize());
         menu.findItem(R.id.nav_unit).setIcon(
                 new IconDrawable(this, FontAwesomeIcons.fa_heart)
                         .actionBarSize());
         menu.findItem(R.id.logout).setIcon(
                 new IconDrawable(this, FontAwesomeIcons.fa_sign_out)
+                        .actionBarSize());
+        menu.findItem(R.id.map).setIcon(
+                new IconDrawable(this, FontAwesomeIcons.fa_map_o)
                         .actionBarSize());
     }
 
@@ -154,15 +159,17 @@ public abstract class BaseActivity extends AppCompatActivity
         if (role.equals("Doctor")) {
             iv.setImageResource(R.drawable.doctor);
             menu.findItem(R.id.nav_group_patient).setVisible(false);
-            menu.findItem(R.id.nav_group_nurse).setVisible(false);
+            menu.findItem(R.id.nav_group_cashier).setVisible(false);
         } else if (role.equals("Patient")) {
             iv.setImageResource(R.drawable.user);
             menu.findItem(R.id.nav_group_doctor).setVisible(false);
-            menu.findItem(R.id.nav_group_nurse).setVisible(false);
-        } else {
-            iv.setImageResource(R.drawable.nurse);
+            menu.findItem(R.id.nav_group_cashier).setVisible(false);
+        } else if(role.equals("Cashier")) {
+            iv.setImageResource(R.drawable.cashier);
             menu.findItem(R.id.nav_group_doctor).setVisible(false);
             menu.findItem(R.id.nav_group_patient).setVisible(false);
+        }else{
+
         }
     }
 }

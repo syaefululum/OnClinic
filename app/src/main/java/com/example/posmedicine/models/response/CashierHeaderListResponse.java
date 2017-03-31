@@ -1,20 +1,25 @@
 package com.example.posmedicine.models.response;
 
-import com.example.posmedicine.models.CashierDetailTransaction;
+import com.example.posmedicine.models.CashierHeaderTransaction;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
- * Created by Syaeful_U1438 on 17-Feb-17.
+ * Created by Syaeful_U1438 on 24-Mar-17.
  */
 
-public class PurchaseDetailResponse {
+public class CashierHeaderListResponse {
     @SerializedName("status")
     @Expose
     private boolean status;
+    @SerializedName("total_query")
+    @Expose
+    private int totalQuery;
     @SerializedName("data")
     @Expose
-    private CashierDetailTransaction data;
+    private List<CashierHeaderTransaction> data = null;
     @SerializedName("message")
     @Expose
     private String message;
@@ -27,11 +32,19 @@ public class PurchaseDetailResponse {
         this.status = status;
     }
 
-    public CashierDetailTransaction getData() {
+    public int getTotalQuery() {
+        return totalQuery;
+    }
+
+    public void setTotalQuery(int totalQuery) {
+        this.totalQuery = totalQuery;
+    }
+
+    public List<CashierHeaderTransaction> getData() {
         return data;
     }
 
-    public void setData(CashierDetailTransaction data) {
+    public void setData(List<CashierHeaderTransaction> data) {
         this.data = data;
     }
 
