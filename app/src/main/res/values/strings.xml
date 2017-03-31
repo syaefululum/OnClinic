@@ -19,4 +19,11 @@
     <string name="label_patient_name">Patient : </string>
     <string name="label_doctor_name">Doctor : </string>
     <string name="title_activity_complaint_detail">ComplaintDetailActivity</string>
+
+    <string name="doctor_error">Select a doctor</string>
+    <string name="patient_error">Select a patient</string>
+    <string name="description_error">Enter a description</string>
+    <string name="result_error">Enter a result</string>
+    <string name="service_error">Select a service</string>
+    <string name="time_error">Select a time</string>
 </resources>

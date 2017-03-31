@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.posmedicine.activities.PatientActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@android:color/transparent">
+
+                <!-- Cover Image -->
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="#7f7f7f"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/cover" />
+
+                <!-- Round image -->
+
+                <com.alexzh.circleimageview.CircleImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="45dp"
+                    android:src="@drawable/boy"
+                    app:view_backgroundColor="@color/colorPrimaryDark"
+                    app:view_borderColor="@color/colorPrimaryDark"
+                    app:view_borderWidth="2dp" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="#fff"
+                android:orientation="vertical">
+
+                <com.example.posmedicine.TextView_Lato_Thin
+                    android:id="@+id/tPatient_Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Patient Name"
+                    android:textColor="@color/colorGray"
+                    android:textSize="22dp" />
+
+                <com.example.posmedicine.TextView_Lato_Thin
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="--------"
+                    android:textSize="14dp" />
+
+                <com.example.posmedicine.TextView_Lato_Thin
+                    android:id="@+id/tPatient_Address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Address"
+                    android:textColor="@color/colorGray"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#ACACAC" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.example.posmedicine.TextView_Lato_Thin
+                        android:id="@+id/tPatient_TotalTreatment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="total"
+                        android:textColor="@color/colorGray"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <com.example.posmedicine.TextView_Lato_Thin
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Times Checked"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="60dp"
+                    android:background="#ACACAC" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.example.posmedicine.TextView_Lato_Thin
+                        android:id="@+id/tPatient_LastDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="date"
+                        android:textColor="@color/colorGray"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <com.example.posmedicine.TextView_Lato_Thin
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Last Checkup"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#ACACAC" />
+        </LinearLayout>
+    </ScrollView>
+
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pagerPatient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF" />
+
+</LinearLayout>

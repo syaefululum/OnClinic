@@ -11,7 +11,7 @@ public class Service {
 
     @SerializedName("id")
     @Expose
-    private String id;
+    private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
@@ -20,22 +20,16 @@ public class Service {
     private String price;
     @SerializedName("category_id")
     @Expose
-    private String categoryId;
-    @SerializedName("created_at")
+    private Integer categoryId;
+    @SerializedName("category_name")
     @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
-    @Expose
-    private String updatedAt;
-    @SerializedName("category")
-    @Expose
-    private Category category;
+    private String categoryName;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -55,36 +49,24 @@ public class Service {
         this.price = price;
     }
 
-    public String getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(String categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    @Override
+    public String toString() {
+        return name;
     }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
 }

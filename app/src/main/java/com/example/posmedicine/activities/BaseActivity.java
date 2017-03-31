@@ -92,6 +92,8 @@ public abstract class BaseActivity extends AppCompatActivity
             startActivity(new Intent(this, MedicineActivity.class));
         } else if (id == R.id.nav_unit) {
             startActivity(new Intent(this, UnitActivity.class));
+        } else if (id == R.id.nav_appointment_doctor) {
+            startActivity(new Intent(this, AppointmentActivity.class));
         } else if (id == R.id.nav_appointment) {
             startActivity(new Intent(this, AppointmentActivity.class));
         } else if (id == R.id.nav_pharmacy_chasier) {
@@ -108,6 +110,8 @@ public abstract class BaseActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+        } else if (id == R.id.nav_treatment) {
+            startActivity(new Intent(this, TreatmentActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -116,6 +120,9 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
     private void setNavigationViewIcons(Menu menu) {
+        menu.findItem(R.id.nav_treatment).setIcon(
+                new IconDrawable(this, FontAwesomeIcons.fa_stethoscope)
+                        .actionBarSize());
         menu.findItem(R.id.nav_complaint).setIcon(
                 new IconDrawable(this, FontAwesomeIcons.fa_heartbeat)
                         .actionBarSize());
@@ -140,6 +147,9 @@ public abstract class BaseActivity extends AppCompatActivity
         menu.findItem(R.id.logout).setIcon(
                 new IconDrawable(this, FontAwesomeIcons.fa_sign_out)
                         .actionBarSize());
+        menu.findItem(R.id.logout).setIcon(
+                new IconDrawable(this, FontAwesomeIcons.fa_users)
+                        .actionBarSize());
     }
 
     private void setNavigationViewMenu(NavigationView navigationView) {
@@ -150,7 +160,7 @@ public abstract class BaseActivity extends AppCompatActivity
         String role = Prefs.getString("USERROLE", "Not Set");
         username.setText(Prefs.getString("USERNAME", "Not Set"));
         userrole.setText(Prefs.getString("USERROLE", "Not Set"));
-        
+
         if (role.equals("Doctor")) {
             iv.setImageResource(R.drawable.doctor);
             menu.findItem(R.id.nav_group_patient).setVisible(false);

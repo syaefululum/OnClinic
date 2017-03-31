@@ -4,8 +4,8 @@
     <item android:title="Doctor" android:id="@+id/nav_group_doctor">
         <menu>
             <item
-                android:id="@+id/nav_complaint"
-                android:title="Complaint"/>
+                android:id="@+id/nav_treatment"
+                android:title="Treatment"/>
             <item
                 android:id="@+id/nav_appointment_doctor"
                 android:title="Check Appointment" />
@@ -25,6 +25,9 @@
             <item
                 android:id="@+id/nav_medicine"
                 android:title="Medicine" />
+            <item
+                android:id="@+id/nav_complaint"
+                android:title="Complaint"/>
             <item
                 android:id="@+id/nav_pharmacy_chasier"
                 android:title="Pharmacy Cashier" />

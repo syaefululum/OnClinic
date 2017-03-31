@@ -11,12 +11,12 @@ import android.view.View;
 import com.example.posmedicine.Adapter.ComplaintHeaderAdapter;
 import com.example.posmedicine.R;
 import com.example.posmedicine.TextView_Lato;
-import com.example.posmedicine.models.ComplaintHeader;
-import com.example.posmedicine.models.response.ComplaintHeaderResponse;
+import com.example.posmedicine.models.response.ComplaintHeadersResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,9 +30,9 @@ public class ComplaintHeaderActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint_header);
 
-        getSupportActionBar().setTitle("Treatment");
+        getSupportActionBar().setTitle("Complaint");
         TextView_Lato subtitle = (TextView_Lato) findViewById(R.id.labelSubTitle);
-        subtitle.setText("Today Patient List");
+        subtitle.setText("Today Patient Complaint List");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageDrawable(
@@ -51,21 +51,27 @@ public class ComplaintHeaderActivity extends BaseActivity {
         getComplaintHeader();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getComplaintHeader();
+    }
+
     public void getComplaintHeader() {
-        service.getComplaints().enqueue(new Callback<ComplaintHeaderResponse>() {
+        service.getComplaints().enqueue(new Callback<ComplaintHeadersResponse>() {
             @Override
-            public void onResponse(Call<ComplaintHeaderResponse> call, Response<ComplaintHeaderResponse> response) {
+            public void onResponse(Call<ComplaintHeadersResponse> call, Response<ComplaintHeadersResponse> response) {
                 LinearLayoutManager llm = new LinearLayoutManager(ComplaintHeaderActivity.this);
                 llm.setOrientation(LinearLayoutManager.VERTICAL);
                 ComplaintHeaderAdapter complaintHeader = new ComplaintHeaderAdapter(response.body().getComplaintHeader());
-                RecyclerView rvHeaderComplaint = (RecyclerView)findViewById(R.id.rvHeaderComplaint);
+                RecyclerView rvHeaderComplaint = (RecyclerView) findViewById(R.id.rvHeaderComplaint);
 
                 rvHeaderComplaint.setLayoutManager(llm);
                 rvHeaderComplaint.setAdapter(complaintHeader);
             }
 
             @Override
-            public void onFailure(Call<ComplaintHeaderResponse> call, Throwable t) {
+            public void onFailure(Call<ComplaintHeadersResponse> call, Throwable t) {
 
             }
         });

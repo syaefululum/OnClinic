@@ -16,14 +16,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.posmedicine.R;
-import com.example.posmedicine.models.Appointment;
-import com.example.posmedicine.models.local.LocalAppointment;
-import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.models.response.AppointmentSingleResponse;
-import com.example.posmedicine.models.response.DoctorResponse;
+import com.example.posmedicine.models.response.DoctorsResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 
@@ -31,7 +27,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -147,13 +142,13 @@ public class CreateAppointmentActivity extends AppCompatActivity {
     }
 
     public void getDoctor(){
-        service.getDoctor().enqueue(new Callback<DoctorResponse>() {
+        service.getDoctors().enqueue(new Callback<DoctorsResponse>() {
             @Override
-            public void onResponse(Call<DoctorResponse> call, Response<DoctorResponse> response) {
+            public void onResponse(Call<DoctorsResponse> call, Response<DoctorsResponse> response) {
                 arrName = new String[response.body().getDoctor().size()];
                 arrId = new Integer[response.body().getDoctor().size()];
                 for (int i = 0; i < response.body().getDoctor().size(); i++) {
-                    arrName[i] = new String(response.body().getDoctor().get(i).getPerson().getName());
+                    arrName[i] = new String(response.body().getDoctor().get(i).getPersonName());
                     arrId[i] = response.body().getDoctor().get(i).getId();
                 }
                 autocomplete = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextDoctor);
@@ -178,7 +173,7 @@ public class CreateAppointmentActivity extends AppCompatActivity {
 
 
             @Override
-            public void onFailure(Call<DoctorResponse> call, Throwable t) {
+            public void onFailure(Call<DoctorsResponse> call, Throwable t) {
 
             }
         });

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_treatment_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.posmedicine.activities.TreatmentDetailActivity">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <com.example.posmedicine.TextView_Lato_Thin
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="View Treatment Data"
+            android:textColor="@color/colorBackroundWhite"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.example.posmedicine.TextView_Lato
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Patient Name : "
+                android:textColor="@color/colorGray"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <com.example.posmedicine.TextView_Lato_Thin
+                android:id="@+id/viewTreatmentPatientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="patient name"
+                android:textColor="@color/colorGray"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <com.example.posmedicine.TextView_Lato
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor Name : "
+                android:textColor="@color/colorGray"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <com.example.posmedicine.TextView_Lato_Thin
+                android:id="@+id/viewTreatmentDoctorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="doctor name"
+                android:textColor="@color/colorGray"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <com.example.posmedicine.TextView_Lato
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Treatment : "
+                android:textColor="@color/colorGray"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <com.example.posmedicine.TextView_Lato_Thin
+                android:id="@+id/viewTreatmentServiceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="treatment name"
+                android:textColor="@color/colorGray"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <com.example.posmedicine.TextView_Lato
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Result : "
+                android:textColor="@color/colorGray"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <com.example.posmedicine.TextView_Lato_Thin
+                android:id="@+id/viewTreatmentResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="result"
+                android:textColor="@color/colorGray"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <com.example.posmedicine.TextView_Lato
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diagnosis : "
+                android:textColor="@color/colorGray"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <com.example.posmedicine.TextView_Lato_Thin
+                android:id="@+id/viewTreatmentDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="result"
+                android:textColor="@color/colorGray"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
