@@ -30,7 +30,9 @@
                 <View
                     android:layout_width="5dp"
                     android:layout_height="100dp"
-                    android:background="@color/colorPrimary"></View>
+                    android:background="@color/colorPrimary">
+                    
+                </View>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
