@@ -66,23 +66,23 @@
                     </LinearLayout>
 
                     <LinearLayout
-                    android:id="@+id/linear"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_above="@+id/linearLayout"
-                        android:layout_alignParentRight="true">
-
-                    <com.example.posmedicine.TextView_Lato_Thin
-                        android:id="@+id/medicine_price"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/linear"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:text="Price"
-                        android:textColor="@color/colorLightGray"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
+                        android:layout_below="@+id/lType"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:orientation="horizontal">
 
+                        <com.example.posmedicine.TextView_Lato_Thin
+                            android:id="@+id/medicine_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="Price"
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
 
                         <com.example.posmedicine.TextView_Lato_Thin
                             android:id="@+id/unit_medicine_1"
@@ -131,8 +131,7 @@
                         android:orientation="horizontal"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginRight="10dp"
-                        android:id="@+id/linearLayout">
+                        android:layout_marginRight="10dp">
 
                         <com.joanzapata.iconify.widget.IconTextView
                             android:id="@+id/bDeleteMedicine"
