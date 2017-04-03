@@ -2,6 +2,7 @@ package com.example.posmedicine.activities;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.posmedicine.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -38,6 +39,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        if(mMap == null){
+            Log.d("maps","Maps Null");
+        }
 
         // Add a marker in Sydney and move the camera
         LatLng TutorialsPoint = new LatLng(21, 57);
