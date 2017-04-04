@@ -1,23 +1,24 @@
 package com.example.posmedicine.models.response;
 
-import com.example.posmedicine.models.Appointment;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+/**
+ * Created by Surya_N2267 on 2/6/2017.
+ */
 
 import java.util.List;
 
-/**
- * Created by Syaeful_U1438 on 01-Mar-17.
- */
+import com.example.posmedicine.models.Appointment;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import com.orm.SugarRecord;
 
-public class AppointmentResponse {
+public class AppointmentsResponse {
 
     @SerializedName("status")
     @Expose
     private Boolean status;
     @SerializedName("data")
     @Expose
-    private Appointment appointment;
+    private List<Appointment> appointment;
     @SerializedName("message")
     @Expose
     private String message;
@@ -30,11 +31,11 @@ public class AppointmentResponse {
         this.status = status;
     }
 
-    public Appointment getAppointment() {
+    public List<Appointment> getAppointment() {
         return appointment;
     }
 
-    public void setAppointment(Appointment appointment) {
+    public void setAppointment(List<Appointment> appointment) {
         this.appointment = appointment;
     }
 

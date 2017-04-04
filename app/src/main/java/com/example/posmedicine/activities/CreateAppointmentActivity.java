@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.posmedicine.R;
-import com.example.posmedicine.models.response.AppointmentSingleResponse;
+import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.models.response.DoctorsResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
@@ -189,16 +189,16 @@ public class CreateAppointmentActivity extends AppCompatActivity {
     }
 
     public void createAppointment(String date, Integer doctorId,Integer patientId,String status){
-        service.createAppointment(date,doctorId,patientId,status).enqueue(new Callback<AppointmentSingleResponse>() {
+        service.createAppointment(date,doctorId,patientId,status).enqueue(new Callback<AppointmentResponse>() {
             @Override
-            public void onResponse(Call<AppointmentSingleResponse> call, Response<AppointmentSingleResponse> response) {
+            public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
 //                Appointment appData = response.body().getAppointment();
 //                appData.save();
                 finish();
             }
 
             @Override
-            public void onFailure(Call<AppointmentSingleResponse> call, Throwable t) {
+            public void onFailure(Call<AppointmentResponse> call, Throwable t) {
                 Log.d("asd","gagal");
             }
         });

@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.example.posmedicine.Adapter.AppointmentAdapter;
 import com.example.posmedicine.R;
-import com.example.posmedicine.models.response.AppointmentResponse;
+import com.example.posmedicine.models.response.AppointmentsResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -87,9 +87,9 @@ public class AppointmentDoctorActivity extends AppCompatActivity {
     }
 
     public void getAppointment(){
-        service.getAppointmentbyDoctor(Integer.parseInt(Prefs.getString("USERID","1"))).enqueue(new Callback<AppointmentResponse>() {
+        service.getAppointmentbyDoctor(Integer.parseInt(Prefs.getString("USERID","1"))).enqueue(new Callback<AppointmentsResponse>() {
             @Override
-            public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
+            public void onResponse(Call<AppointmentsResponse> call, Response<AppointmentsResponse> response) {
                 LinearLayoutManager llm = new LinearLayoutManager(AppointmentDoctorActivity.this);
                 llm.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -100,7 +100,7 @@ public class AppointmentDoctorActivity extends AppCompatActivity {
         }
 
             @Override
-            public void onFailure(Call<AppointmentResponse> call, Throwable t) {
+            public void onFailure(Call<AppointmentsResponse> call, Throwable t) {
 
             }
         });
