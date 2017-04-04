@@ -4,17 +4,14 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.example.posmedicine.Adapter.AppointmentAdapter;
-import com.example.posmedicine.activities.FontManager;
 import com.example.posmedicine.R;
-import com.example.posmedicine.models.response.AppointmentResponse;
+import com.example.posmedicine.models.response.AppointmentsResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -89,9 +86,9 @@ public class AppointmentActivity extends BaseActivity {
     }
 
     public void getAppointment(){
-        service.getAppointmentbyPatient(Integer.parseInt(Prefs.getString("USERID","1"))).enqueue(new Callback<AppointmentResponse>() {
+        service.getAppointmentbyPatient(Integer.parseInt(Prefs.getString("USERID","1"))).enqueue(new Callback<AppointmentsResponse>() {
             @Override
-            public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
+            public void onResponse(Call<AppointmentsResponse> call, Response<AppointmentsResponse> response) {
                 LinearLayoutManager llm = new LinearLayoutManager(AppointmentActivity.this);
                 llm.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -102,7 +99,7 @@ public class AppointmentActivity extends BaseActivity {
         }
 
             @Override
-            public void onFailure(Call<AppointmentResponse> call, Throwable t) {
+            public void onFailure(Call<AppointmentsResponse> call, Throwable t) {
 
             }
         });

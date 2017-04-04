@@ -1,8 +1,8 @@
 package com.example.posmedicine.network;
 
 
+import com.example.posmedicine.models.response.AppointmentsResponse;
 import com.example.posmedicine.models.response.AppointmentResponse;
-import com.example.posmedicine.models.response.AppointmentSingleResponse;
 import com.example.posmedicine.models.response.CashierHeaderListResponse;
 import com.example.posmedicine.models.response.CashierHeaderResponse;
 import com.example.posmedicine.models.response.ComplaintDetailsResponse;
@@ -15,7 +15,6 @@ import com.example.posmedicine.models.response.PatientResponse;
 import com.example.posmedicine.models.response.PatientsResponse;
 import com.example.posmedicine.models.response.PurchaseDetailResponse;
 import com.example.posmedicine.models.response.PurchaseHeaderResponse;
-import com.example.posmedicine.models.response.ServiceResponse;
 import com.example.posmedicine.models.response.ServicesResponse;
 import com.example.posmedicine.models.response.SignInResponse;
 import com.example.posmedicine.models.response.UnitResponse;
@@ -122,12 +121,12 @@ public interface ApiService {
      * Created by Surya on 02/06/17.
      */
     @GET("/clinic/web/v1/appointment/find-by-doctor")
-    Call<AppointmentResponse> getAppointmentbyDoctor(
+    Call<AppointmentsResponse> getAppointmentbyDoctor(
             @Query("id") Integer id
     );
 
     @GET("/clinic/web/v1/appointment/find-by-patient")
-    Call<AppointmentResponse> getAppointmentbyPatient(
+    Call<AppointmentsResponse> getAppointmentbyPatient(
             @Query("id") Integer id
     );
 
@@ -163,7 +162,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("/clinic/web/v1/appointment/create")
-    Call<AppointmentSingleResponse> createAppointment(
+    Call<AppointmentResponse> createAppointment(
             @Field("date") String appointmentDate,
             @Field("doctor_id") Integer doctorid,
             @Field("patient_id") Integer patientid,
