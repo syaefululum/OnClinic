@@ -3,6 +3,7 @@
     package="com.example.posmedicine">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!--
@@ -11,7 +12,6 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
 
     <application
         android:name=".activities.MyApplication"
@@ -39,7 +39,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+                <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             </intent-filter>
         </activity>
         <activity android:name=".activities.CreateUnitActivity" />
@@ -85,8 +85,7 @@
         <activity android:name=".activities.TreatmentActivity" />
         <activity android:name=".activities.EditTreatmentActivity" />
         <activity android:name=".activities.TreatmentDetailActivity" />
-        <activity android:name=".activities.PatientActivity"></activity>
-        <activity android:name=".activities.CreateComplaintActivity" />
+        <activity android:name=".activities.PatientActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -101,7 +100,7 @@
 
         <activity
             android:name=".activities.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
     </application>
 
 </manifest>
