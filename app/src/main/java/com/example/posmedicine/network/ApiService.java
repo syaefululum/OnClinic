@@ -29,10 +29,6 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
-/**
- * Created by Syaeful_U1438 on 01/27/17.
- */
-
 public interface ApiService {
     /**
      * Unit
@@ -184,9 +180,6 @@ public interface ApiService {
      * Complaint
      * Created by Surya on 03/06/17.
      */
-    @GET("/clinic/web/v1/complaint-header")
-    Call<ComplaintHeadersResponse> getListComplaints();
-
     @GET("/clinic/web/v1/complaint-header/list")
     Call<ComplaintHeadersResponse> getComplaints();
 
@@ -222,21 +215,14 @@ public interface ApiService {
             @Field("time") String description
     );
 
-    @FormUrlEncoded
-    @PUT("/clinic/web/v1/complaint-detail/treatment")
-    Call<ComplaintHeaderResponse> putTreatment(
-            @Query("id") Integer id,
-            @Field("result") Integer result,
-            @Field("description") String description
-    );
 
-    @FormUrlEncoded
-    @PUT("/clinic/web/v1/complaint-detail/update")
-    Call<ComplaintHeaderResponse> putComplaintDetail(
-            @Query("id") Integer id,
-            @Field("result") String result,
-            @Field("description") String description
-    );
+//    @FormUrlEncoded
+//    @PUT("/clinic/web/v1/complaint-detail/update")
+//    Call<ComplaintHeaderResponse> putComplaintDetail(
+//            @Query("id") Integer id,
+//            @Field("result") String result,
+//            @Field("description") String description
+//    );
 
     @FormUrlEncoded
     @PUT("/clinic/web/v1/complaint-detail/treatment")

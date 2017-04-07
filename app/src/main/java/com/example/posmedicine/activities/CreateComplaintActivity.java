@@ -51,15 +51,8 @@ public class CreateComplaintActivity extends AppCompatActivity {
 
         registeredDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         service = RestClient.getInstance().getApiService();
-//        getDoctor();
         getPatient();
 
-//        doctors.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                selectedDoctor = (Doctor) parent.getAdapter().getItem(position);
-//            }
-//        });
         patients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -78,29 +71,12 @@ public class CreateComplaintActivity extends AppCompatActivity {
             }
         });
     }
-//
-//    private void getDoctor() {
-//        service.getDoctors().enqueue(new Callback<DoctorsResponse>() {
-//            @Override
-//            public void onResponse(Call<DoctorsResponse> call, Response<DoctorsResponse> response) {
-//                ArrayAdapter myAdapter = new ArrayAdapter<Doctor>(CreateComplaintActivity.this,
-//                        android.R.layout.simple_spinner_dropdown_item, response.body().getDoctor());
-//                doctors.setThreshold(2);
-//                doctors.setAdapter(myAdapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<DoctorsResponse> call, Throwable t) {
-//
-//            }
-//        });
-//    }
 
     private void getPatient() {
         service.getPatients().enqueue(new Callback<PatientsResponse>() {
             @Override
             public void onResponse(Call<PatientsResponse> call, Response<PatientsResponse> response) {
-                ArrayAdapter myAdapter = new ArrayAdapter<Patient>(CreateComplaintActivity.this,
+                ArrayAdapter myAdapter = new ArrayAdapter<>(CreateComplaintActivity.this,
                         android.R.layout.simple_spinner_dropdown_item, response.body().getPatient());
                 patients.setThreshold(2);
                 patients.setAdapter(myAdapter);
@@ -119,8 +95,6 @@ public class CreateComplaintActivity extends AppCompatActivity {
                     .enqueue(new Callback<ComplaintHeaderResponse>() {
                         @Override
                         public void onResponse(Call<ComplaintHeaderResponse> call, Response<ComplaintHeaderResponse> response) {
-//                Appointment appData = response.body().getAppointment();
-//                appData.save();
                             if (response.body().getStatus()) {
                                 Toast.makeText(CreateComplaintActivity.this, "Data Created Successfully", Toast.LENGTH_LONG).show();
                                 finish();
