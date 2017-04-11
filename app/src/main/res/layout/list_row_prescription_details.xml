@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/cvTreatment"
+            android:id="@+id/categoryMedicine"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="4dp"
@@ -38,107 +38,118 @@
                     android:layout_marginTop="10dp">
 
                     <com.example.posmedicine.TextView_Lato
-                        android:id="@+id/tTreatment_PatientName"
+                        android:id="@+id/tmedicine_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="Patient Name"
+                        android:text="Medicine Name"
                         android:textColor="@color/colorGray"
                         android:textSize="14dp"
                         android:textStyle="bold" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lType"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
-                        android:gravity="center_vertical">
+                        android:layout_below="@+id/tmedicine_name"
+                        android:orientation="horizontal">
 
-                        <com.example.posmedicine.TextView_Lato
-                            android:id="@+id/tTreatment_Status"
+                        <com.example.posmedicine.TextView_Lato_Thin
+                            android:id="@+id/tmedicine_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="Status"
-                            android:textColor="@color/colorPrimary"
+                            android:layout_marginLeft="20dp"
+                            android:text="Type"
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lType"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="20dp">
+
+                        <com.example.posmedicine.TextView_Lato_Thin
+                            android:id="@+id/tmedicine_quantity_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="Quantity : "
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                        <com.example.posmedicine.TextView_Lato_Thin
+                            android:id="@+id/tmedicine_stock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Value"
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                        <com.example.posmedicine.TextView_Lato_Thin
+                            android:id="@+id/tmedicine_type_text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Unit Type"
+                            android:textColor="@color/colorLightGray"
                             android:textSize="12dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/lNote"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tTreatment_PatientName"
+                        android:layout_below="@+id/linear"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="3dp"
                         android:orientation="horizontal">
 
                         <com.example.posmedicine.TextView_Lato_Thin
-                            android:id="@+id/tTreatment_Serviceid"
+                            android:id="@+id/tmedicine_note_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Service"
+                            android:layout_marginLeft="2dp"
+                            android:text="Note : "
                             android:textColor="@color/colorLightGray"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:text=" - " />
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
 
                         <com.example.posmedicine.TextView_Lato_Thin
-                            android:id="@+id/tTreatment_Time"
+                            android:id="@+id/tmedicine_note_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Time"
+                            android:layout_marginLeft="20dp"
+                            android:text="Value"
                             android:textColor="@color/colorLightGray"
-                            android:textSize="14dp" />
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
+                        android:orientation="horizontal"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginRight="20dp"
-                        android:orientation="horizontal">
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="10dp">
 
                         <com.joanzapata.iconify.widget.IconTextView
-                            android:id="@+id/tTreatment_MedicalRecordButton"
+                            android:id="@+id/bDeleteMedicine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="{fa-list-alt}"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="16dp" />
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="18dp"
-                            android:background="#ACACAC"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"/>
-
-                        <com.joanzapata.iconify.widget.IconTextView
-                            android:id="@+id/tTreatment_TreatmentButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:text="Start Treatment {fa-angle-right}"
-                            android:textColor="@color/colorOrange"
-                            android:textSize="16dp"
+                            android:text="{fa-trash}"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="20dp"
                             android:textStyle="bold" />
-                        <com.joanzapata.iconify.widget.IconTextView
-                            android:id="@+id/tTreatment_PrescriptionButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:text="Prescription {fa-angle-right}"
-                            android:textColor="@color/colorOrange"
-                            android:textSize="16dp"
-                            android:textStyle="bold" />
-
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>

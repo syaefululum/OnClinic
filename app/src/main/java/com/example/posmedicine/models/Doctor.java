@@ -8,13 +8,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Doctor {
-
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private int id;
     @SerializedName("reg_number")
     @Expose
-    private Integer regNumber;
+    private int regNumber;
     @SerializedName("joined_date")
     @Expose
     private String joinedDate;
@@ -26,7 +25,7 @@ public class Doctor {
     private String status;
     @SerializedName("person_id")
     @Expose
-    private Integer personId;
+    private int personId;
     @SerializedName("person_name")
     @Expose
     private String personName;
@@ -34,19 +33,19 @@ public class Doctor {
     @Expose
     private String personPhone;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getRegNumber() {
+    public int getRegNumber() {
         return regNumber;
     }
 
-    public void setRegNumber(Integer regNumber) {
+    public void setRegNumber(int regNumber) {
         this.regNumber = regNumber;
     }
 
@@ -74,11 +73,11 @@ public class Doctor {
         this.status = status;
     }
 
-    public Integer getPersonId() {
+    public int getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Integer personId) {
+    public void setPersonId(int personId) {
         this.personId = personId;
     }
 

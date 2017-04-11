@@ -14,14 +14,21 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.posmedicine.R;
+import com.example.posmedicine.models.Doctor;
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.models.response.DoctorsResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
+import com.mobsandgeeks.saripaar.Rule;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Required;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,16 +39,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CreateAppointmentActivity extends AppCompatActivity {
-    Button setDate, setTime, bCreateAppointment;
-    AutoCompleteTextView autocomplete;
-    TextView iAppointmentDate,iAppointmentTime;
-    String[] arrName;
-    Integer[] arrId;
+public class CreateAppointmentActivity extends AppCompatActivity implements Validator.ValidationListener{
+    @Required(order = 1)
+    AutoCompleteTextView autocompleteDoctor;
+
+    @Required(order = 2, message = "Select Date")
+    EditText iAppointmentDate;
+
+    @Required(order = 3, message = "Select Time")
+    EditText iAppointmentTime;
+
+    Button bCreateAppointment;
+    TextView bCancel, setDate, setTime;
     ApiService service;
+    Validator validator;
 
-
-    private Integer docterSelected;
+    private Doctor selectedDoctor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +62,32 @@ public class CreateAppointmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_appointment);
 
         service = RestClient.getInstance().getApiService();
+
+        autocompleteDoctor = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextDoctor);
+
+        setDate = (TextView)findViewById(R.id.setAppointmentDate);
+        setTime = (TextView)findViewById(R.id.setAppointmentTime);
+        bCreateAppointment = (Button)findViewById(R.id.bCreateAppointment);
+        iAppointmentDate = (EditText)findViewById(R.id.tAppointmentDate);
+        iAppointmentTime = (EditText)findViewById(R.id.tAppointmentTime);
+        bCancel = (TextView)findViewById(R.id.bCancel);
+
+        iAppointmentDate.setFocusable(false);
+        iAppointmentDate.setClickable(false);
+        iAppointmentTime.setFocusable(false);
+        iAppointmentTime.setClickable(false);
+
         getDoctor();
 
-        setDate = (Button)findViewById(R.id.setAppointmentDate);
-        setTime = (Button)findViewById(R.id.setAppointmentTime);
-        bCreateAppointment = (Button)findViewById(R.id.bCreateAppointment);
-        iAppointmentDate = (TextView)findViewById(R.id.tAppointmentDate);
-        iAppointmentTime = (TextView)findViewById(R.id.tAppointmentTime);
+        validator = new Validator(this);
+        validator.setValidationListener(this);
+
+        autocompleteDoctor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedDoctor = (Doctor) parent.getAdapter().getItem(position);
+            }
+        });
 
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,13 +108,37 @@ public class CreateAppointmentActivity extends AppCompatActivity {
         bCreateAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Integer doctorId = getDocterSelected();
-                Integer patientId = 1;
-                String status = "Pending";
-                String date = iAppointmentDate.getText().toString() + " " + iAppointmentTime.getText().toString() + ":00";
-                createAppointment(date,doctorId,patientId,status);
+                validator.validate();
             }
         });
+        bCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onValidationSucceeded() {
+        if(selectedDoctor == null){
+            Toast.makeText(getApplicationContext(),"Please select Doctor",Toast.LENGTH_SHORT).show();
+        }else{
+            String date = iAppointmentDate.getText().toString() + " " + iAppointmentTime.getText().toString() + ":00";
+            createAppointment(date,selectedDoctor.getId(), Integer.parseInt(Prefs.getString("USERID","1")));
+        }
+    }
+
+    @Override
+    public void onValidationFailed(View failedView, Rule<?> failedRule) {
+        final String failureMessage = failedRule.getFailureMessage();
+        if (failedView instanceof EditText) {
+            EditText failed = (EditText) failedView;
+            failed.requestFocus();
+            failed.setError(failureMessage);
+        } else {
+            Toast.makeText(getBaseContext(), failureMessage, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static class TimePickerFragment extends DialogFragment
@@ -102,7 +158,7 @@ public class CreateAppointmentActivity extends AppCompatActivity {
 
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             // Do something with the time chosen by the user
-            TextView appointmentTime = (TextView) getActivity().findViewById(R.id.tAppointmentTime);
+            TextView appointmentTime = (EditText) getActivity().findViewById(R.id.tAppointmentTime);
             appointmentTime.setText(hourOfDay+":"+minute);
         }
     }
@@ -126,13 +182,13 @@ public class CreateAppointmentActivity extends AppCompatActivity {
             // Do something with the date chosen by the user
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             try {
-                Date d = sdf.parse(day + "/" + month + "/" + year);
+                Date d = sdf.parse(day + "/" + (month+1) + "/" + year);
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(d);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 String formatted = format1.format(cal.getTime());
 
-                TextView appointmentDate = (TextView) getActivity().findViewById(R.id.tAppointmentDate);
+                TextView appointmentDate = (EditText) getActivity().findViewById(R.id.tAppointmentDate);
                 appointmentDate.setText(formatted);
 
             } catch (ParseException e) {
@@ -145,32 +201,11 @@ public class CreateAppointmentActivity extends AppCompatActivity {
         service.getDoctors().enqueue(new Callback<DoctorsResponse>() {
             @Override
             public void onResponse(Call<DoctorsResponse> call, Response<DoctorsResponse> response) {
-                arrName = new String[response.body().getDoctor().size()];
-                arrId = new Integer[response.body().getDoctor().size()];
-                for (int i = 0; i < response.body().getDoctor().size(); i++) {
-                    arrName[i] = new String(response.body().getDoctor().get(i).getPersonName());
-                    arrId[i] = response.body().getDoctor().get(i).getId();
-                }
-                autocomplete = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextDoctor);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.select_dialog_item, arrName);
-
-                autocomplete.setThreshold(3);
-                autocomplete.setAdapter(adapter);
-
-                autocomplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String itemSelect = (String) parent.getItemAtPosition(position);
-
-                        for (int i = 0; i < arrName.length; i++) {
-                            if(itemSelect == arrName[i]){
-                                setDocterSelected(arrId[i]);
-                            }
-                        }
-                    }
-                });
+                ArrayAdapter myAdapter = new ArrayAdapter<Doctor>(CreateAppointmentActivity.this,
+                        android.R.layout.simple_spinner_dropdown_item, response.body().getDoctor());
+                autocompleteDoctor.setThreshold(2);
+                autocompleteDoctor.setAdapter(myAdapter);
             }
-
 
             @Override
             public void onFailure(Call<DoctorsResponse> call, Throwable t) {
@@ -179,33 +214,23 @@ public class CreateAppointmentActivity extends AppCompatActivity {
         });
     }
 
-
-    public void setDocterSelected(Integer docterSelected) {
-        this.docterSelected = docterSelected;
-    }
-
-    public Integer getDocterSelected() {
-        return this.docterSelected;
-    }
-
-    public void createAppointment(String date, Integer doctorId,Integer patientId,String status){
-        service.createAppointment(date,doctorId,patientId,status).enqueue(new Callback<AppointmentResponse>() {
+    public void createAppointment(String date, Integer doctorId,Integer patientId){
+        service.createAppointment(date,doctorId,patientId).enqueue(new Callback<AppointmentResponse>() {
             @Override
             public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
-//                Appointment appData = response.body().getAppointment();
-//                appData.save();
-                finish();
+                Log.d("responseCreate", String.valueOf(response.body().getAppointment()));
+                if(response.body().getStatus()){
+                    Toast.makeText(getBaseContext(), "Succesfully create appointment", Toast.LENGTH_SHORT).show();
+                    finish();
+                }else{
+                    Toast.makeText(getBaseContext(), "Failed create appointment", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<AppointmentResponse> call, Throwable t) {
-                Log.d("asd","gagal");
+                Toast.makeText(getBaseContext(), "Failed create appointment, Connection Error", Toast.LENGTH_SHORT).show();
             }
         });
-
-//       LocalAppointment appData = new LocalAppointment(patientId,doctorId,1,"Surya","Bruce",date,"Pending");
-//        appData.save();
-
-
     }
 }

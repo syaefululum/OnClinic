@@ -1,6 +1,7 @@
 package com.example.posmedicine.network;
 
 
+import com.example.posmedicine.models.PrescriptionHeader;
 import com.example.posmedicine.models.response.AppointmentsResponse;
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.models.response.CashierHeaderListResponse;
@@ -13,6 +14,9 @@ import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.models.response.MedicineSingleResponse;
 import com.example.posmedicine.models.response.PatientResponse;
 import com.example.posmedicine.models.response.PatientsResponse;
+import com.example.posmedicine.models.response.PrescriptionDetailResponse;
+import com.example.posmedicine.models.response.PrescriptionHeaderResponse;
+import com.example.posmedicine.models.response.PrescriptionHeaderSingleResponse;
 import com.example.posmedicine.models.response.PurchaseDetailResponse;
 import com.example.posmedicine.models.response.PurchaseHeaderResponse;
 import com.example.posmedicine.models.response.ServicesResponse;
@@ -120,12 +124,12 @@ public interface ApiService {
      * Appointment
      * Created by Surya on 02/06/17.
      */
-    @GET("/clinic/web/v1/appointment/find-by-doctor")
+    @GET("/clinic/web/v2/appointment/find-by-doctor")
     Call<AppointmentsResponse> getAppointmentbyDoctor(
             @Query("id") Integer id
     );
 
-    @GET("/clinic/web/v1/appointment/find-by-patient")
+    @GET("/clinic/web/v2/appointment/find-by-patient")
     Call<AppointmentsResponse> getAppointmentbyPatient(
             @Query("id") Integer id
     );
@@ -161,12 +165,11 @@ public interface ApiService {
     );
 
     @FormUrlEncoded
-    @POST("/clinic/web/v1/appointment/create")
+    @POST("/clinic/web/v2/appointment/create")
     Call<AppointmentResponse> createAppointment(
             @Field("date") String appointmentDate,
             @Field("doctor_id") Integer doctorid,
-            @Field("patient_id") Integer patientid,
-            @Field("status") String status
+            @Field("patient_id") Integer patientid
     );
 
     /**
@@ -271,4 +274,49 @@ public interface ApiService {
      */
     @GET("/clinic/web/v1/service")
     Call<ServicesResponse> getServices();
+
+    @FormUrlEncoded
+    @PUT("/clinic/web/v2/appointment/status")
+    Call<AppointmentResponse> updateAppointmentStatus(
+            @Query("id") int id,
+            @Field("status") String status
+    );
+
+    @GET("/clinic/web/v2/appointment/find-by-today")
+    Call<AppointmentsResponse> getAppointmentByNurse( );
+
+    /**
+     * prescription-header/create
+     * Created by Ulum on 10/04/17.
+     */
+    @FormUrlEncoded
+    @POST("/clinic/web/v1/prescription-header/create")
+    Call<PrescriptionHeaderSingleResponse> createPrescriptionHeader(
+            @Field("complaint_id") Integer complainId,
+            @Field("date") String date
+    );
+
+    /**
+     * prescription-detail/create
+     * Created by Ulum on 10/04/17.
+     */
+    @FormUrlEncoded
+    @POST("/clinic/web/v1/prescription-detail/create")
+    Call<PrescriptionDetailResponse> createPrescriptionDetail(
+            @Field("prescription_header_id") Integer prescriptionHeaderId,
+            @Field("medicine_name") String medicineName,
+            @Field("quantity") String quantity,
+            @Field("unit_id") Integer unitId,
+            @Field("note") String note
+    );
+
+    @GET("/clinic/web/v1/prescription-header/find-by-complaint")
+    Call<PrescriptionHeaderSingleResponse> getPrescriptionByComplaint(
+            @Query("id") Integer id
+    );
+
+    @DELETE("/clinic/web/v1/prescription-detail/delete")
+    Call<PrescriptionDetailResponse> deletePrescriptionDetail(
+            @Query("id") int id
+    );
 }
