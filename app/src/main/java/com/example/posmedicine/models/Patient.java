@@ -11,39 +11,39 @@ public class Patient {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private int id;
     @SerializedName("patient_number")
     @Expose
-    private Integer patientNumber;
+    private int patientNumber;
     @SerializedName("registered_date")
     @Expose
     private String registeredDate;
     @SerializedName("person_id")
     @Expose
-    private Integer personId;
+    private int personId;
     @SerializedName("person_name")
     @Expose
     private String personName;
-    @SerializedName("person_phone")
-    @Expose
-    private String personPhone;
     @SerializedName("person_address")
     @Expose
     private String personAddress;
+    @SerializedName("person_phone")
+    @Expose
+    private String personPhone;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getPatientNumber() {
+    public int getPatientNumber() {
         return patientNumber;
     }
 
-    public void setPatientNumber(Integer patientNumber) {
+    public void setPatientNumber(int patientNumber) {
         this.patientNumber = patientNumber;
     }
 
@@ -55,11 +55,11 @@ public class Patient {
         this.registeredDate = registeredDate;
     }
 
-    public Integer getPersonId() {
+    public int getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Integer personId) {
+    public void setPersonId(int personId) {
         this.personId = personId;
     }
 
@@ -71,20 +71,20 @@ public class Patient {
         this.personName = personName;
     }
 
-    public String getPersonPhone() {
-        return personPhone;
-    }
-
-    public void setPersonPhone(String personPhone) {
-        this.personPhone = personPhone;
-    }
-
     public String getPersonAddress() {
         return personAddress;
     }
 
     public void setPersonAddress(String personAddress) {
         this.personAddress = personAddress;
+    }
+
+    public String getPersonPhone() {
+        return personPhone;
+    }
+
+    public void setPersonPhone(String personPhone) {
+        this.personPhone = personPhone;
     }
 
     @Override

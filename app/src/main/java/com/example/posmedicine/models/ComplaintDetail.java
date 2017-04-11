@@ -14,6 +14,9 @@ public class ComplaintDetail implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("complaint_header_id")
+    @Expose
+    private Integer complaintHeaderId;
     @SerializedName("doctor_id")
     @Expose
     private Integer doctorId;
@@ -51,6 +54,14 @@ public class ComplaintDetail implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getComplaintHeaderId() {
+        return complaintHeaderId;
+    }
+
+    public void setComplaintHeaderId(Integer complaintHeaderId) {
+        this.complaintHeaderId = complaintHeaderId;
     }
 
     public Integer getDoctorId() {

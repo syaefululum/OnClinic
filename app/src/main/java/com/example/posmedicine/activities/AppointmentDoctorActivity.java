@@ -93,10 +93,10 @@ public class AppointmentDoctorActivity extends AppCompatActivity {
                 LinearLayoutManager llm = new LinearLayoutManager(AppointmentDoctorActivity.this);
                 llm.setOrientation(LinearLayoutManager.VERTICAL);
 
-                AppointmentAdapter appointmentAdapter = new AppointmentAdapter(response.body().getAppointment());
+               // AppointmentAdapter appointmentAdapter = new AppointmentAdapter(response.body().getAppointment(), AppointmentActivity.class);
                 RecyclerView rvAppointment = (RecyclerView)findViewById(R.id.rvAppointment);
                 rvAppointment.setLayoutManager(llm);
-                rvAppointment.setAdapter(appointmentAdapter);
+               // rvAppointment.setAdapter(appointmentAdapter);
         }
 
             @Override
