@@ -75,14 +75,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .getVisibleRegion().latLngBounds;
 
         mMap.addMarker(new
-                MarkerOptions().position(currentLoc).title("Nort: "+curScreen.northeast+" southes: "+curScreen.southwest));
+                MarkerOptions().position(currentLoc).title("Your Location"));
+
+        mMap.addMarker(new
+                MarkerOptions().position(new LatLng(curScreen.northeast.latitude,curScreen.northeast.longitude)).title("Northeast Location"));
+
+        mMap.addMarker(new
+                MarkerOptions().position(new LatLng(curScreen.southwest.latitude, curScreen.southwest.longitude)).title("SouthWest Location"));
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLoc));
 
         CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(currentLoc, 18);
         mMap.animateCamera(yourLocation);
 
-        Toast toast = Toast.makeText(getApplicationContext(), "LatLngBounds: "+curScreen, Toast.LENGTH_LONG);
-        toast.show();
+//        Toast toast = Toast.makeText(getApplicationContext(), "LatLngBounds: "+curScreen, Toast.LENGTH_LONG);
+//        toast.show();
     }
 
 

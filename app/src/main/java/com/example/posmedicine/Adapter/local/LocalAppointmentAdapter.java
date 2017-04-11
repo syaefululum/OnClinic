@@ -41,8 +41,7 @@ public class LocalAppointmentAdapter extends RecyclerView.Adapter<LocalAppointme
     @Override
     public void onBindViewHolder(LocalAppointmentAdapter.ViewHolder holder, final int position) {
         holder.appointmentDate.setText(appointment.get(position).getDate());
-        holder.appointmentDoctor.setText(appointment.get(position).getDoctorName());
-        holder.appointmentPatient.setText(appointment.get(position).getPatientName());
+        holder.appointmentName.setText(appointment.get(position).getDoctorName());
         holder.appointmentStatus.setText(appointment.get(position).getStatus());
 
         if (holder.appointmentStatus.getText().toString().equals("Canceled")) {
@@ -78,8 +77,7 @@ public class LocalAppointmentAdapter extends RecyclerView.Adapter<LocalAppointme
     public class ViewHolder extends RecyclerView.ViewHolder {
         public CardView cvAppointment;
         public TextView appointmentDate;
-        public TextView appointmentDoctor;
-        public TextView appointmentPatient;
+        public TextView appointmentName;
         public TextView appointmentStatus;
         public TextView appointmentUpdateAccept;
         public TextView appointmentUpdateReject;
@@ -90,8 +88,7 @@ public class LocalAppointmentAdapter extends RecyclerView.Adapter<LocalAppointme
 
             cvAppointment = (CardView) v.findViewById(R.id.categoryAppointment);
             appointmentDate = (TextView) v.findViewById(R.id.appointment_date);
-            appointmentDoctor = (TextView) v.findViewById(R.id.appointment_doctor);
-            appointmentPatient = (TextView) v.findViewById(R.id.appointment_patient);
+            appointmentName = (TextView) v.findViewById(R.id.appointment_name);
             appointmentStatus = (TextView) v.findViewById(R.id.appointment_status);
             appointmentUpdateAccept = (TextView) v.findViewById(R.id.bAcceptAppointment);
             appointmentUpdateReject = (TextView) v.findViewById(R.id.bRejectAppointment);

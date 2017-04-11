@@ -158,6 +158,7 @@ public class CreateComplaintDetailActivity extends AppCompatActivity {
                             Log.d("LOG", "Failed");
                         }
                     });
+
         }
     }
 

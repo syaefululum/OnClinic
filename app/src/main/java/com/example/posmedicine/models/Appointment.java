@@ -4,45 +4,42 @@ package com.example.posmedicine.models;
  * Created by Surya_N2267 on 2/6/2017.
  */
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
 import com.orm.dsl.Table;
 
-public class Appointment{
+public class Appointment implements Parcelable {
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private int id;
     @SerializedName("date")
     @Expose
     private String date;
     @SerializedName("doctor_id")
     @Expose
-    private String doctorId;
+    private int doctorId;
+    @SerializedName("doctor_name")
+    @Expose
+    private String doctorName;
     @SerializedName("patient_id")
     @Expose
-    private String patientId;
+    private int patientId;
+    @SerializedName("patient_name")
+    @Expose
+    private String patientName;
     @SerializedName("status")
     @Expose
     private String status;
-    @SerializedName("created_at")
-    @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
-    @Expose
-    private String updatedAt;
-    @SerializedName("doctor")
-    @Expose
-    private Doctor doctor;
-    @SerializedName("patient")
-    @Expose
-    private Patient patient;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -54,20 +51,36 @@ public class Appointment{
         this.date = date;
     }
 
-    public String getDoctorId() {
+    public int getDoctorId() {
         return doctorId;
     }
 
-    public void setDoctorId(String doctorId) {
+    public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
     }
 
-    public String getPatientId() {
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public int getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(String patientId) {
+    public void setPatientId(int patientId) {
         this.patientId = patientId;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
     }
 
     public String getStatus() {
@@ -78,36 +91,45 @@ public class Appointment{
         this.status = status;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.date);
+        dest.writeInt(this.doctorId);
+        dest.writeString(this.doctorName);
+        dest.writeInt(this.patientId);
+        dest.writeString(this.patientName);
+        dest.writeString(this.status);
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public Appointment() {
     }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    protected Appointment(Parcel in) {
+        this.id = in.readInt();
+        this.date = in.readString();
+        this.doctorId = in.readInt();
+        this.doctorName = in.readString();
+        this.patientId = in.readInt();
+        this.patientName = in.readString();
+        this.status = in.readString();
     }
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
+    public static final Parcelable.Creator<Appointment> CREATOR = new Parcelable.Creator<Appointment>() {
+        @Override
+        public Appointment createFromParcel(Parcel source) {
+            return new Appointment(source);
+        }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
+        @Override
+        public Appointment[] newArray(int size) {
+            return new Appointment[size];
+        }
+    };
 }
 
