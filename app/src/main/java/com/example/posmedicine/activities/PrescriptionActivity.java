@@ -141,7 +141,9 @@ public class PrescriptionActivity extends AppCompatActivity implements Validator
             public void onResponse(Call<PrescriptionDetailResponse> call, Response<PrescriptionDetailResponse> response) {
                 if(response.body().isStatus()){
                     //add to list
-                    prescriptionHeader.getPrescriptionDetails().add(response.body().getPrescriptionDetail());
+                    //prescriptionHeader.getPrescriptionDetails().add(response.body().getPrescriptionDetail());
+                    prescriptionHeader = new PrescriptionHeader();
+                    getPresriptionHeader(complaintHeaderId);
 
                     Toast.makeText(getApplicationContext(),"Successfully add medicine record",Toast.LENGTH_LONG).show();
                     inputQty.setText("");
@@ -193,15 +195,16 @@ public class PrescriptionActivity extends AppCompatActivity implements Validator
                 if(response.body().isStatus()){
                     prescriptionHeader = response.body().getPrescriptionHeaders();
                     Log.d("prescriptionHeader", String.valueOf(prescriptionHeader));
+                    if(prescriptionHeader != null){
+                        LinearLayoutManager llm = new LinearLayoutManager(PrescriptionActivity.this);
+                        llm.setOrientation(LinearLayoutManager.VERTICAL);
 
-                    LinearLayoutManager llm = new LinearLayoutManager(PrescriptionActivity.this);
-                    llm.setOrientation(LinearLayoutManager.VERTICAL);
+                        PrescriptionDetailAdapter prescriptionDetailAdapter = new PrescriptionDetailAdapter(prescriptionHeader.getPrescriptionDetails(),PrescriptionActivity.this);
+                        RecyclerView rvMedicine = (RecyclerView)findViewById(R.id.rvMedicinePrescription);
 
-                    PrescriptionDetailAdapter prescriptionDetailAdapter = new PrescriptionDetailAdapter(prescriptionHeader.getPrescriptionDetails(),PrescriptionActivity.this);
-                    RecyclerView rvMedicine = (RecyclerView)findViewById(R.id.rvMedicinePrescription);
-
-                    rvMedicine.setLayoutManager(llm);
-                    rvMedicine.setAdapter(prescriptionDetailAdapter);
+                        rvMedicine.setLayoutManager(llm);
+                        rvMedicine.setAdapter(prescriptionDetailAdapter);
+                    }
                 }
             }
 
