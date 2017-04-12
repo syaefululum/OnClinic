@@ -1,9 +1,11 @@
 package com.example.posmedicine.activities;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
@@ -12,8 +14,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.posmedicine.GetNearbyPlacesData;
 import com.example.posmedicine.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -31,6 +36,9 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MapsActivity extends AppCompatActivity
         implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -40,15 +48,25 @@ public class MapsActivity extends AppCompatActivity
     private GoogleMap mGoogleMap;
     private SupportMapFragment mapFrag;
     private LocationRequest mLocationRequest;
+    private LocationManager lm;
+    Location location;
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
     private Marker mCurrLocationMarker;
     private int DEFAULT_ZOOM = 17;
+    private Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        searchButton = (Button) findViewById(R.id.btnSearch);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getBounds();
+            }
+        });
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
@@ -71,6 +89,7 @@ public class MapsActivity extends AppCompatActivity
         mGoogleMap.getUiSettings().setCompassEnabled(true);
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
         mGoogleMap.getUiSettings().setRotateGesturesEnabled(true);
+        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -79,12 +98,14 @@ public class MapsActivity extends AppCompatActivity
                     == PackageManager.PERMISSION_GRANTED) {
                 buildGoogleApiClient();
                 mGoogleMap.setMyLocationEnabled(true);
+                location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             } else {
                 checkLocationPermission();
             }
         } else {
             buildGoogleApiClient();
             mGoogleMap.setMyLocationEnabled(true);
+            location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         }
     }
 
@@ -149,6 +170,21 @@ public class MapsActivity extends AppCompatActivity
         mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
 
         mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM), 2000, null);
+    }
+
+    private void getBounds() {
+        mGoogleMap.clear();
+        LatLngBounds curScreen = mGoogleMap.getProjection()
+                .getVisibleRegion().latLngBounds;
+        Object[] DataTransfer = new Object[4];
+        DataTransfer[0] = mGoogleMap;
+        DataTransfer[1] = this;
+        DataTransfer[2] = curScreen.northeast;
+        DataTransfer[3] = curScreen.southwest;
+        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
+        getNearbyPlacesData.execute(DataTransfer);
+
+        Toast.makeText(MapsActivity.this,"Showing Nearby Clinics", Toast.LENGTH_LONG).show();
     }
 
     protected synchronized void buildGoogleApiClient() {

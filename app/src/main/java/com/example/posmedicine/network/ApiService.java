@@ -5,6 +5,7 @@ import com.example.posmedicine.models.response.AppointmentsResponse;
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.models.response.CashierHeaderListResponse;
 import com.example.posmedicine.models.response.CashierHeaderResponse;
+import com.example.posmedicine.models.response.ClinicsResponse;
 import com.example.posmedicine.models.response.ComplaintDetailsResponse;
 import com.example.posmedicine.models.response.ComplaintHeaderResponse;
 import com.example.posmedicine.models.response.ComplaintHeadersResponse;
@@ -15,6 +16,7 @@ import com.example.posmedicine.models.response.PatientResponse;
 import com.example.posmedicine.models.response.PatientsResponse;
 import com.example.posmedicine.models.response.PurchaseDetailResponse;
 import com.example.posmedicine.models.response.PurchaseHeaderResponse;
+import com.example.posmedicine.models.response.SchedulesResponse;
 import com.example.posmedicine.models.response.ServicesResponse;
 import com.example.posmedicine.models.response.SignInResponse;
 import com.example.posmedicine.models.response.UnitResponse;
@@ -257,4 +259,27 @@ public interface ApiService {
      */
     @GET("/clinic/web/v1/service")
     Call<ServicesResponse> getServices();
+
+    /**
+     * Service
+     * Created by Surya on 04/10/17.
+     */
+    @GET("/clinic/web/v1/clinic/find-by-area")
+    Call<ClinicsResponse> getClinics(
+            @Query("northLat") Double northLat,
+            @Query("northLng") Double northLng,
+            @Query("southLat") Double southLat,
+            @Query("southLng") Double southLng
+    );
+
+    /**
+     * Schedule
+     * Created by Surya on 04/11/17.
+     */
+    @GET("/clinic/web/v1/schedule/schedules")
+    Call<SchedulesResponse> getSchedules(
+            @Query("id") Integer id
+    );
+
+
 }
