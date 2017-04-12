@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.posmedicine.R;
 import com.example.posmedicine.activities.EditTreatmentActivity;
 import com.example.posmedicine.activities.PatientActivity;
+import com.example.posmedicine.activities.PrescriptionActivity;
 import com.example.posmedicine.activities.TreatmentDetailActivity;
 import com.example.posmedicine.models.ComplaintDetail;
 
@@ -43,11 +44,16 @@ public class TreatmentAdapter extends RecyclerView.Adapter<TreatmentAdapter.View
         holder.treatmentStatus.setText(status);
         if (status.equals("Queuing")) {
             holder.treatmentStatus.setTextColor(Color.parseColor("#009acd"));
+            holder.treatmentTreat.setVisibility(View.VISIBLE);
+            holder.treatmentPrescription.setVisibility(View.GONE);
         } else if (status.equals("Done")) {
             holder.treatmentStatus.setTextColor(Color.parseColor("#228b22"));
             holder.treatmentTreat.setVisibility(View.GONE);
+            holder.treatmentPrescription.setVisibility(View.VISIBLE);
         } else {
             holder.treatmentStatus.setTextColor(Color.parseColor("#ffff00"));
+            holder.treatmentTreat.setVisibility(View.GONE);
+            holder.treatmentPrescription.setVisibility(View.GONE);
         }
         holder.treatmentPatient.setText(treatment.get(position).getPatientName());
         holder.treatmentTime.setText(treatment.get(position).getTime());
@@ -76,6 +82,18 @@ public class TreatmentAdapter extends RecyclerView.Adapter<TreatmentAdapter.View
             }
         });
 
+        holder.treatmentPrescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle extras = new Bundle();
+                extras.putString("COMPLAINT_HEADER_ID", String.valueOf(treatment.get(position).getComplaintHeaderId()));
+
+                Intent prescriptionIntent = new Intent(v.getContext(), PrescriptionActivity.class);
+                prescriptionIntent.putExtras(extras);
+                v.getContext().startActivity(prescriptionIntent);
+            }
+        });
+
         holder.treatmentRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +119,7 @@ public class TreatmentAdapter extends RecyclerView.Adapter<TreatmentAdapter.View
         public TextView treatmentService;
         public TextView treatmentStatus;
         public TextView treatmentTreat;
+        public TextView treatmentPrescription;
         public TextView treatmentRecord;
 
         public ViewHolder(View v) {
@@ -112,6 +131,7 @@ public class TreatmentAdapter extends RecyclerView.Adapter<TreatmentAdapter.View
             treatmentService = (TextView) v.findViewById(R.id.tTreatment_Serviceid);
 
             treatmentTreat = (TextView) v.findViewById(R.id.tTreatment_TreatmentButton);
+            treatmentPrescription = (TextView) v.findViewById(R.id.tTreatment_PrescriptionButton);
             treatmentRecord = (TextView) v.findViewById(R.id.tTreatment_MedicalRecordButton);
 
             v.setOnClickListener(new View.OnClickListener() {

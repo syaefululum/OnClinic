@@ -132,4 +132,9 @@ public class Person{
         this.updatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }
