@@ -6,6 +6,7 @@ import com.example.posmedicine.models.response.AppointmentsResponse;
 import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.models.response.CashierHeaderListResponse;
 import com.example.posmedicine.models.response.CashierHeaderResponse;
+import com.example.posmedicine.models.response.ClinicsResponse;
 import com.example.posmedicine.models.response.ComplaintDetailsResponse;
 import com.example.posmedicine.models.response.ComplaintHeaderResponse;
 import com.example.posmedicine.models.response.ComplaintHeadersResponse;
@@ -19,6 +20,7 @@ import com.example.posmedicine.models.response.PrescriptionHeaderResponse;
 import com.example.posmedicine.models.response.PrescriptionHeaderSingleResponse;
 import com.example.posmedicine.models.response.PurchaseDetailResponse;
 import com.example.posmedicine.models.response.PurchaseHeaderResponse;
+import com.example.posmedicine.models.response.SchedulesResponse;
 import com.example.posmedicine.models.response.ServicesResponse;
 import com.example.posmedicine.models.response.SignInResponse;
 import com.example.posmedicine.models.response.UnitResponse;
@@ -32,10 +34,6 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
-
-/**
- * Created by Syaeful_U1438 on 01/27/17.
- */
 
 public interface ApiService {
     /**
@@ -187,9 +185,6 @@ public interface ApiService {
      * Complaint
      * Created by Surya on 03/06/17.
      */
-    @GET("/clinic/web/v1/complaint-header")
-    Call<ComplaintHeadersResponse> getListComplaints();
-
     @GET("/clinic/web/v1/complaint-header/list")
     Call<ComplaintHeadersResponse> getComplaints();
 
@@ -225,21 +220,14 @@ public interface ApiService {
             @Field("time") String description
     );
 
-    @FormUrlEncoded
-    @PUT("/clinic/web/v1/complaint-detail/treatment")
-    Call<ComplaintHeaderResponse> putTreatment(
-            @Query("id") Integer id,
-            @Field("result") Integer result,
-            @Field("description") String description
-    );
 
-    @FormUrlEncoded
-    @PUT("/clinic/web/v1/complaint-detail/update")
-    Call<ComplaintHeaderResponse> putComplaintDetail(
-            @Query("id") Integer id,
-            @Field("result") String result,
-            @Field("description") String description
-    );
+//    @FormUrlEncoded
+//    @PUT("/clinic/web/v1/complaint-detail/update")
+//    Call<ComplaintHeaderResponse> putComplaintDetail(
+//            @Query("id") Integer id,
+//            @Field("result") String result,
+//            @Field("description") String description
+//    );
 
     @FormUrlEncoded
     @PUT("/clinic/web/v1/complaint-detail/treatment")
@@ -274,6 +262,29 @@ public interface ApiService {
      */
     @GET("/clinic/web/v1/service")
     Call<ServicesResponse> getServices();
+
+    /**
+     * Service
+     * Created by Surya on 04/10/17.
+     */
+    @GET("/clinic/web/v1/clinic/find-by-area")
+    Call<ClinicsResponse> getClinics(
+            @Query("northLat") Double northLat,
+            @Query("northLng") Double northLng,
+            @Query("southLat") Double southLat,
+            @Query("southLng") Double southLng
+    );
+
+    /**
+     * Schedule
+     * Created by Surya on 04/11/17.
+     */
+    @GET("/clinic/web/v1/schedule/schedules")
+    Call<SchedulesResponse> getSchedules(
+            @Query("id") Integer id
+    );
+
+
 
     @FormUrlEncoded
     @PUT("/clinic/web/v2/appointment/status")

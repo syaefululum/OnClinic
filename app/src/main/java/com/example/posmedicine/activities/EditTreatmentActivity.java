@@ -44,6 +44,7 @@ public class EditTreatmentActivity extends AppCompatActivity {
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.treatmentResult, "^[a-zA-Z][a-zA-Z0-9!@#$&()\\\\:-`.+,/\n \\\"]*$", R.string.result_error);
+        awesomeValidation.addValidation(this, R.id.treatmentDescription, "^[a-zA-Z][a-zA-Z0-9!@#$&()\\\\:-`.+,/\n \\\"]*$", R.string.result_error);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override

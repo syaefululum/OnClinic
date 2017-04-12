@@ -104,7 +104,7 @@ public class CreateComplaintActivity extends AppCompatActivity {
         service.getPatients().enqueue(new Callback<PatientsResponse>() {
             @Override
             public void onResponse(Call<PatientsResponse> call, Response<PatientsResponse> response) {
-                ArrayAdapter myAdapter = new ArrayAdapter<Patient>(CreateComplaintActivity.this,
+                ArrayAdapter myAdapter = new ArrayAdapter<>(CreateComplaintActivity.this,
                         android.R.layout.simple_spinner_dropdown_item, response.body().getPatient());
                 patients.setThreshold(2);
                 patients.setAdapter(myAdapter);
