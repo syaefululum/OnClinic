@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,11 @@ import android.widget.TextView;
 
 import com.example.posmedicine.Adapter.ComplaintDetailAdapter;
 import com.example.posmedicine.Adapter.MedicalRecordDetailAdapter;
+import com.example.posmedicine.Adapter.MedicineHistoryAdapter;
 import com.example.posmedicine.activities.ComplaintDetailActivity;
 import com.example.posmedicine.models.ComplaintHeader;
 import com.example.posmedicine.models.response.ComplaintDetailsResponse;
+import com.example.posmedicine.models.response.PrescriptionHeaderSingleResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 
@@ -40,6 +43,7 @@ public class MedicalRecordFragment extends Fragment {
         record = (ComplaintHeader) getArguments().getSerializable("Obj");
         TextView date = (TextView) rootView.findViewById(R.id.tRecord_Date);
         getComplaintDetails(record.getId());
+        getPrescriptionDetails(record.getId());
         date.setText(record.getRegisteredDate());
         return rootView;
     }
@@ -69,6 +73,32 @@ public class MedicalRecordFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ComplaintDetailsResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getPrescriptionDetails(Integer complaintHeaderId){
+        service.getPrescriptionByComplaint(complaintHeaderId).enqueue(new Callback<PrescriptionHeaderSingleResponse>() {
+            @Override
+            public void onResponse(Call<PrescriptionHeaderSingleResponse> call, Response<PrescriptionHeaderSingleResponse> response) {
+                if(response.body().isStatus()){
+                    if(response.body().getPrescriptionHeaders() != null){
+                        Log.d("21gun", String.valueOf(response.body().getPrescriptionHeaders().getPrescriptionDetails()));
+                        LinearLayoutManager llmm = new LinearLayoutManager(rootView.getContext());
+                        llmm.setOrientation(LinearLayoutManager.VERTICAL);
+
+                        MedicineHistoryAdapter medicineHistoryAdapter = new MedicineHistoryAdapter(response.body().getPrescriptionHeaders().getPrescriptionDetails());
+                        RecyclerView rvMedicineHistory = (RecyclerView) rootView.findViewById(R.id.rvPatientMedicineHistory);
+
+                        rvMedicineHistory.setLayoutManager(llmm);
+                        rvMedicineHistory.setAdapter(medicineHistoryAdapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PrescriptionHeaderSingleResponse> call, Throwable t) {
 
             }
         });
